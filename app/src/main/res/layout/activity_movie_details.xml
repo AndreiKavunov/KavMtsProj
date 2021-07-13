@@ -38,4 +38,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RcMovie"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/scroll"
+        app:layout_constraintBottom_toTopOf="@+id/BoNav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RcCateg" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/BoNav"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@color/white"
+        app:itemIconTint="@drawable/button_selector"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/button_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
