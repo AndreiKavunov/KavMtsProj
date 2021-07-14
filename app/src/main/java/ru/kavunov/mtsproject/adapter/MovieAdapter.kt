@@ -74,7 +74,7 @@ class MovieAdapter(): RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
     class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
         val building = ItemMovieBinding.bind(item)
         fun bind(movie: MovieDto){building.apply {
-            filmImg.load(R.drawable.oval2)
+            filmImg.load(movie.imageUrl)
             filmName.text = movie.title
             filmContent.text = movie.description
             filmOgr.text = movie.ageRestriction.toString()

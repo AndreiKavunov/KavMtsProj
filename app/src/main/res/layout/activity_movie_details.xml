@@ -47,21 +47,25 @@
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:background="@color/scroll"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/BoNav"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RcCateg" />
+        app:layout_constraintTop_toBottomOf="@+id/RcCateg"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/BoNav"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:background="@color/white"
+        app:itemBackground="@drawable/button_selector2"
         app:itemIconTint="@drawable/button_selector"
         app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/button_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
