@@ -5,19 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.kavunov.mtsproject.DTC.Categories
+import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.CategoryItemBinding
 
-class CategoryAdapter:RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
-    var categtList = ArrayList<Categories>()
-    val list1 = listOf<Categories>(
-        Categories(category = "боевики"),
-        Categories(category = "драмы"),
-        Categories(category = "комедии"),
-        Categories(category = "артхаус"),
-        Categories(category = "мелодрамы")
+class CategoryAdapter(ListMain: List<Categories>):RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
+    var categtList = ListMain
 
-    )
     class CategoryHolder(item: View):RecyclerView.ViewHolder(item) {
         val building = CategoryItemBinding.bind(item)
         fun bind(category: Categories){
