@@ -34,7 +34,7 @@ class MovieAdapter(
             filmImg.load(movie.imageUrl)
             filmName.text = movie.title
             filmContent.text = movie.description
-            filmOgr.text = movie.ageRestriction.toString()
+            filmOgr.text = movie.ageRestriction.toString() + "+"
             filmRating.rating = movie.rateScore.toFloat()
 
         }
