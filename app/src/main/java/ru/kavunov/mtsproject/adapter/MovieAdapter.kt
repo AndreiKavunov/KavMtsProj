@@ -21,7 +21,10 @@ class MovieAdapter(
     val onMovieClick: (MovieDto) -> Unit
 ): RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
 
-    var movietList = ListMain
+    var movietList = ListMain.toMutableList()
+
+
+
     val onClickListener = onMovieClick
     val context = contextA
     class MovieHolder(item:View, contextH: Context):RecyclerView.ViewHolder(item) {
@@ -35,12 +38,7 @@ class MovieAdapter(
             filmRating.rating = movie.rateScore.toFloat()
 
         }
-//            val ratingBar = findViewById(R.id.ratingBar) as RatingBar
-            val ratingBar = building.filmRating
-            val stars = ratingBar.progressDrawable as LayerDrawable
-            stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP)
-            stars.getDrawable(0).setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP)
-            stars.getDrawable(1).setColorFilter(Color.RED, PorterDuff.Mode.SRC_ATOP)
+
         }
     }
 
@@ -62,4 +60,11 @@ class MovieAdapter(
     override fun getItemCount(): Int {
         return movietList.size
     }
+    fun changeList(){
+        movietList.clear()
+        movietList.addAll(movietList)
+        notifyDataSetChanged()
+
+    }
+
 }

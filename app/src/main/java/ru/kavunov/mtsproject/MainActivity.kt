@@ -18,6 +18,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataS
 class MainActivity : AppCompatActivity() {
 
     val listMov : List<MovieDto> = MoviesDataSourceImpl().getMovies()
+
     val listCateg : List<Categories> = CategoryDataSourceImpl().getMovies()
 
     private val adapterCateg = CategoryAdapter(listCateg)

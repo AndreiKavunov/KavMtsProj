@@ -51,15 +51,16 @@
         style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
 
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/star_change"
+        android:rating="3.0"
+        android:stepSize="0.2"
 
-        android:progressBackgroundTint="@color/black"
-        android:progressTint="@android:color/black"
-        android:secondaryProgressTint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/filmContent"
         tools:rating="4" />
 
