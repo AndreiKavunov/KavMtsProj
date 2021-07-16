@@ -67,7 +67,6 @@
                             android:id="@+id/imageView4"
                             android:layout_width="150dp"
                             android:layout_height="196dp"
-                            android:layout_marginStart="10dp"
                             android:scaleType="fitXY"
                             app:srcCompat="@mipmap/foto2" />
 
@@ -75,7 +74,6 @@
                             android:id="@+id/textView2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
                             android:layout_marginTop="12dp"
                             android:text="@string/actor1"
                             android:textColor="@color/black"
@@ -116,8 +114,8 @@
                             android:layout_width="150dp"
                             android:layout_height="196dp"
                             android:layout_marginStart="10dp"
-                            android:scaleType="fitStart"
-                            app:srcCompat="@mipmap/foto4" />
+                            android:scaleType="fitXY"
+                            app:srcCompat="@mipmap/foto6" />
 
                         <TextView
                             android:id="@+id/textView4"
@@ -215,7 +213,7 @@
                 android:id="@+id/imageView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16"
@@ -240,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="41dp"
                 android:layout_marginEnd="20dp"
-                android:background="@drawable/ring"
+                android:background="@drawable/ring3"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/limitation"
                 android:textAlignment="center"
@@ -254,7 +252,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="32dp"
-                android:background="@drawable/oval2"
+                android:background="@drawable/oval3"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/film_genre"
                 android:textColor="@color/black"
