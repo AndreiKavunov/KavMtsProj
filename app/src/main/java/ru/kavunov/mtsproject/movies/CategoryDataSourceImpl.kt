@@ -8,7 +8,7 @@ import ru.kavunov.mtsproject.DTC.MovieDto
 class CategoryDataSourceImpl {
 	 fun getMovies() = listOf(
 
-				Categories(category = "боевики"),
+		Categories(category = "боевики"),
 		Categories(category = "драмы"),
 		Categories(category = "комедии"),
 		Categories(category = "артхаус"),
