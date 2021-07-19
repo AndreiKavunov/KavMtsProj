@@ -10,14 +10,15 @@ import android.view.ViewGroup
 import android.widget.RatingBar
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import ru.kavunov.mtsproject.ChangeDetails2
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
-class MovieAdapter(ListMain: List<MovieDto>): RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
+class MovieAdapter(ListMain: List<MovieDto>, context: Context): RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
     var movietList = ListMain.toMutableList()
-
+    val onClickTest: ChangeDetails2 = context as ChangeDetails2
     class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
 
         val building = ItemMovieBinding.bind(item)
