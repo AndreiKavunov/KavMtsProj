@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.LayerDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,21 +12,16 @@ import android.widget.RatingBar
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.kavunov.mtsproject.DTC.MovieDto
+import ru.kavunov.mtsproject.OnClickTest
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
-class MovieAdapter(
-    ListMain: List<MovieDto>,
-    contextA: Context,
-    val onMovieClick: (MovieDto) -> Unit
-): RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
-
+class MovieAdapter(ListMain: List<MovieDto>, contextA: Context):
+    RecyclerView.Adapter<MovieAdapter.MovieHolder>()
+ {
+    val onClickTest: OnClickTest = contextA as OnClickTest
     var movietList = ListMain.toMutableList()
-
-
-
-    val onClickListener = onMovieClick
     val context = contextA
     class MovieHolder(item:View, contextH: Context):RecyclerView.ViewHolder(item) {
         val context = contextH
@@ -49,12 +45,10 @@ class MovieAdapter(
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
       holder.bind(movietList[position])
-//        holder.onMovieClick()
-        val i = movietList[position]
         holder.itemView.setOnClickListener { view ->
-            onClickListener(i)
+            onClickTest?.clickTest(movietList[position])
+            Log.d("tag", position.toString())
         }
-//        holder.movieLayout?.setOnClickListener{onMovieClick(movies[position]}
     }
 
     override fun getItemCount(): Int {
