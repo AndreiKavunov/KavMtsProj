@@ -15,20 +15,11 @@ import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
-class MovieAdapter(
-    ListMain: List<MovieDto>,
-    contextA: Context,
-    val onMovieClick: (MovieDto) -> Unit
-): RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
-
+class MovieAdapter(ListMain: List<MovieDto>): RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
     var movietList = ListMain.toMutableList()
 
+    class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
 
-
-    val onClickListener = onMovieClick
-    val context = contextA
-    class MovieHolder(item:View, contextH: Context):RecyclerView.ViewHolder(item) {
-        val context = contextH
         val building = ItemMovieBinding.bind(item)
         fun bind(movie: MovieDto){building.apply {
             filmImg.load(movie.imageUrl)
@@ -44,17 +35,11 @@ class MovieAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-        return MovieAdapter.MovieHolder(view, context)
+        return MovieHolder(view)
     }
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
       holder.bind(movietList[position])
-//        holder.onMovieClick()
-        val i = movietList[position]
-        holder.itemView.setOnClickListener { view ->
-            onClickListener(i)
-        }
-//        holder.movieLayout?.setOnClickListener{onMovieClick(movies[position]}
     }
 
     override fun getItemCount(): Int {
