@@ -40,6 +40,7 @@ class MovieAdapter(ListMain: List<MovieDto>): RecyclerView.Adapter<MovieAdapter.
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
       holder.bind(movietList[position])
+        holder.itemView.setOnClickListener()
     }
 
     override fun getItemCount(): Int {

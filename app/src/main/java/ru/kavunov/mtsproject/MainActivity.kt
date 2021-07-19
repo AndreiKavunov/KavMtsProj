@@ -15,7 +15,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDat
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ChangeDetails {
 
 //    val listMov : List<MovieDto> = MoviesDataSourceImpl().getMovies()
 
@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.BoNav.setOnNavigationItemSelectedListener {
+
+        binding.BoNav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {launchHome()}
                 R.id.profil -> {launchProfil()}
@@ -85,5 +86,12 @@ class MainActivity : AppCompatActivity() {
 companion object {
     const val LIST_FILM_FRAGMENT_TAG = "ListFilmFragment"
 }
+
+    override fun clickDetail(x: Int) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainFrag, ProfilFragment.newInstance(x.toString()))
+            .addToBackStack(null)
+            .commit()
+    }
 
 }
