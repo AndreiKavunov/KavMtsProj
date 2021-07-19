@@ -1,5 +1,9 @@
 package ru.kavunov.mtsproject
 
+import android.content.Context
+
 interface ChangeDetails {
-    fun clickDetail(x: Int)
+    fun clickDetail(position: Int)
+
+
 }

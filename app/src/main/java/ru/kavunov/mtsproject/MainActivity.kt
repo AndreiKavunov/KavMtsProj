@@ -1,5 +1,6 @@
 package ru.kavunov.mtsproject
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -55,20 +56,6 @@ class MainActivity : AppCompatActivity(), ChangeDetails {
         }
     }
 
-//    fun init1(){
-//        binding.RcCateg.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-//        binding.RcCateg.adapter = adapterCateg
-//        }
-//
-//
-//    fun init2(){
-//        binding.RcMovie.layoutManager = GridLayoutManager(this, 2)
-//        binding.RcMovie.adapter = adapterMovie
-//    }
-//
-//    fun setOnClickListener(a: MovieDto){
-//        Toast.makeText(this, a.title, Toast.LENGTH_SHORT).show()
-//    }
 
     fun launchProfil() {
         supportFragmentManager.beginTransaction()
@@ -87,11 +74,12 @@ companion object {
     const val LIST_FILM_FRAGMENT_TAG = "ListFilmFragment"
 }
 
-    override fun clickDetail(x: Int) {
+    override fun clickDetail(position: Int) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.mainFrag, ProfilFragment.newInstance(x.toString()))
+            .replace(R.id.mainFrag, DetailkFragment.newInstance(position))
             .addToBackStack(null)
             .commit()
     }
+
 
 }

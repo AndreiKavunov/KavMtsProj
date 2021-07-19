@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,16 +18,15 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDat
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 
 class ListFilmFragment : Fragment() {
     private var changeDetails: ChangeDetails? = null
+
     val listCateg : List<Categories> = CategoryDataSourceImpl().getMovies()
     val listMov : List<MovieDto> = MoviesDataSourceImpl().getMovies()
     private val adapterCateg = CategoryAdapter(listCateg)
-    private val adapterMovie = MovieAdapter(listMov)
+
+    lateinit var adapterMovie: MovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +34,7 @@ class ListFilmFragment : Fragment() {
     ): View? { val view = inflater.inflate(R.layout.fragment_list_film, container, false)
         val rcCateg = view.findViewById<RecyclerView>(R.id.RcCateg)
         val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
+        adapterMovie = MovieAdapter(listMov, requireContext())
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcCateg.adapter = adapterCateg
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
@@ -51,11 +49,13 @@ class ListFilmFragment : Fragment() {
         if (context is ChangeDetails){
             changeDetails = context
         }
+
     }
 
     override fun onDetach() {
         super.onDetach()
         changeDetails = null
+
     }
 
 
