@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +40,7 @@ class ListFilmFragment : Fragment() {
         rcCateg.adapter = adapterCateg
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
         rcMovie.adapter = adapterMovie
+
         val const = view.findViewById<TextView>(R.id.textView5)
         const.setOnClickListener{changeDetails?.clickDetail(1111111)}
 

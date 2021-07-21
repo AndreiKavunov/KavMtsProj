@@ -18,15 +18,6 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataS
 
 class MainActivity : AppCompatActivity(), ChangeDetails {
 
-//    val listMov : List<MovieDto> = MoviesDataSourceImpl().getMovies()
-
-
-//    val listCateg : List<Categories> = CategoryDataSourceImpl().getMovies()
-
-//    private val adapterCateg = CategoryAdapter(listCateg)
-//   private val adapterMovie = MovieAdapter(listMov, this, onMovieClick = {Toast.makeText(this, "Фильм", Toast.LENGTH_SHORT).show()})
-//    private val adapterMovie = MovieAdapter(listMov, this,::setOnClickListener)
-
 
     private var listfilmFragment: ListFilmFragment? = null
     lateinit var binding: ActivityMovieDetailsBinding
@@ -67,7 +58,7 @@ class MainActivity : AppCompatActivity(), ChangeDetails {
     fun launchHome() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrag, ListFilmFragment())
-            .addToBackStack(null)
+          //  .addToBackStack(null)
             .commit()
     }
 companion object {
