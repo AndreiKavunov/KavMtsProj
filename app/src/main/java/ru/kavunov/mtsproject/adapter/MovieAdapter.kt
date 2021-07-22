@@ -54,9 +54,10 @@ class MovieAdapter(ListMain: List<MovieDto>, contextA: Context):
     override fun getItemCount(): Int {
         return movietList.size
     }
-    fun changeList(){
+    fun changeList(list: ArrayList<MovieDto>){
         movietList.clear()
-        movietList.addAll(movietList)
+        Log.d("tag", list.toString())
+        movietList.addAll(list)
         notifyDataSetChanged()
 
     }

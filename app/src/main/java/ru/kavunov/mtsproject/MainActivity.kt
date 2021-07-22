@@ -18,14 +18,12 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataS
 
 class MainActivity : AppCompatActivity(), OnClickTest {
 
-    val listMov : List<MovieDto> = MoviesDataSourceImpl().getMovies()
-    lateinit var listMov1 = emptyArray<MovieDto()
-
+    var listMov= ArrayList<MovieDto>()
     val listCateg : List<Categories> = CategoryDataSourceImpl().getMovies()
 
     private val adapterCateg = CategoryAdapter(listCateg)
-//   private val adapterMovie = MovieAdapter(listMov, this, onMovieClick = {Toast.makeText(this, "Фильм", Toast.LENGTH_SHORT).show()})
-    private val adapterMovie = MovieAdapter(listMov, this)
+
+    lateinit var adapterMovie: MovieAdapter
 
 
 
@@ -34,12 +32,14 @@ class MainActivity : AppCompatActivity(), OnClickTest {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        listMov.addAll(MoviesDataSourceImpl().getMovies())
         init()
 
 
     }
 
     fun init(){
+        adapterMovie = MovieAdapter(listMov, this)
         binding.RcCateg.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.RcCateg.adapter = adapterCateg
         binding.RcMovie.layoutManager = GridLayoutManager(this, 2)
@@ -50,7 +50,20 @@ class MainActivity : AppCompatActivity(), OnClickTest {
 
     override fun clickTest(a: MovieDto) {
         Toast.makeText(this, a.title, Toast.LENGTH_SHORT).show()
-        Log.d("tag", a.title)
+
     }
+//    fun updateList(){
+//        while (listMov.size < 6){
+//            var film = MoviesDataSourceImpl().getMovies().random()
+//            if(film !in listMov)
+//            listMov.add(film)
+//        }
+//    }
+//    fun onClickkk(view: View){
+//        listMov.clear()
+//        updateList()
+//        adapterMovie.changeList(listMov)
+//        Log.d("tag", "www")
+//    }
 
 }
