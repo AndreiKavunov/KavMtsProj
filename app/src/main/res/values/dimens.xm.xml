@@ -37,4 +37,15 @@
     <dimen name="ogrStart">48dp</dimen>
     <dimen name="ogrEnd">2dp</dimen>
     <dimen name="ogrWH">20dp</dimen>
+    <dimen name="magnifier">20dp</dimen>
+    <dimen name="magnifierTop">30dp</dimen>
+    <dimen name="popularTop">70dp</dimen>
+    <dimen name="RcCarH">20dp</dimen>
+    <dimen name="RcCarStart">14dp</dimen>
+    <dimen name="RcMovTop">16dp</dimen>
+    <dimen name="catTextStart">6dp</dimen>
+    <dimen name="catTextW">82dp</dimen>
+    <dimen name="catTextH">18dp</dimen>
+    <dimen name="catTextSize">14sp</dimen>
+    <dimen name="TextageSmall">8sp</dimen>
 </resources>

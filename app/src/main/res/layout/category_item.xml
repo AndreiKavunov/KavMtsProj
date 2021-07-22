@@ -7,13 +7,14 @@
 
     <TextView
         android:id="@+id/idCateg"
-        android:layout_width="82dp"
-        android:layout_height="18dp"
-        android:layout_marginStart="6dp"
+        android:layout_width="@dimen/catTextW"
+        android:layout_height="@dimen/catTextH"
+        android:layout_marginStart="@dimen/catTextStart"
         android:background="@drawable/oval2"
         android:gravity="center|center_vertical"
         android:text="TextView"
         android:textColor="@color/black"
+        android:textSize="@dimen/catTextSize"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
