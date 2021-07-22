@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardImg"
         android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_height="@dimen/card_foto_height"
         android:backgroundTint="@color/white"
         android:elevation="2dp"
         app:cardCornerRadius="25dp"
@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/MainImg"
             android:layout_width="match_parent"
-            android:layout_height="290dp"
+            android:layout_height="@dimen/main_foto_height"
             android:scaleType="fitXY"
             app:srcCompat="@mipmap/foto1" />
     </androidx.cardview.widget.CardView>
@@ -29,7 +29,7 @@
         android:id="@+id/scrollDetail"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="@dimen/scrollTop"
         android:elevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,8 +47,8 @@
                 android:id="@+id/horizontalScrollActor"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="@dimen/marginStart"
+                android:layout_marginTop="@dimen/topScrollFoto"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Acters">
 
@@ -64,8 +64,8 @@
 
                         <ImageView
                             android:id="@+id/fotoAct1"
-                            android:layout_width="150dp"
-                            android:layout_height="196dp"
+                            android:layout_width="@dimen/fotoW"
+                            android:layout_height="@dimen/fotoH"
                             android:scaleType="fitXY"
                             app:srcCompat="@mipmap/foto2" />
 
@@ -73,10 +73,10 @@
                             android:id="@+id/nameAct1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginTop="@dimen/nameActTop"
                             android:text="@string/actor1"
                             android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/textNameAct" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -86,8 +86,8 @@
 
                         <ImageView
                             android:id="@+id/fotoAct2"
-                            android:layout_width="150dp"
-                            android:layout_height="196dp"
+                            android:layout_width="@dimen/fotoW"
+                            android:layout_height="@dimen/fotoH"
                             android:layout_marginStart="10dp"
                             android:scaleType="fitXY"
                             app:srcCompat="@mipmap/foto3" />
@@ -96,11 +96,11 @@
                             android:id="@+id/nameAct2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginStart="@dimen/nameActStart"
+                            android:layout_marginTop="@dimen/nameActTop"
                             android:text="@string/actor2"
                             android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/textNameAct" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -110,8 +110,8 @@
 
                         <ImageView
                             android:id="@+id/fotoAct3"
-                            android:layout_width="150dp"
-                            android:layout_height="196dp"
+                            android:layout_width="@dimen/fotoW"
+                            android:layout_height="@dimen/fotoH"
                             android:layout_marginStart="10dp"
                             android:scaleType="fitXY"
                             app:srcCompat="@mipmap/foto6" />
@@ -120,11 +120,11 @@
                             android:id="@+id/nameAct3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="12dp"
+                            android:layout_marginStart="@dimen/nameActStart"
+                            android:layout_marginTop="@dimen/nameActTop"
                             android:text="@string/actor3"
                             android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/textNameAct" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -132,8 +132,8 @@
             <ImageView
                 android:id="@+id/BottonMain"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="50dp"
+                android:layout_height="@dimen/BottonH"
+                android:layout_marginTop="@dimen/BottonMarTop"
                 android:background="@drawable/underline"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
@@ -145,8 +145,8 @@
             <ImageView
                 android:id="@+id/BottonProfil"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="50dp"
+                android:layout_height="@dimen/BottonH"
+                android:layout_marginTop="@dimen/BottonMarTop"
                 android:background="@color/white"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
@@ -159,8 +159,8 @@
                 android:id="@+id/Acters"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="36dp"
+                android:layout_marginStart="@dimen/marginStart"
+                android:layout_marginTop="@dimen/ActTop"
                 android:text="@string/actors"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -172,11 +172,12 @@
                 android:id="@+id/detailFilm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/marginStart"
                 android:layout_marginTop="34dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/marginStart"
                 android:text="@string/content"
                 android:textColor="@color/black"
+                android:textSize="@dimen/normText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nameFilm" />
@@ -185,7 +186,7 @@
                 android:id="@+id/star1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/starTop"
                 app:layout_constraintStart_toEndOf="@+id/star3"
                 app:layout_constraintTop_toBottomOf="@+id/nameFilm"
                 app:srcCompat="@drawable/zvezda1" />
@@ -194,7 +195,7 @@
                 android:id="@+id/star2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/starTop"
                 app:layout_constraintStart_toEndOf="@+id/star5"
                 app:layout_constraintTop_toBottomOf="@+id/nameFilm"
                 app:srcCompat="@drawable/zvezda" />
@@ -203,7 +204,7 @@
                 android:id="@+id/star3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/starTop"
                 app:layout_constraintStart_toEndOf="@+id/star2"
                 app:layout_constraintTop_toBottomOf="@+id/nameFilm"
                 app:srcCompat="@drawable/zvezda" />
@@ -212,8 +213,8 @@
                 android:id="@+id/star4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="@dimen/marginStart"
+                android:layout_marginTop="@dimen/starTop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nameFilm"
                 app:srcCompat="@drawable/zvezda" />
@@ -222,11 +223,11 @@
                 android:id="@+id/nameFilm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="64dp"
+                android:layout_marginStart="@dimen/marginStart"
+                android:layout_marginTop="@dimen/naimFilmTop"
                 android:text="@string/name_film"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/filmText"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -235,13 +236,14 @@
                 android:id="@+id/ageLimit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="41dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginTop="@dimen/ageTop"
+                android:layout_marginEnd="@dimen/marginStart"
                 android:background="@drawable/ring3"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/limitation"
                 android:textAlignment="center"
                 android:textColor="@color/black"
+                android:textSize="@dimen/normText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -249,13 +251,13 @@
                 android:id="@+id/genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="@dimen/marginStart"
+                android:layout_marginTop="@dimen/dataTop"
                 android:background="@drawable/oval3"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/film_genre"
                 android:textColor="@color/black"
-                android:textSize="10sp"
+                android:textSize="@dimen/genseText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -263,11 +265,11 @@
                 android:id="@+id/data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="@dimen/dataStart"
+                android:layout_marginTop="@dimen/dataTop"
                 android:text="@string/data"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/dataText"
                 app:layout_constraintStart_toEndOf="@+id/genre"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -275,7 +277,7 @@
                 android:id="@+id/star5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/starTop"
                 app:layout_constraintStart_toEndOf="@+id/star4"
                 app:layout_constraintTop_toBottomOf="@+id/nameFilm"
                 app:srcCompat="@drawable/zvezda" />
