@@ -17,17 +17,18 @@ import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
-class MovieAdapter(ListMain: List<MovieDto>, contextA: Context):
+class MovieAdapter(ListMain: List<MovieDto>):
     RecyclerView.Adapter<MovieAdapter.MovieHolder>()
  {
-    val onClickTest: OnClickTest = contextA as OnClickTest
+//    val onClickTest: OnClickTest = contextA as OnClickTest
     var movietList = ListMain.toMutableList()
-    val context = contextA
-    class MovieHolder(item:View, contextH: Context):RecyclerView.ViewHolder(item) {
-        val context = contextH
+
+    class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
+        val onClickTest: OnClickTest = itemView.context as OnClickTest
         val building = ItemMovieBinding.bind(item)
         fun bind(movie: MovieDto){building.apply {
             filmImg.load(movie.imageUrl)
+            filmImg.setOnClickListener(onClickTest?)
             filmName.text = movie.title
             filmContent.text = movie.description
             filmOgr.text = movie.ageRestriction.toString() + "+"
@@ -40,13 +41,14 @@ class MovieAdapter(ListMain: List<MovieDto>, contextA: Context):
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-        return MovieAdapter.MovieHolder(view, context)
+        return MovieAdapter.MovieHolder(view)
     }
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
       holder.bind(movietList[position])
+        val x = holder.itemView.context
         holder.itemView.setOnClickListener { view ->
-            onClickTest?.clickTest(movietList[position])
+          onClickTest?.clickTest(movietList[position])
             Log.d("tag", position.toString())
         }
     }
