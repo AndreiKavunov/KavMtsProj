@@ -8,8 +8,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="150dp"
-        android:layout_height="216dp"
+        android:layout_width="@dimen/card_f_w"
+        android:layout_height="@dimen/card_f_h"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,9 +26,9 @@
 
     <TextView
         android:id="@+id/filmName"
-        android:layout_width="150dp"
+        android:layout_width="@dimen/card_f_w"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/film_name_top"
         android:text="TextView"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,12 +36,12 @@
 
     <TextView
         android:id="@+id/filmContent"
-        android:layout_width="150dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="@dimen/card_f_w"
+        android:layout_height="@dimen/tetx_film_h"
+        android:layout_marginTop="@dimen/tetx_film_top"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="@dimen/textNameAct"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filmName" />
 
@@ -51,8 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginTop="@dimen/ratinfTop"
+        android:layout_marginBottom="@dimen/ratingBotton"
         android:isIndicator="false"
         android:numStars="5"
         android:progressDrawable="@drawable/star_change"
@@ -67,12 +67,12 @@
 
     <TextView
         android:id="@+id/film_ogr"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="55dp"
+        android:layout_width="@dimen/ogrWH"
+        android:layout_height="@dimen/ogrWH"
+        android:layout_marginStart="@dimen/ogrStart"
+        android:layout_marginTop="@dimen/ogrTop"
+        android:layout_marginEnd="@dimen/ogrEnd"
+        android:layout_marginBottom="@dimen/ogrBotton"
         android:background="@drawable/ring"
         android:gravity="center"
         android:text="18"

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <dimen name="main_foto_height">290dp</dimen>
+    <dimen name="card_foto_height">330dp</dimen>
+    <dimen name="card_f_h">216dp</dimen>
+    <dimen name="card_f_w">150dp</dimen>
+    <dimen name="scrollTop">224dp</dimen>
+    <dimen name="marginStart">20dp</dimen>
+    <dimen name="topScrollFoto">10dp</dimen>
+    <dimen name="fotoW">150dp</dimen>
+    <dimen name="fotoH">196dp</dimen>
+    <dimen name="nameActTop">12dp</dimen>
+    <dimen name="nameActStart">10dp</dimen>
+    <dimen name="BottonH">48dp</dimen>
+    <dimen name="BottonMarTop">50dp</dimen>
+    <dimen name="ActTop">36dp</dimen>
+    <dimen name="detailTop">34dp</dimen>
+    <dimen name="starTop">8dp</dimen>
+    <dimen name="naimFilmTop">64dp</dimen>
+    <dimen name="ageTop">40dp</dimen>
+    <dimen name="dataTop">32dp</dimen>
+    <dimen name="dataStart">16dp</dimen>
+    <dimen name="textNameAct">12sp</dimen>
+    <dimen name="mainText">16sp</dimen>
+    <dimen name="normText">14sp</dimen>
+    <dimen name="filmText">20sp</dimen>
+    <dimen name="genseText">10sp</dimen>
+    <dimen name="dataText">12sp</dimen>
+    <dimen name="film_name_top">8dp</dimen>
+    <dimen name="tetx_film_top">10dp</dimen>
+    <dimen name="tetx_film_h">84dp</dimen>
+    <dimen name="ratinfTop">16dp</dimen>
+    <dimen name="ratingBotton">55dp</dimen>
+    <dimen name="ogrTop">12dp</dimen>
+    <dimen name="ogrBotton">55dp</dimen>
+    <dimen name="ogrStart">48dp</dimen>
+    <dimen name="ogrEnd">2dp</dimen>
+    <dimen name="ogrWH">20dp</dimen>
+</resources>
