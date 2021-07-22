@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), OnClickTest {
     }
 
     fun init(){
-        adapterMovie = MovieAdapter(listMov, this)
+        adapterMovie = MovieAdapter(listMov)
         binding.RcCateg.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.RcCateg.adapter = adapterCateg
         binding.RcMovie.layoutManager = GridLayoutManager(this, 2)

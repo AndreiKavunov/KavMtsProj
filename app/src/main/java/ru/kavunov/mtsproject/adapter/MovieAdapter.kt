@@ -20,15 +20,12 @@ import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 class MovieAdapter(ListMain: List<MovieDto>):
     RecyclerView.Adapter<MovieAdapter.MovieHolder>()
  {
-//    val onClickTest: OnClickTest = contextA as OnClickTest
     var movietList = ListMain.toMutableList()
 
     class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
-        val onClickTest: OnClickTest = itemView.context as OnClickTest
         val building = ItemMovieBinding.bind(item)
         fun bind(movie: MovieDto){building.apply {
             filmImg.load(movie.imageUrl)
-            filmImg.setOnClickListener(onClickTest?)
             filmName.text = movie.title
             filmContent.text = movie.description
             filmOgr.text = movie.ageRestriction.toString() + "+"
@@ -46,11 +43,9 @@ class MovieAdapter(ListMain: List<MovieDto>):
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
       holder.bind(movietList[position])
-        val x = holder.itemView.context
-        holder.itemView.setOnClickListener { view ->
-          onClickTest?.clickTest(movietList[position])
-            Log.d("tag", position.toString())
-        }
+      holder.itemView.setOnClickListener { view ->
+            (holder.itemView.context as OnClickTest)?.clickTest(movietList[position])}
+
     }
 
     override fun getItemCount(): Int {
