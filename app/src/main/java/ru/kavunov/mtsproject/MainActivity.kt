@@ -19,6 +19,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataS
 class MainActivity : AppCompatActivity(), OnClickTest {
 
     val listMov : List<MovieDto> = MoviesDataSourceImpl().getMovies()
+    lateinit var listMov1 = emptyArray<MovieDto()
 
     val listCateg : List<Categories> = CategoryDataSourceImpl().getMovies()
 
@@ -33,21 +34,19 @@ class MainActivity : AppCompatActivity(), OnClickTest {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        init1()
-        init2()
+        init()
+
 
     }
 
-    fun init1(){
+    fun init(){
         binding.RcCateg.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.RcCateg.adapter = adapterCateg
+        binding.RcMovie.layoutManager = GridLayoutManager(this, 2)
+        binding.RcMovie.adapter = adapterMovie
         }
 
 
-    fun init2(){
-        binding.RcMovie.layoutManager = GridLayoutManager(this, 2)
-        binding.RcMovie.adapter = adapterMovie
-    }
 
     override fun clickTest(a: MovieDto) {
         Toast.makeText(this, a.title, Toast.LENGTH_SHORT).show()

@@ -11,7 +11,7 @@
         android:layout_height="18dp"
         android:layout_marginStart="6dp"
         android:background="@drawable/oval2"
-        android:gravity="center"
+        android:gravity="center|center_vertical"
         android:text="TextView"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
