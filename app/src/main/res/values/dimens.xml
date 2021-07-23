@@ -22,6 +22,7 @@
     <dimen name="filmW">150dp</dimen>
     <dimen name="filmH">216dp</dimen>
     <dimen name="galkaHW">10dp</dimen>
+    <dimen name="smileHW">72dp</dimen>
     <dimen name="textNamUser">20sp</dimen>
     <dimen name="textEmailUser">14sp</dimen>
     <dimen name="textProfilMain">16sp</dimen>
