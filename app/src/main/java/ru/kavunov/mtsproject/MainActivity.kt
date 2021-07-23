@@ -2,12 +2,10 @@ package ru.kavunov.mtsproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import ru.kavunov.mtsproject.DTC.Categories
+import ru.kavunov.mtsproject.DTC.Categorie
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
@@ -16,10 +14,10 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDat
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
-class MainActivity : AppCompatActivity(), OnClickTest {
+class MainActivity : AppCompatActivity(), goToach {
 
     var listMov= ArrayList<MovieDto>()
-    val listCateg : List<Categories> = CategoryDataSourceImpl().getMovies()
+    val listCateg : List<Categorie> = CategoryDataSourceImpl().getMovies()
 
     private val adapterCateg = CategoryAdapter(listCateg)
 
@@ -48,7 +46,7 @@ class MainActivity : AppCompatActivity(), OnClickTest {
 
 
 
-    override fun clickTest(a: MovieDto) {
+    override fun clickToach(a: MovieDto) {
         Toast.makeText(this, a.title, Toast.LENGTH_SHORT).show()
 
     }

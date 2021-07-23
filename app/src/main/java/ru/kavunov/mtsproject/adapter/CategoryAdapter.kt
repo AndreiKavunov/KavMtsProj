@@ -4,21 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.kavunov.mtsproject.DTC.Categories
-import ru.kavunov.mtsproject.DTC.MovieDto
+import ru.kavunov.mtsproject.DTC.Categorie
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.CategoryItemBinding
 
-class CategoryAdapter(ListMain: List<Categories>):RecyclerView.Adapter<CategoryAdapter.CategoryHolder>() {
-    var categtList = ListMain
+class CategoryAdapter(listMain: List<Categorie>):RecyclerView.Adapter<CategoryHolder>() {
+    var categtList = listMain
 
-    class CategoryHolder(item: View):RecyclerView.ViewHolder(item) {
-        val building = CategoryItemBinding.bind(item)
-        fun bind(category: Categories){
-            building.idCateg.text = category.category
-        }
 
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
@@ -32,4 +25,12 @@ class CategoryAdapter(ListMain: List<Categories>):RecyclerView.Adapter<CategoryA
     override fun getItemCount(): Int {
         return categtList.size
     }
+}
+
+class CategoryHolder(item: View):RecyclerView.ViewHolder(item) {
+    val building = CategoryItemBinding.bind(item)
+    fun bind(category: Categorie){
+        building.idCateg.text = category.category
+    }
+
 }

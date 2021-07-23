@@ -1,50 +1,33 @@
 package ru.kavunov.mtsproject.adapter
 
-import android.content.Context
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.drawable.LayerDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.kavunov.mtsproject.DTC.MovieDto
-import ru.kavunov.mtsproject.OnClickTest
+import ru.kavunov.mtsproject.goToach
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
 class MovieAdapter(ListMain: List<MovieDto>):
-    RecyclerView.Adapter<MovieAdapter.MovieHolder>()
+    RecyclerView.Adapter<MovieHolder>()
  {
     var movietList = ListMain.toMutableList()
 
-    class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
-        val building = ItemMovieBinding.bind(item)
-        fun bind(movie: MovieDto){building.apply {
-            filmImg.load(movie.imageUrl)
-            filmName.text = movie.title
-            filmContent.text = movie.description
-            filmOgr.text = movie.ageRestriction.toString() + "+"
-            filmRating.rating = movie.rateScore.toFloat()
 
-        }
-
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-        return MovieAdapter.MovieHolder(view)
+        return MovieHolder(view)
     }
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
       holder.bind(movietList[position])
-      holder.itemView.setOnClickListener { view ->
-            (holder.itemView.context as OnClickTest)?.clickTest(movietList[position])}
+//      holder.itemView.setOnClickListener { view ->
+//            (holder.itemView.context as goToach)?.clickToach(movietList[position])}
 
     }
 
@@ -59,4 +42,23 @@ class MovieAdapter(ListMain: List<MovieDto>):
 
     }
 
+}
+
+class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
+    val building = ItemMovieBinding.bind(item)
+    fun bind(movie: MovieDto){building.apply {
+        filmImg.load(movie.imageUrl)
+//        filmImg.setOnClickListener {clickToach1(movie)}
+//        itemView.setOnClickListener{goToach.clickToach(movie)}
+        filmName.text = movie.title
+        filmContent.text = movie.description
+        filmOgr.text = movie.ageRestriction.toString() + "+"
+        filmRating.rating = movie.rateScore.toFloat()
+        itemView.setOnClickListener { view ->
+            (itemView.context as goToach)?.clickToach(movie)}
+
+
+    }
+
+    }
 }
