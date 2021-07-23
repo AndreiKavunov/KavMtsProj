@@ -35,14 +35,11 @@ class ListFilmFragment : Fragment() {
     ): View? { val view = inflater.inflate(R.layout.fragment_list_film, container, false)
         val rcCateg = view.findViewById<RecyclerView>(R.id.RcCateg)
         val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
-        adapterMovie = MovieAdapter(listMov, requireContext())
+        adapterMovie = MovieAdapter(listMov)
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcCateg.adapter = adapterCateg
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
         rcMovie.adapter = adapterMovie
-
-        val const = view.findViewById<TextView>(R.id.textView5)
-        const.setOnClickListener{changeDetails?.clickDetail(1111111)}
 
        return view
     }

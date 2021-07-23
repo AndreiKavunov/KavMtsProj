@@ -1,4 +1,29 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="design_bottom_navigation_item_max_width" tools:override="true">600dp</dimen>
     <dimen name="design_bottom_navigation_active_item_max_width" tools:override="true">600dp</dimen>
+    <dimen name="bottonNavH">48dp</dimen>
+    <dimen name="categH">18dp</dimen>
+    <dimen name="categW">82dp</dimen>
+    <dimen name="textCateg">14sp</dimen>
+    <dimen name="textdescripId">14sp</dimen>
+    <dimen name="textTitle">20sp</dimen>
+    <dimen name="textCatFilm">10sp</dimen>
+    <dimen name="textdata">12sp</dimen>
+    <dimen name="textnameActors">12sp</dimen>
+    <dimen name="textName">14sp</dimen>
+    <dimen name="textDetail">12sp</dimen>
+    <dimen name="textAge">8sp</dimen>
+    <dimen name="cardImgMainH">330dp</dimen>
+    <dimen name="imageDetIdH">290dp</dimen>
+    <dimen name="mainMarginStartEnd">20dp</dimen>
+    <dimen name="lupaWH">20dp</dimen>
+    <dimen name="actorH">196dp</dimen>
+    <dimen name="actorW">150dp</dimen>
+    <dimen name="filmW">150dp</dimen>
+    <dimen name="filmH">216dp</dimen>
+    <dimen name="galkaHW">10dp</dimen>
+    <dimen name="textNamUser">20sp</dimen>
+    <dimen name="textEmailUser">14sp</dimen>
+    <dimen name="textProfilMain">16sp</dimen>
+    <dimen name="textProfil">14sp</dimen>
 </resources>

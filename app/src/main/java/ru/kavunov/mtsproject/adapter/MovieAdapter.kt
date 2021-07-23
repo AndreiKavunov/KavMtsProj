@@ -12,12 +12,11 @@ import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
-class MovieAdapter(ListMain: List<MovieDto>,
-                 context: Context
+class MovieAdapter(ListMain: List<MovieDto>
 ): RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
     var movietList = ListMain.toMutableList()
 
-var onClickTest: ChangeDetails = context as ChangeDetails
+
     class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
 
         val building = ItemMovieBinding.bind(item)
@@ -41,11 +40,8 @@ var onClickTest: ChangeDetails = context as ChangeDetails
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
       holder.bind(movietList[position])
-
         holder.itemView.setOnClickListener { view ->
-            onClickTest?.clickDetail(position)
-
-        }
+            (holder.itemView.context as ChangeDetails)?.clickDetail(position)}
     }
 
     override fun getItemCount(): Int {

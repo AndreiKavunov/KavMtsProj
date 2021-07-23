@@ -8,11 +8,11 @@
     android:background="@color/scroll2">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:id="@+id/lupa"
+        android:layout_width="@dimen/lupaWH"
+        android:layout_height="@dimen/lupaWH"
         android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="@dimen/mainMarginStartEnd"
         android:background="@drawable/search"
         android:backgroundTint="@color/black"
         android:textColor="@color/black"
@@ -21,10 +21,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/popularToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/mainMarginStartEnd"
         android:layout_marginTop="70dp"
         android:text="@string/popular"
         android:textColor="@color/black"
@@ -47,9 +47,9 @@
         android:id="@+id/RcMovie"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/mainMarginStartEnd"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="@dimen/mainMarginStartEnd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

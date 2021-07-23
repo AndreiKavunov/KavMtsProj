@@ -22,96 +22,96 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:id="@+id/galka1"
+                android:layout_width="@dimen/galkaHW"
+                android:layout_height="@dimen/galkaHW"
                 android:layout_marginTop="532dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:src="@drawable/galka"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView24"
+                app:layout_constraintStart_toEndOf="@+id/s_Uv_sount"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:id="@+id/galka2"
+                android:layout_width="@dimen/galkaHW"
+                android:layout_height="@dimen/galkaHW"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:src="@drawable/galka"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView25"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintStart_toEndOf="@+id/s_konfidenc"
+                app:layout_constraintTop_toBottomOf="@+id/galka1" />
 
             <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:id="@+id/galka3"
+                android:layout_width="@dimen/galkaHW"
+                android:layout_height="@dimen/galkaHW"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:src="@drawable/galka"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView26"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintStart_toEndOf="@+id/s_tema"
+                app:layout_constraintTop_toBottomOf="@+id/galka2" />
 
             <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:id="@+id/galka4"
+                android:layout_width="@dimen/galkaHW"
+                android:layout_height="@dimen/galkaHW"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:src="@drawable/galka"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView27"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+                app:layout_constraintStart_toEndOf="@+id/s_lange"
+                app:layout_constraintTop_toBottomOf="@+id/galka3" />
 
             <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:id="@+id/galka5"
+                android:layout_width="@dimen/galkaHW"
+                android:layout_height="@dimen/galkaHW"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:src="@drawable/galka"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView28"
-                app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+                app:layout_constraintStart_toEndOf="@+id/s_data"
+                app:layout_constraintTop_toBottomOf="@+id/galka4" />
 
             <ImageView
-                android:id="@+id/imageView9"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:id="@+id/galka6"
+                android:layout_width="@dimen/galkaHW"
+                android:layout_height="@dimen/galkaHW"
                 android:layout_marginTop="14dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:src="@drawable/galka"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView30"
-                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+                app:layout_constraintStart_toEndOf="@+id/s_quit"
+                app:layout_constraintTop_toBottomOf="@+id/s_pril" />
 
             <ImageView
-                android:id="@+id/imageView16"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
+                android:id="@+id/galka7"
+                android:layout_width="@dimen/galkaHW"
+                android:layout_height="@dimen/galkaHW"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:src="@drawable/galka"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/textView31"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+                app:layout_constraintStart_toEndOf="@+id/s_problems"
+                app:layout_constraintTop_toBottomOf="@+id/galka6" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonExit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="45dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:layout_marginBottom="30dp"
                 android:background="@color/userun"
                 android:text="@string/exit"
@@ -121,151 +121,158 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView31" />
+                app:layout_constraintTop_toBottomOf="@+id/s_problems" />
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/s_Uv_sount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="532dp"
                 android:text="@string/yv_sound"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/s_konfidenc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="20dp"
                 android:text="@string/konf"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                app:layout_constraintTop_toBottomOf="@+id/s_Uv_sount" />
 
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/s_tema"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="20dp"
                 android:text="@string/tema"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+                app:layout_constraintTop_toBottomOf="@+id/s_konfidenc" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/s_lange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="20dp"
                 android:text="@string/lang"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView26" />
+                app:layout_constraintTop_toBottomOf="@+id/s_tema" />
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/s_data"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="20dp"
                 android:text="@string/data_and"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintTop_toBottomOf="@+id/s_lange" />
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/s_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="500dp"
                 android:text="@string/settings"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/textProfilMain"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView29"
+                android:id="@+id/s_pril"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="35dp"
                 android:text="@string/pril"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/textProfilMain"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView28" />
+                app:layout_constraintTop_toBottomOf="@+id/s_data" />
 
             <TextView
-                android:id="@+id/textView30"
+                android:id="@+id/s_quit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="10dp"
                 android:text="@string/que"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+                app:layout_constraintTop_toBottomOf="@+id/s_pril" />
 
             <TextView
-                android:id="@+id/textView31"
+                android:id="@+id/s_problems"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="20dp"
                 android:text="@string/probl"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView30" />
+                app:layout_constraintTop_toBottomOf="@+id/s_quit" />
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/s_password"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="375dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:background="@drawable/underlineuser"
-                android:text="************"
+                android:text="@string/passw"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/s_email"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="415dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:background="@drawable/underlineuser"
                 android:text="@string/user_email"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/s_phone"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="455dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:background="@drawable/underlineuser"
                 android:text="@string/telephone"
                 android:textColor="@color/userun"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -274,38 +281,39 @@
                 android:id="@+id/nameUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="64dp"
                 android:text="@string/user_name"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/textNamUser"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/s_name"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="322dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
+                android:layout_marginTop="316dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:background="@drawable/underlineuser"
-                android:hint="dsffdfdf"
                 android:text="@string/name"
                 android:textColor="@color/userun"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/S_nameUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="340dp"
                 android:text="@string/user_name"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textProfil"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -313,12 +321,12 @@
                 android:id="@+id/dataUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="250dp"
 
                 android:text="@string/user_data"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/textProfilMain"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -326,10 +334,11 @@
                 android:id="@+id/emailUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="2dp"
                 android:text="@string/user_email"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textEmailUser"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nameUser" />
 
@@ -337,11 +346,11 @@
                 android:id="@+id/inter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="160dp"
                 android:text="@string/user_interest"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="@dimen/textProfilMain"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -351,7 +360,7 @@
                 android:layout_height="20dp"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="196dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

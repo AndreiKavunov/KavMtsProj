@@ -7,9 +7,9 @@
     android:background="@color/white">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardImgMain"
         android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_height="@dimen/cardImgMainH"
         android:backgroundTint="@color/white"
         android:elevation="2dp"
         app:cardCornerRadius="25dp"
@@ -20,7 +20,7 @@
         <ImageView
             android:id="@+id/imageDetId"
             android:layout_width="match_parent"
-            android:layout_height="290dp"
+            android:layout_height="@dimen/imageDetIdH"
             android:scaleType="fitXY"
             app:srcCompat="@mipmap/foto1" />
     </androidx.cardview.widget.CardView>
@@ -48,8 +48,10 @@
                 android:id="@+id/RcActor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="332dp"
+                android:layout_marginBottom="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="8dp"
                 android:isIndicator="false"
                 android:numStars="5"
@@ -90,11 +92,12 @@
                 android:id="@+id/descripId"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="128dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="@dimen/mainMarginStartEnd"
                 android:text="@string/content"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textdescripId"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -107,7 +110,7 @@
                 android:layout_marginTop="64dp"
                 android:text="@string/name_film"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="@dimen/textTitle"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -123,33 +126,34 @@
                 android:text="@string/limitation"
                 android:textAlignment="center"
                 android:textColor="@color/black"
+                android:textSize="@dimen/textdescripId"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/textgenre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/oval2"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/film_genre"
                 android:textColor="@color/black"
-                android:textSize="10sp"
+                android:textSize="@dimen/textCatFilm"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/textData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/data"
                 android:textColor="@color/black"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/textView13"
+                android:textSize="@dimen/textdata"
+                app:layout_constraintStart_toEndOf="@+id/textgenre"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/BoNav"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/bottonNavH"
         android:background="@color/white"
         app:itemBackground="@drawable/button_selector2"
         app:itemIconTint="@drawable/button_selector"
