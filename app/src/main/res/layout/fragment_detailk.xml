@@ -10,9 +10,8 @@
         android:id="@+id/cardImgMain"
         android:layout_width="match_parent"
         android:layout_height="@dimen/cardImgMainH"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/black"
         android:elevation="2dp"
-        app:cardCornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,7 +20,7 @@
             android:id="@+id/imageDetId"
             android:layout_width="match_parent"
             android:layout_height="@dimen/imageDetIdH"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             app:srcCompat="@mipmap/foto1" />
     </androidx.cardview.widget.CardView>
 
