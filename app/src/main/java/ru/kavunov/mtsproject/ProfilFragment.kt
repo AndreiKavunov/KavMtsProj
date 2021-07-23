@@ -5,17 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.kavunov.mtsproject.DTC.Categories
+import ru.kavunov.mtsproject.DTC.Categorie
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryUser
 
 
 class ProfilFragment : Fragment() {
-    val listUser : List<Categories> = CategoryUser().getMovies()
+    val listUser : List<Categorie> = CategoryUser().getMovies()
     private val adapterUser = CategoryAdapter(listUser)
 
 

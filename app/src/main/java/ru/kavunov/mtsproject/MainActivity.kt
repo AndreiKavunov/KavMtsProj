@@ -1,19 +1,8 @@
 package ru.kavunov.mtsproject
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import ru.kavunov.mtsproject.DTC.Categories
-import ru.kavunov.mtsproject.DTC.MovieDto
-import ru.kavunov.mtsproject.adapter.CategoryAdapter
-import ru.kavunov.mtsproject.adapter.MovieAdapter
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
-import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
 class MainActivity : AppCompatActivity(), ChangeDetails {

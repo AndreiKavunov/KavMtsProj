@@ -13,13 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.kavunov.mtsproject.DTC.Actors
-import ru.kavunov.mtsproject.DTC.Categories
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.ActorsAdapter
-import ru.kavunov.mtsproject.adapter.CategoryAdapter
-import ru.kavunov.mtsproject.adapter.MovieAdapter
 import ru.mts.teta.summer.android.homework.list.data.features.movies.ActorsDataSourceImpl
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
@@ -43,8 +39,7 @@ class DetailkFragment : Fragment() {
             3->{adapterActors = ActorsAdapter(listActor[3])}
             else->{adapterActors = ActorsAdapter(listActor[0])}
         }
-//        if (arguments?.getInt(ARG_PARAM1)!! == 1) adapterActors = ActorsAdapter(listActor[1])
-//        else adapterActors = ActorsAdapter(listActor[0])
+
 
         rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcActors.adapter = adapterActors

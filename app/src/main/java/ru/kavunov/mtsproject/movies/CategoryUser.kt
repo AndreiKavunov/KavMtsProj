@@ -1,16 +1,15 @@
 package ru.mts.teta.summer.android.homework.list.data.features.movies
 
-import ru.kavunov.mtsproject.DTC.Categories
-import ru.kavunov.mtsproject.DTC.MovieDto
+import ru.kavunov.mtsproject.DTC.Categorie
 
 //import ru.mts.teta.summer.android.homework.list.data.dto.MovieDto
 
 class CategoryUser {
 	 fun getMovies() = listOf(
 
-		Categories(category = "боевики"),
-		Categories(category = "драмы"),
-		Categories(category = "комедии")
+		Categorie(category = "боевики"),
+		Categorie(category = "драмы"),
+		Categorie(category = "комедии")
 
 
 	)

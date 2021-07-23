@@ -6,12 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ru.kavunov.mtsproject.DTC.Categories
+import ru.kavunov.mtsproject.DTC.Categorie
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
@@ -23,7 +21,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataS
 class ListFilmFragment : Fragment() {
     private var changeDetails: ChangeDetails? = null
 
-    val listCateg : List<Categories> = CategoryDataSourceImpl().getMovies()
+    val listCateg : List<Categorie> = CategoryDataSourceImpl().getMovies()
     val listMov : List<MovieDto> = MoviesDataSourceImpl().getMovies()
     private val adapterCateg = CategoryAdapter(listCateg)
 

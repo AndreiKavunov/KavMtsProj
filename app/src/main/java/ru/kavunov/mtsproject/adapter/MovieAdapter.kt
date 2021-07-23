@@ -13,24 +13,24 @@ import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
 class MovieAdapter(ListMain: List<MovieDto>
-): RecyclerView.Adapter<MovieAdapter.MovieHolder>() {
+): RecyclerView.Adapter<MovieHolder>() {
     var movietList = ListMain.toMutableList()
 
 
-    class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
-
-        val building = ItemMovieBinding.bind(item)
-        fun bind(movie: MovieDto){building.apply {
-            filmImg.load(movie.imageUrl)
-            filmName.text = movie.title
-            filmContent.text = movie.description
-            filmOgr.text = movie.ageRestriction.toString() + "+"
-            filmRating.rating = movie.rateScore.toFloat()
-
-        }
-
-        }
-    }
+//    class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
+//
+//        val building = ItemMovieBinding.bind(item)
+//        fun bind(movie: MovieDto){building.apply {
+//            filmImg.load(movie.imageUrl)
+//            filmName.text = movie.title
+//            filmContent.text = movie.description
+//            filmOgr.text = movie.ageRestriction.toString() + "+"
+//            filmRating.rating = movie.rateScore.toFloat()
+//
+//        }
+//
+//        }
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
@@ -54,4 +54,18 @@ class MovieAdapter(ListMain: List<MovieDto>
 
     }
 
+}
+class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
+
+    val building = ItemMovieBinding.bind(item)
+    fun bind(movie: MovieDto){building.apply {
+        filmImg.load(movie.imageUrl)
+        filmName.text = movie.title
+        filmContent.text = movie.description
+        filmOgr.text = movie.ageRestriction.toString() + "+"
+        filmRating.rating = movie.rateScore.toFloat()
+
+    }
+
+    }
 }
