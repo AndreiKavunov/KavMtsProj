@@ -17,21 +17,6 @@ class MovieAdapter(ListMain: List<MovieDto>
     var movietList = ListMain.toMutableList()
 
 
-//    class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
-//
-//        val building = ItemMovieBinding.bind(item)
-//        fun bind(movie: MovieDto){building.apply {
-//            filmImg.load(movie.imageUrl)
-//            filmName.text = movie.title
-//            filmContent.text = movie.description
-//            filmOgr.text = movie.ageRestriction.toString() + "+"
-//            filmRating.rating = movie.rateScore.toFloat()
-//
-//        }
-//
-//        }
-//    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
 
@@ -40,8 +25,6 @@ class MovieAdapter(ListMain: List<MovieDto>
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
       holder.bind(movietList[position])
-        holder.itemView.setOnClickListener { view ->
-            (holder.itemView.context as ChangeDetails)?.clickDetail(position)}
     }
 
     override fun getItemCount(): Int {
@@ -64,6 +47,8 @@ class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
         filmContent.text = movie.description
         filmOgr.text = movie.ageRestriction.toString() + "+"
         filmRating.rating = movie.rateScore.toFloat()
+        itemView.setOnClickListener { view ->
+            (itemView.context as ChangeDetails)?.clickDetail(position)}
 
     }
 
