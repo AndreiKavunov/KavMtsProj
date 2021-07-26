@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity(), goToach {
     lateinit var binding: ActivityMovieDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         listMov.addAll(MoviesDataSourceImpl().getMovies())
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity(), goToach {
 
     override fun clickToach(a: MovieDto) {
         Toast.makeText(this, a.title, Toast.LENGTH_SHORT).show()
+
 
     }
 //    fun updateList(){
