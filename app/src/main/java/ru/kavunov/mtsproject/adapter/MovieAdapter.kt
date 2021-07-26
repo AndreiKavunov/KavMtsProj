@@ -26,9 +26,6 @@ class MovieAdapter(ListMain: List<MovieDto>):
 
     override fun onBindViewHolder(holder: MovieHolder, position: Int) {
       holder.bind(movietList[position])
-//      holder.itemView.setOnClickListener { view ->
-//            (holder.itemView.context as goToach)?.clickToach(movietList[position])}
-
     }
 
     override fun getItemCount(): Int {
@@ -48,14 +45,12 @@ class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
     val building = ItemMovieBinding.bind(item)
     fun bind(movie: MovieDto){building.apply {
         filmImg.load(movie.imageUrl)
-//        filmImg.setOnClickListener {clickToach1(movie)}
-//        itemView.setOnClickListener{goToach.clickToach(movie)}
         filmName.text = movie.title
         filmContent.text = movie.description
         filmOgr.text = movie.ageRestriction.toString() + "+"
         filmRating.rating = movie.rateScore.toFloat()
         itemView.setOnClickListener { view ->
-            (itemView.context as goToach)?.clickToach(movie)}
+        (filmImg.context as goToach)?.clickToach(movie)}
 
 
     }
