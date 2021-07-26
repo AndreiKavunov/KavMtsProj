@@ -49,7 +49,7 @@ class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
         filmContent.text = movie.description
         filmOgr.text = movie.ageRestriction.toString() + "+"
         filmRating.rating = movie.rateScore.toFloat()
-        itemView.setOnClickListener { view ->
+        filmImg.setOnClickListener { view ->
         (filmImg.context as goToach)?.clickToach(movie)}
 
 
