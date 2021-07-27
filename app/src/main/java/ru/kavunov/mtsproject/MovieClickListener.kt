@@ -2,7 +2,7 @@ package ru.kavunov.mtsproject
 
 import android.content.Context
 
-interface ChangeDetails {
+interface MovieClickListener {
     fun clickDetail(position: Int)
 
 

@@ -1,12 +1,11 @@
 package ru.kavunov.mtsproject.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import ru.kavunov.mtsproject.ChangeDetails
+import ru.kavunov.mtsproject.MovieClickListener
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
@@ -47,8 +46,8 @@ class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
         filmContent.text = movie.description
         filmOgr.text = movie.ageRestriction.toString() + "+"
         filmRating.rating = movie.rateScore.toFloat()
-        itemView.setOnClickListener { view ->
-            (itemView.context as ChangeDetails)?.clickDetail(position)}
+        filmImg.setOnClickListener { view ->
+            (itemView.context as MovieClickListener)?.clickDetail(position)}
 
     }
 

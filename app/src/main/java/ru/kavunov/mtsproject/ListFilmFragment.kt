@@ -19,7 +19,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataS
 
 
 class ListFilmFragment : Fragment() {
-    private var changeDetails: ChangeDetails? = null
+    private var movieClickListener: MovieClickListener? = null
 
     val listCateg : List<Categorie> = CategoryDataSourceImpl().getMovies()
     val listMov : List<MovieDto> = MoviesDataSourceImpl().getMovies()
@@ -43,15 +43,15 @@ class ListFilmFragment : Fragment() {
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is ChangeDetails){
-            changeDetails = context
+        if (context is MovieClickListener){
+            movieClickListener = context
         }
 
     }
 
     override fun onDetach() {
         super.onDetach()
-        changeDetails = null
+        movieClickListener = null
 
     }
 

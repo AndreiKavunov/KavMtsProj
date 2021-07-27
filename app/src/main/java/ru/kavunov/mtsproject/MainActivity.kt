@@ -5,7 +5,7 @@ import android.os.Bundle
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 
 
-class MainActivity : AppCompatActivity(), ChangeDetails {
+class MainActivity : AppCompatActivity(), MovieClickListener {
 
 
     private var listfilmFragment: ListFilmFragment? = null
