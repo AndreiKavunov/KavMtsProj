@@ -9,6 +9,7 @@
     <string name="actor1">Джейсон Стэйтем</string>
     <string name="actor2">Холт Маккэллани</string>
     <string name="actor3">Джош Харнетт</string>
+
     <string name="popular">Популярное сейчас</string>
     <string name="user_name">Константин</string>
     <string name="user_data">Личные данные</string>
@@ -27,6 +28,7 @@
     <string name="probl">Сообщить о проблеме</string>
     <string name="exit">Выйти</string>
     <string name="passw">**********</string>
+
 
 
 

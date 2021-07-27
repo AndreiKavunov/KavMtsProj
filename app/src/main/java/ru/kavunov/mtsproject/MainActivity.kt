@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
     lateinit var binding: ActivityMovieDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
             .replace(R.id.mainFrag, ListFilmFragment())
           //  .addToBackStack(null)
             .commit()
+
     }
 companion object {
     const val LIST_FILM_FRAGMENT_TAG = "ListFilmFragment"
