@@ -2,6 +2,6 @@ package ru.kavunov.mtsproject
 
 import ru.kavunov.mtsproject.DTC.MovieDto
 
-interface goToach {
+interface MovieClickListener {
     fun clickToach(a: MovieDto)
 }

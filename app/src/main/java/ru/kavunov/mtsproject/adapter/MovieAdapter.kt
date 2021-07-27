@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.kavunov.mtsproject.DTC.MovieDto
-import ru.kavunov.mtsproject.goToach
+import ru.kavunov.mtsproject.MovieClickListener
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
@@ -50,7 +50,7 @@ class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
         filmOgr.text = movie.ageRestriction.toString() + "+"
         filmRating.rating = movie.rateScore.toFloat()
         filmImg.setOnClickListener { view ->
-        (filmImg.context as goToach)?.clickToach(movie)}
+        (filmImg.context as MovieClickListener)?.clickToach(movie)}
 
 
     }

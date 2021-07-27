@@ -14,7 +14,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDat
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
-class MainActivity : AppCompatActivity(), goToach {
+class MainActivity : AppCompatActivity(), MovieClickListener {
 
     var listMov= ArrayList<MovieDto>()
     val listCateg : List<Categorie> = CategoryDataSourceImpl().getMovies()
