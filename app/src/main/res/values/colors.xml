@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="scroll">#F1F1F1</color>
+
+    <color name="scroll2">#E5E5E5</color>
+    <color name="red">#E31919</color>
+
 </resources>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constFilm"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardImage"
+        android:layout_width="@dimen/card_f_w"
+        android:layout_height="@dimen/card_f_h"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/filmImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:srcCompat="@mipmap/foto1" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/filmName"
+        android:layout_width="@dimen/card_f_w"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/film_name_top"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="@dimen/normText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardImage" />
+
+    <TextView
+        android:id="@+id/filmContent"
+        android:layout_width="@dimen/card_f_w"
+        android:layout_height="@dimen/tetx_film_h"
+        android:layout_marginTop="@dimen/tetx_film_top"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textNameAct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filmName" />
+
+    <RatingBar
+        android:id="@+id/filmRating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/ratinfTop"
+        android:layout_marginBottom="@dimen/ratingBotton"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:progressDrawable="@drawable/star_change"
+
+        android:rating="3.0"
+
+        android:stepSize="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filmContent"
+        tools:rating="4" />
+
+    <TextView
+        android:id="@+id/film_ogr"
+        android:layout_width="@dimen/ogrWH"
+        android:layout_height="@dimen/ogrWH"
+        android:layout_marginStart="@dimen/ogrStart"
+        android:layout_marginTop="@dimen/ogrTop"
+        android:layout_marginEnd="@dimen/ogrEnd"
+        android:layout_marginBottom="@dimen/ogrBotton"
+        android:background="@drawable/ring"
+        android:gravity="center"
+        android:text="18"
+        android:textColor="@color/black"
+        android:textSize="@dimen/TextageSmall"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/filmRating"
+        app:layout_constraintTop_toBottomOf="@+id/filmContent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
