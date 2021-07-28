@@ -46,6 +46,6 @@
     <dimen name="catTextStart">6dp</dimen>
     <dimen name="catTextW">82dp</dimen>
     <dimen name="catTextH">18dp</dimen>
-    <dimen name="catTextSize">14sp</dimen>
+    <dimen name="catTextSize">10sp</dimen>
     <dimen name="TextageSmall">8sp</dimen>
 </resources>
