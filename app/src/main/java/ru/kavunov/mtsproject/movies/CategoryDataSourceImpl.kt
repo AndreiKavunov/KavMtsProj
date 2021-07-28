@@ -11,7 +11,11 @@ class CategoryDataSourceImpl {
 		Categorie(category = "драмы"),
 		Categorie(category = "комедии"),
 		Categorie(category = "артхаус"),
-		Categorie(category = "мелодрамы")
+		Categorie(category = "мелодрамы"),
+		Categorie(category = "фантастика"),
+		Categorie(category = "фентези"),
+		Categorie(category = "ужасы"),
+		Categorie(category = "вестерн"),
 
 	)
 }

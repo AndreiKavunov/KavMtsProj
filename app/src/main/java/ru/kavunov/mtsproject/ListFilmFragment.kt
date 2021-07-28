@@ -38,6 +38,9 @@ class ListFilmFragment : Fragment() {
         rcCateg.adapter = adapterCateg
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
         rcMovie.adapter = adapterMovie
+        val indent_h = convertDpToPixels(requireActivity(), 150f)
+        val dividerItemDecoration = CharacterItemDecoration(indent_h.toInt())
+        rcMovie.addItemDecoration(dividerItemDecoration)
 
        return view
     }
@@ -55,5 +58,7 @@ class ListFilmFragment : Fragment() {
 
     }
 
+    fun convertDpToPixels(context: Context, dp: Float) =
+        dp * context.resources.displayMetrics.density
 
 }

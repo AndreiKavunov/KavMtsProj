@@ -11,10 +11,10 @@
         android:layout_height="@dimen/categH"
         android:layout_marginStart="6dp"
         android:background="@drawable/oval2"
-        android:gravity="center"
+        android:gravity="center_horizontal|center_vertical"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="@dimen/textCateg"
+        android:textSize="@dimen/textCatFilm"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
