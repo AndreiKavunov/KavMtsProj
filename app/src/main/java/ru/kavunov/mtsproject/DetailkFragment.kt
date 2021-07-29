@@ -19,8 +19,6 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.ActorsDataS
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
-private const val ARG_PARAM1 = "param1"
-
 class DetailkFragment : Fragment() {
     private lateinit var moviesModel: MoviesModel
     val listActor : List<List<Actors>> = ActorsDataSourceImpl().getMoviesA()
@@ -32,19 +30,11 @@ class DetailkFragment : Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
-        when(arguments?.getInt(ARG_PARAM1)!!){
-            0->{adapterActors = ActorsAdapter(listActor[0])}
-            1->{adapterActors = ActorsAdapter(listActor[1])}
-            2->{adapterActors = ActorsAdapter(listActor[2])}
-            3->{adapterActors = ActorsAdapter(listActor[3])}
-            else->{adapterActors = ActorsAdapter(listActor[0])}
-        }
-
-
-        rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
-        rcActors.adapter = adapterActors
         initDataSource()
         var listfilm = getMovieAt(arguments?.getInt(ARG_PARAM1)!!)
+        adapterActors = ActorsAdapter(listfilm!!.actor)
+        rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
+        rcActors.adapter = adapterActors
         view.findViewById<TextView>(R.id.titleId).text = listfilm?.title
         view.findViewById<TextView>(R.id.descripId).text = listfilm?.description
         view.findViewById<RatingBar>(R.id.filmRatingDet).rating = (listfilm?.rateScore?.toFloat() ?: 0.0) as Float
@@ -68,7 +58,7 @@ class DetailkFragment : Fragment() {
 
 
     companion object {
-
+        const val ARG_PARAM1 = "param1"
         @JvmStatic
         fun newInstance(param1: Int) =
             DetailkFragment().apply {

@@ -5,5 +5,8 @@ data class MovieDto(
     val description: String,
     val rateScore: Int,
     val ageRestriction: Int,
-    val imageUrl: String
+    val imageUrl: String,
+    val actor: List<Actors>,
+
+
 )
