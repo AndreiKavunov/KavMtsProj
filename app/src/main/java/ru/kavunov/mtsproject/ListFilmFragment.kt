@@ -2,10 +2,10 @@ package ru.kavunov.mtsproject
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +15,6 @@ import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
 import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
-
 
 
 class ListFilmFragment : Fragment() {
@@ -60,5 +59,15 @@ class ListFilmFragment : Fragment() {
 
     fun convertDpToPixels(context: Context, dp: Float) =
         dp * context.resources.displayMetrics.density
+
+//    fun getActiveFragment(): BaseFragment? {
+//        if (getSupportFragmentManager().getBackStackEntryCount() === 0) {
+//            return null
+//        }
+//        val tag: String =
+//            getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1)
+//                .getName()
+//        return getSupportFragmentManager().findFragmentByTag(tag) as BaseFragment
+//    }
 
 }

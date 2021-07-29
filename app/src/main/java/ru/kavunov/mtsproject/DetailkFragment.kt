@@ -15,13 +15,11 @@ import coil.load
 import ru.kavunov.mtsproject.DTC.Actors
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.ActorsAdapter
-import ru.mts.teta.summer.android.homework.list.data.features.movies.ActorsDataSourceImpl
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
 class DetailkFragment : Fragment() {
     private lateinit var moviesModel: MoviesModel
-    val listActor : List<List<Actors>> = ActorsDataSourceImpl().getMoviesA()
     lateinit var adapterActors: ActorsAdapter
 
     override fun onCreateView(
