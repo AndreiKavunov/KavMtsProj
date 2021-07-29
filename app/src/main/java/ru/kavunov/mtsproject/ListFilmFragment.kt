@@ -19,11 +19,9 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataS
 
 class ListFilmFragment : Fragment() {
     private var movieClickListener: MovieClickListener? = null
-
     val listCateg : List<Categorie> = CategoryDataSourceImpl().getMovies()
     val listMov : List<MovieDto> = MoviesDataSourceImpl().getMovies()
     private val adapterCateg = CategoryAdapter(listCateg)
-
     lateinit var adapterMovie: MovieAdapter
 
     override fun onCreateView(
