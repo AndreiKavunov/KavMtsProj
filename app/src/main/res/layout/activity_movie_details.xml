@@ -4,285 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardImg"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/card_foto_height"
-        android:backgroundTint="@color/white"
-        android:elevation="2dp"
-        app:cardCornerRadius="25dp"
+    android:background="@color/scroll2">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainFrag"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/BoNav"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/MainImg"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/main_foto_height"
-            android:scaleType="fitXY"
-            app:srcCompat="@mipmap/foto1" />
-    </androidx.cardview.widget.CardView>
 
-    <ScrollView
-        android:id="@+id/scrollDetail"
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/BoNav"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/scrollTop"
-        android:elevation="3dp"
+        android:layout_height="@dimen/bottonNavH"
+        android:background="@color/white"
+        app:itemBackground="@drawable/button_selector2"
+        app:itemIconTint="@drawable/button_selector"
+        app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cardImg">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/const1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/scroll">
-
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollActor"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginStart="@dimen/marginStart"
-                android:layout_marginTop="@dimen/topScrollFoto"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Acters">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/fotoAct1"
-                            android:layout_width="@dimen/fotoW"
-                            android:layout_height="@dimen/fotoH"
-                            android:scaleType="fitXY"
-                            app:srcCompat="@mipmap/foto2" />
-
-                        <TextView
-                            android:id="@+id/nameAct1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/nameActTop"
-                            android:text="@string/actor1"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/textNameAct" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/fotoAct2"
-                            android:layout_width="@dimen/fotoW"
-                            android:layout_height="@dimen/fotoH"
-                            android:layout_marginStart="10dp"
-                            android:scaleType="fitXY"
-                            app:srcCompat="@mipmap/foto3" />
-
-                        <TextView
-                            android:id="@+id/nameAct2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/nameActStart"
-                            android:layout_marginTop="@dimen/nameActTop"
-                            android:text="@string/actor2"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/textNameAct" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/fotoAct3"
-                            android:layout_width="@dimen/fotoW"
-                            android:layout_height="@dimen/fotoH"
-                            android:layout_marginStart="10dp"
-                            android:scaleType="fitXY"
-                            app:srcCompat="@mipmap/foto6" />
-
-                        <TextView
-                            android:id="@+id/nameAct3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/nameActStart"
-                            android:layout_marginTop="@dimen/nameActTop"
-                            android:text="@string/actor3"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/textNameAct" />
-                    </LinearLayout>
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <ImageView
-                android:id="@+id/BottonMain"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/BottonH"
-                android:layout_marginTop="@dimen/BottonMarTop"
-                android:background="@drawable/underline"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                app:layout_constraintEnd_toStartOf="@+id/BottonProfil"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollActor"
-                app:srcCompat="@drawable/znac1" />
-
-            <ImageView
-                android:id="@+id/BottonProfil"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/BottonH"
-                android:layout_marginTop="@dimen/BottonMarTop"
-                android:background="@color/white"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/BottonMain"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollActor"
-                app:srcCompat="@drawable/znac2" />
-
-            <TextView
-                android:id="@+id/Acters"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginStart"
-                android:layout_marginTop="@dimen/ActTop"
-                android:text="@string/actors"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailFilm" />
-
-            <TextView
-                android:id="@+id/detailFilm"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginStart"
-                android:layout_marginTop="34dp"
-                android:layout_marginEnd="@dimen/marginStart"
-                android:text="@string/content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/normText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameFilm" />
-
-            <ImageView
-                android:id="@+id/star1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/starTop"
-                app:layout_constraintStart_toEndOf="@+id/star3"
-                app:layout_constraintTop_toBottomOf="@+id/nameFilm"
-                app:srcCompat="@drawable/zvezda1" />
-
-            <ImageView
-                android:id="@+id/star2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/starTop"
-                app:layout_constraintStart_toEndOf="@+id/star5"
-                app:layout_constraintTop_toBottomOf="@+id/nameFilm"
-                app:srcCompat="@drawable/zvezda" />
-
-            <ImageView
-                android:id="@+id/star3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/starTop"
-                app:layout_constraintStart_toEndOf="@+id/star2"
-                app:layout_constraintTop_toBottomOf="@+id/nameFilm"
-                app:srcCompat="@drawable/zvezda" />
-
-            <ImageView
-                android:id="@+id/star4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginStart"
-                android:layout_marginTop="@dimen/starTop"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameFilm"
-                app:srcCompat="@drawable/zvezda" />
-
-            <TextView
-                android:id="@+id/nameFilm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginStart"
-                android:layout_marginTop="@dimen/naimFilmTop"
-                android:text="@string/name_film"
-                android:textColor="@color/black"
-                android:textSize="@dimen/filmText"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/ageLimit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ageTop"
-                android:layout_marginEnd="@dimen/marginStart"
-                android:background="@drawable/ring3"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="@string/limitation"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/normText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/genre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginStart"
-                android:layout_marginTop="@dimen/dataTop"
-                android:background="@drawable/oval3"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="@string/film_genre"
-                android:textColor="@color/black"
-                android:textSize="@dimen/genseText"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dataStart"
-                android:layout_marginTop="@dimen/dataTop"
-                android:text="@string/data"
-                android:textColor="@color/black"
-                android:textSize="@dimen/dataText"
-                app:layout_constraintStart_toEndOf="@+id/genre"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/star5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/starTop"
-                app:layout_constraintStart_toEndOf="@+id/star4"
-                app:layout_constraintTop_toBottomOf="@+id/nameFilm"
-                app:srcCompat="@drawable/zvezda" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
+        app:menu="@menu/button_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

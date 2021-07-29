@@ -1,27 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="main_foto_height">290dp</dimen>
-    <dimen name="card_foto_height">330dp</dimen>
-    <dimen name="scrollTop">224dp</dimen>
-    <dimen name="marginStart">20dp</dimen>
-    <dimen name="topScrollFoto">10dp</dimen>
-    <dimen name="fotoW">150dp</dimen>
-    <dimen name="fotoH">196dp</dimen>
-    <dimen name="nameActTop">12dp</dimen>
-    <dimen name="nameActStart">10dp</dimen>
-    <dimen name="BottonH">48dp</dimen>
-    <dimen name="BottonMarTop">50dp</dimen>
-    <dimen name="ActTop">36dp</dimen>
-    <dimen name="detailTop">34dp</dimen>
-    <dimen name="starTop">8dp</dimen>
-    <dimen name="naimFilmTop">64dp</dimen>
-    <dimen name="ageTop">40dp</dimen>
-    <dimen name="dataTop">32dp</dimen>
-    <dimen name="dataStart">16dp</dimen>
-    <dimen name="textNameAct">12sp</dimen>
-    <dimen name="mainText">16sp</dimen>
-    <dimen name="normText">14sp</dimen>
-    <dimen name="filmText">20sp</dimen>
-    <dimen name="genseText">10sp</dimen>
-    <dimen name="dataText">12sp</dimen>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="design_bottom_navigation_item_max_width" tools:override="true">600dp</dimen>
+    <dimen name="design_bottom_navigation_active_item_max_width" tools:override="true">600dp</dimen>
+    <dimen name="bottonNavH">48dp</dimen>
+    <dimen name="categH">18dp</dimen>
+    <dimen name="categW">82dp</dimen>
+    <dimen name="textCateg">14sp</dimen>
+    <dimen name="textdescripId">14sp</dimen>
+    <dimen name="textTitle">20sp</dimen>
+    <dimen name="textCatFilm">10sp</dimen>
+    <dimen name="textdata">12sp</dimen>
+    <dimen name="textnameActors">12sp</dimen>
+    <dimen name="textName">14sp</dimen>
+    <dimen name="textDetail">12sp</dimen>
+    <dimen name="textAge">8sp</dimen>
+    <dimen name="cardImgMainH">330dp</dimen>
+    <dimen name="imageDetIdH">290dp</dimen>
+    <dimen name="mainMarginStartEnd">20dp</dimen>
+    <dimen name="lupaWH">20dp</dimen>
+    <dimen name="actorH">196dp</dimen>
+    <dimen name="actorW">150dp</dimen>
+    <dimen name="filmW">150dp</dimen>
+    <dimen name="filmH">216dp</dimen>
+    <dimen name="galkaHW">10dp</dimen>
+    <dimen name="smileHW">72dp</dimen>
+    <dimen name="textNamUser">20sp</dimen>
+    <dimen name="textEmailUser">14sp</dimen>
+    <dimen name="textProfilMain">16sp</dimen>
+    <dimen name="textProfil">14sp</dimen>
+
 </resources>

@@ -10,9 +10,7 @@
         android:color="@color/black"
         android:width="2dp">
     </stroke>
-    <solid
-        android:color="@color/white">
-    </solid>
+
     <size
         android:height="40dp"
         android:width="40dp">
