@@ -60,14 +60,5 @@ class ListFilmFragment : Fragment() {
     fun convertDpToPixels(context: Context, dp: Float) =
         dp * context.resources.displayMetrics.density
 
-//    fun getActiveFragment(): BaseFragment? {
-//        if (getSupportFragmentManager().getBackStackEntryCount() === 0) {
-//            return null
-//        }
-//        val tag: String =
-//            getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1)
-//                .getName()
-//        return getSupportFragmentManager().findFragmentByTag(tag) as BaseFragment
-//    }
 
 }

@@ -8,7 +8,7 @@ import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
     var flagFragment: Int = 1
-    public var flagOrient: Int = 1
+
 
     private var listfilmFragment: ListFilmFragment? = null
     lateinit var binding: ActivityMovieDetailsBinding
@@ -17,11 +17,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        flagOrient = getResources().getConfiguration().orientation
-
-//        flagOrient = DisplayManager().getDisplay().getRotation()
-        Log.d("tag", flagOrient.toString())
-//        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+        Orient.orInt = getResources().getConfiguration().orientation
         binding.BoNav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {launchHome()}
@@ -79,8 +75,12 @@ companion object {
         flagFragment = 2
     }
 
+
 override fun onBackPressed() {
     super.onBackPressed()
     if(flagFragment == 2)launchHome()
 }
+
 }
+
+object Orient {var orInt = 1}
