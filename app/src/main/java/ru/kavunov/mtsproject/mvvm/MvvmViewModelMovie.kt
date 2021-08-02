@@ -17,7 +17,8 @@ class MvvmViewModelMovie: ViewModel() {
 
 
     fun loadMovie() {
-        _dataList.postValue(MoviesDataSourceImpl().getMovies())
+        listMov.addAll(MoviesDataSourceImpl().getMovies())
+        _dataList.postValue(listMov)
     }
     fun loadMovie1() {
         listMov.addAll(MoviesDataSourceImpl().getMovies())

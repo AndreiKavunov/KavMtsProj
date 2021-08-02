@@ -36,12 +36,12 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 //        if(savedInstanceState == null){
 //            listfilmFragment = ListFilmFragment()
-////            listfilmFragment?.apply {
-////                supportFragmentManager.beginTransaction()
-////                    .add(R.id.mainFrag, this, LIST_FILM_FRAGMENT_TAG)
-////                    .commit()
-////            }
-//            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.listFilmFragment)
+//            listfilmFragment?.apply {
+//                supportFragmentManager.beginTransaction()
+//                    .add(R.id.mainFrag, this, LIST_FILM_FRAGMENT_TAG)
+//                    .commit()
+//            }
+////            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.listFilmFragment)
 //        }
 //        else {
 //            listfilmFragment =

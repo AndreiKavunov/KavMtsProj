@@ -57,11 +57,11 @@ class ListFilmFragment : Fragment() {
         myViewModelCategorie.loadCateg()
         myViewModelCategorie.categList.observe(requireActivity(), Observer(adapterCateg::initData))
 
-    if( ChanList.listMov.size < 1) {
+//    if( ChanList.listMov.size < 1) {
         myViewModelMovie.loadMovie()
         myViewModelMovie.dataList.observe(requireActivity(), Observer(adapterMovie::initData))
         myViewModelMovie.dataList.observe(requireActivity(), Observer(::changeList))
-    }
+//    }
 
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcCateg.adapter = adapterCateg
@@ -82,7 +82,7 @@ class ListFilmFragment : Fragment() {
                 myViewModelMovie.dataList.observe(requireActivity(), Observer(::changeList))
                 val x = (1..3).random()
                 if (x==5)Integer.parseInt("one")
-//                adapterMovie.changeList(listMov)
+
             }
 
             swipeToRefreshCentreal.isRefreshing = false
