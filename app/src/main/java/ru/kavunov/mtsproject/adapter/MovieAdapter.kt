@@ -1,19 +1,21 @@
 package ru.kavunov.mtsproject.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import ru.kavunov.mtsproject.DTC.Categorie
 import ru.kavunov.mtsproject.MovieClickListener
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
-class MovieAdapter(ListMain: ArrayList<MovieDto>
-): RecyclerView.Adapter<MovieHolder>() {
-    var movietList = ListMain.toMutableList()
+class MovieAdapter(): RecyclerView.Adapter<MovieHolder>() {
+//    var movietList = ListMain.toMutableList()
+    var movietList: MutableList<MovieDto> = ArrayList()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
@@ -29,9 +31,14 @@ class MovieAdapter(ListMain: ArrayList<MovieDto>
     override fun getItemCount(): Int {
         return movietList.size
     }
-    fun changeList(listitems: ArrayList<MovieDto>){
-        movietList = listitems
-        notifyDataSetChanged()
+
+    fun initData(movie: List<MovieDto>?) {
+        if (movie!=null){
+            movietList.clear()
+            movietList.addAll(movie)
+            notifyDataSetChanged()
+            Log.d("initDataBlock", "size  = $itemCount")
+        }
     }
 
 }

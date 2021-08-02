@@ -14,7 +14,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryUse
 
 class ProfilFragment : Fragment() {
     val listUser : List<Categorie> = CategoryUser().getMovies()
-    private val adapterUser = CategoryAdapter(listUser)
+    private val adapterUser = CategoryAdapter()
 
 
     override fun onCreateView(
@@ -25,6 +25,7 @@ class ProfilFragment : Fragment() {
         val rcUser = view.findViewById<RecyclerView>(R.id.RcUserInter)
         rcUser.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcUser.adapter = adapterUser
+        adapterUser.initData(listUser)
 
         return view
     }

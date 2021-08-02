@@ -4,10 +4,15 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
+
     var flagFragment: Int = 1
+    val bundle = Bundle()
 
 
     private var listfilmFragment: ListFilmFragment? = null
@@ -17,26 +22,32 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         Orient.orInt = getResources().getConfiguration().orientation
         binding.BoNav.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.home -> {launchHome()}
-                R.id.profil -> {launchProfil()}
+                R.id.home -> {launchHome1()}
+                R.id.profil -> {launchProfil1()}
             }
             true
         }
 
-        if(savedInstanceState == null){
-            listfilmFragment = ListFilmFragment()
-            listfilmFragment?.apply {
-                supportFragmentManager.beginTransaction()
-                    .add(R.id.mainFrag, this, LIST_FILM_FRAGMENT_TAG)
-                    .commit()
-            } }
-        else {
-            listfilmFragment =
-                supportFragmentManager.findFragmentByTag(LIST_FILM_FRAGMENT_TAG) as? ListFilmFragment
-        }
+
+
+//        if(savedInstanceState == null){
+//            listfilmFragment = ListFilmFragment()
+////            listfilmFragment?.apply {
+////                supportFragmentManager.beginTransaction()
+////                    .add(R.id.mainFrag, this, LIST_FILM_FRAGMENT_TAG)
+////                    .commit()
+////            }
+//            Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.listFilmFragment)
+//        }
+//        else {
+//            listfilmFragment =
+//                supportFragmentManager.findFragmentByTag(LIST_FILM_FRAGMENT_TAG) as? ListFilmFragment
+//        }
+
     }
 
 
@@ -56,6 +67,21 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         }
     }
 
+    fun launchProfil1(){
+
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        navController.navigate(R.id.profilFragment)
+    }
+    fun launchHome1(){
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
+        navController.popBackStack(R.id.listFilmFragment,true)
+        navController.navigate(R.id.listFilmFragment)
+
+
+
+    }
+
+
     fun launchHome() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.mainFrag, ListFilmFragment(), "main")
@@ -68,18 +94,21 @@ companion object {
 }
 
     override fun clickDetail(position: Int) {
-        supportFragmentManager.beginTransaction()
-            .addToBackStack("3")
-            .replace(R.id.mainFrag, DetailkFragment.newInstance(position), "detail")
-            .commit()
+//        supportFragmentManager.beginTransaction()
+//            .addToBackStack("3")
+//            .replace(R.id.mainFrag, DetailkFragment.newInstance(position), "detail")
+//            .commit()
+        bundle.putString("MyArg", position.toString())
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.detailkFragment, bundle)
         flagFragment = 2
+
     }
 
 
-override fun onBackPressed() {
-    super.onBackPressed()
-    if(flagFragment == 2)launchHome()
-}
+//override fun onBackPressed() {
+//    super.onBackPressed()
+//    if(flagFragment == 2)launchHome()
+//}
 
 }
 

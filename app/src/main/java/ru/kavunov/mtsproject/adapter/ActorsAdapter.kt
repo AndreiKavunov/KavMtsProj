@@ -1,16 +1,18 @@
 package ru.kavunov.mtsproject.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.kavunov.mtsproject.DTC.Actors
+import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemActorBinding
 
-class ActorsAdapter(ListMain: List<Actors>): RecyclerView.Adapter<ActorsHolder>() {
-    var actorstList = ListMain
+class ActorsAdapter(): RecyclerView.Adapter<ActorsHolder>() {
+    var actorstList: MutableList<Actors> = ArrayList()
 
 
 
@@ -25,6 +27,14 @@ class ActorsAdapter(ListMain: List<Actors>): RecyclerView.Adapter<ActorsHolder>(
 
     override fun getItemCount(): Int {
         return actorstList.size
+    }
+    fun initData(actor: List<Actors>?) {
+        if (actor!=null){
+            actorstList.clear()
+            actorstList.addAll(actor)
+            notifyDataSetChanged()
+            Log.d("initDataBlock", "size  = $itemCount")
+        }
     }
 }
 
