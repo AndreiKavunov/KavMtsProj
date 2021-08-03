@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
@@ -24,13 +26,19 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         setContentView(binding.root)
 //        val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         Orient.orInt = getResources().getConfiguration().orientation
-        binding.BoNav.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.home -> {launchHome1()}
-                R.id.profil -> {launchProfil1()}
-            }
-            true
-        }
+//        binding.BoNav.setOnItemSelectedListener {
+//            when(it.itemId){
+//                R.id.home -> {launchHome1()}
+//                R.id.profil -> {launchProfil1()}
+//            }
+//            true
+//        }
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        findViewById<BottomNavigationView>(R.id.BoNav)
+            .setupWithNavController(navController)
 
 
 
@@ -79,6 +87,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 
 
+
     }
 
 
@@ -99,7 +108,7 @@ companion object {
 //            .replace(R.id.mainFrag, DetailkFragment.newInstance(position), "detail")
 //            .commit()
         bundle.putString("MyArg", position.toString())
-        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.detailkFragment, bundle)
+        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle)
         flagFragment = 2
 
     }
