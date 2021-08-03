@@ -5,5 +5,5 @@ import ru.kavunov.mtsproject.DTC.MovieDto
 
 
 interface MoviesDataSource {
-	fun getMovies(): List<MovieDto>
+	fun getMovies(): List<List<MovieDto>>
 }

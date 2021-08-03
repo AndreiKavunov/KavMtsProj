@@ -19,7 +19,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataS
 
 
 class DetailkFragment : Fragment() {
-//    private lateinit var moviesModel: MoviesModel
+
     lateinit var adapterActors: ActorsAdapter
 
     override fun onCreateView(
@@ -28,7 +28,7 @@ class DetailkFragment : Fragment() {
     ): View? {
         val view =  inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
-//        initDataSource()
+
         var listfilm = getMovieAt(arguments?.getInt(ARG_PARAM1)!!)
         adapterActors = ActorsAdapter(listfilm!!.actor)
         rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
@@ -42,18 +42,13 @@ class DetailkFragment : Fragment() {
     }
     private fun getMovieAt(position: Int = 1): MovieDto? {
 //        val movies = moviesModel.getMovies()
-        val movies = listMov
+        val movies = ListFilm.listMov
         return when {
             movies.isEmpty() -> null
             position >= movies.size -> null
             else -> movies[position]
         }
     }
-//    private fun initDataSource() {
-//        moviesModel = MoviesModel(MoviesDataSourceImpl())
-//
-//    }
-
 
     companion object {
         const val ARG_PARAM1 = "param1"

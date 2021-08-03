@@ -30,7 +30,10 @@ class MovieAdapter(ListMain: ArrayList<MovieDto>
         return movietList.size
     }
     fun changeList(listitems: ArrayList<MovieDto>){
-        movietList = listitems
+        if(listitems != null){
+            movietList.clear()
+            movietList.addAll(listitems)
+        }
         notifyDataSetChanged()
     }
 
