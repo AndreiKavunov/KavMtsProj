@@ -11,7 +11,9 @@ import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
+
 class MovieAdapter(ListMain: ArrayList<MovieDto>
+
 ): RecyclerView.Adapter<MovieHolder>() {
     var movietList = ListMain.toMutableList()
 
@@ -29,12 +31,14 @@ class MovieAdapter(ListMain: ArrayList<MovieDto>
     override fun getItemCount(): Int {
         return movietList.size
     }
+
     fun changeList(listitems: ArrayList<MovieDto>){
         if(listitems != null){
             movietList.clear()
             movietList.addAll(listitems)
         }
         notifyDataSetChanged()
+
     }
 
 }
