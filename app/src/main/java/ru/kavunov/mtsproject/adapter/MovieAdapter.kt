@@ -32,12 +32,12 @@ class MovieAdapter(): RecyclerView.Adapter<MovieHolder>() {
         return movietList.size
     }
 
-    fun initData(movie: List<MovieDto>?) {
+    fun changeList(movie: List<MovieDto>?) {
         if (movie!=null){
             movietList.clear()
             movietList.addAll(movie)
             notifyDataSetChanged()
-            Log.d("initDataBlock", "size  = $itemCount")
+
         }
     }
 

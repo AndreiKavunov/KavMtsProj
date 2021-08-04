@@ -1,38 +1,51 @@
 package ru.kavunov.mtsproject.mvvm
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.MovieDto
+import ru.kavunov.mtsproject.ListFilm
+import ru.kavunov.mtsproject.MainActivity
 
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
+import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImplNEW
+import ru.mts.teta.summer.android.homework.list.data.features.movies.OnDataReadyCallback
+typealias MyViewState = MainActivity.ViewState
 
 class MvvmViewModelMovie: ViewModel() {
+    var movieModel: MoviesDataSourceImplNEW = MoviesDataSourceImplNEW()
+    val text: LiveData<List<MovieDto>> get() = _text
+    var _text = MutableLiveData<List<MovieDto>>()
+    val viewState: LiveData<MyViewState> get() = _viewState
+    private val _viewState = MutableLiveData<MyViewState>()
+
+
     val dataList: LiveData<List<MovieDto>> get() = _dataList
     private val _dataList = MutableLiveData<List<MovieDto>>()
-    var listMov = ArrayList<MovieDto>()
 
+//    val onDataReadyCallback = object : OnDataReadyCallback {
+//        override fun onDataReady(data: String) {
+//            text.set(data)
+//        }
+//    }
+//
+//    fun refresh(){
+//
+//        repoModel.refreshData(onDataReadyCallback)
+//    }
 
-    fun loadMovie() {
-        listMov.addAll(MoviesDataSourceImpl().getMovies())
-        _dataList.postValue(listMov)
-    }
-    fun loadMovie1() {
-        listMov.addAll(MoviesDataSourceImpl().getMovies())
-        _dataList.postValue(listMov)
-    }
-    suspend fun updateList1() = withContext(Dispatchers.IO){
+    suspend fun refresh()  = withContext(Dispatchers.IO){
+        movieModel.refreshData( object : OnDataReadyCallback {
+            override fun onDataReady(data: List<List<MovieDto>>) {
+                _text.postValue(data[ListFilm.flag])
+                _viewState.postValue(MyViewState(isDownloaded = false))
+            }
+        }
+        )}
 
-        listMov.clear()
-        while (listMov.size < 6) {
-            var film = MoviesDataSourceImpl().getMovies().random()
-            if (film !in listMov)
-                listMov.add(film)        }
-        Thread.sleep(2000)
-        _dataList.postValue(listMov)
-
+    suspend fun loadMovie() = withContext(Dispatchers.IO) {
+        _dataList.postValue(MoviesDataSourceImpl().getMovies()[ListFilm.flag])
     }
 }

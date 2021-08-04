@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,54 +15,45 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.coroutines.*
-import ru.kavunov.mtsproject.DTC.Categorie
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
 import ru.kavunov.mtsproject.mvvm.MvvmViewModelCateg
 import ru.kavunov.mtsproject.mvvm.MvvmViewModelMovie
-import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
 class ListFilmFragment : Fragment() {
     private val myViewModelCategorie: MvvmViewModelCateg by viewModels()
     private val myViewModelMovie: MvvmViewModelMovie by viewModels()
 
-//    val bundle = Bundle()
     private var movieClickListener: MovieClickListener? = null
     private var adapterCateg= CategoryAdapter()
+
     private var adapterMovie= MovieAdapter()
     private var job: Job? = null
-    val handler = CoroutineExceptionHandler { context, exception ->
-        Log.d("tagErr","handled $exception")}
-//    private val adapterMovie = MovieAdapter(listMov)
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = inflater.inflate(R.layout.fragment_list_film, container, false)
         val rcCateg = view.findViewById<RecyclerView>(R.id.RcCateg)
         val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
 
-//        CoroutineScope(Dispatchers.Main).launch(handler) {
-//
-//                withContext(Dispatchers.IO){myViewModelMovie.loadMovie()}
-//            withContext(Dispatchers.IO)
-//            {myViewModelMovie.dataList.observe(requireActivity(), Observer(adapterMovie::initData))}
-////            withContext(Dispatchers.IO){if(listMov.size < 1)newList()}
-////            adapterMovie.changeList(listMov)
-//
-//        }
+        Log.d("tag25", ListFilm.listMov.toString())
+        if(ListFilm.listMov.size < 1){
+            CoroutineScope(Dispatchers.Main).launch() {
+//                changeListF()
+                myViewModelMovie.refresh()
+                myViewModelMovie.text.observe(requireActivity(), Observer(::changeListF))
+                adapterMovie.changeList(ListFilm.listMov)
+            }}
+        else adapterMovie.changeList(ListFilm.listMov)
 
         myViewModelCategorie.loadCateg()
         myViewModelCategorie.categList.observe(requireActivity(), Observer(adapterCateg::initData))
-
-//    if( ChanList.listMov.size < 1) {
-        myViewModelMovie.loadMovie()
-        myViewModelMovie.dataList.observe(requireActivity(), Observer(adapterMovie::initData))
-        myViewModelMovie.dataList.observe(requireActivity(), Observer(::changeList))
-//    }
 
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcCateg.adapter = adapterCateg
@@ -73,19 +65,27 @@ class ListFilmFragment : Fragment() {
 
         val swipeToRefreshCentreal = view.findViewById<SwipeRefreshLayout>(R.id.swip)
 
+        val handler = CoroutineExceptionHandler { context, exception ->
+            Log.d("tagErr","handled $exception")
+            Toast.makeText(requireActivity(), "Не удалось получить данные, повторите попытку.", Toast.LENGTH_SHORT).show()
+            swipeToRefreshCentreal.isRefreshing = false
+        }
         swipeToRefreshCentreal.setOnRefreshListener {
             job?.cancel()
             job = CoroutineScope(Dispatchers.Main).launch(handler) {
-//                updateList()
-                myViewModelMovie.updateList1()
-                myViewModelMovie.dataList.observe(requireActivity(), Observer(adapterMovie::initData))
-                myViewModelMovie.dataList.observe(requireActivity(), Observer(::changeList))
                 val x = (1..3).random()
-                if (x==5)Integer.parseInt("one")
+                if (x==1)Integer.parseInt("one")
+                if(ListFilm.flag == 0) ListFilm.flag = 1 else ListFilm.flag = 0
+//                myViewModelMovie.loadMovie()
+//                myViewModelMovie.dataList.observe(requireActivity(), Observer(::changeListF))
 
+                myViewModelMovie.refresh()
+                myViewModelMovie.text.observe(requireActivity(), Observer(::changeListF))
+
+//                Log.d("tag11", "WWW" + ListFilm.x)
+                adapterMovie.changeList(ListFilm.listMov)
+                swipeToRefreshCentreal.isRefreshing = false
             }
-
-            swipeToRefreshCentreal.isRefreshing = false
         }
 
         return view
@@ -103,31 +103,24 @@ class ListFilmFragment : Fragment() {
         movieClickListener = null
 
     }
-//    suspend fun updateList() = withContext(Dispatchers.IO){
-//        listMov.clear()
-//        while (listMov.size < 6) {
-//            var film = MoviesDataSourceImpl().getMovies().random()
-//            if (film !in listMov)
-//                listMov.add(film)        }
-//        Thread.sleep(2000)}
-
-
-
-//   fun newList(){
-//        listMov.addAll(MoviesDataSourceImpl().getMovies())
-//    }
 
     fun convertDpToPixels(context: Context, dp: Float) =
         dp * context.resources.displayMetrics.density
 
-    fun changeList(movie: List<MovieDto>?){
+    fun changeListF(movie: List<MovieDto>?){
+        Log.d("tag11", "HHH" + movie.toString())
         if (movie!=null){
-            ChanList.listMov.clear()
-            ChanList.listMov.addAll(movie)}
-        Log.d("tag2", "qqq" + ChanList.listMov.toString())
+            ListFilm.listMov.clear()
+            ListFilm.listMov.addAll(movie)}
+
     }
-
+    fun xxx(a: String){
+        ListFilm.x = a
+        Log.d("tag11", "HHH" + ListFilm.x)
+    }
 }
-//
 
-object ChanList {var listMov = ArrayList<MovieDto>()}
+object ListFilm {
+    var listMov = ArrayList<MovieDto>()
+    var flag = 0
+    var x = "sdss"}

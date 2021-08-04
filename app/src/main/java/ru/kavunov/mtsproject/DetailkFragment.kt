@@ -26,11 +26,6 @@ class DetailkFragment : Fragment() {
     var list: MutableList<MovieDto> = ArrayList()
     var adapterActors= ActorsAdapter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +48,7 @@ class DetailkFragment : Fragment() {
         return view
     }
     private fun getMovieAt(position: Int = 1): MovieDto? {
-        val movies = ChanList.listMov
+        val movies = ListFilm.listMov
            return when {
             movies.isEmpty() -> null
             position >= movies.size -> null
