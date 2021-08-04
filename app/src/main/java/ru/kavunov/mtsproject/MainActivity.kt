@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
             true
         }
 
+
         if(savedInstanceState == null){
             listfilmFragment = ListFilmFragment()
             listfilmFragment?.apply {
