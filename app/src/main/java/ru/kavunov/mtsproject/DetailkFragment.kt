@@ -22,7 +22,6 @@ import androidx.lifecycle.Observer
 
 
 class DetailkFragment : Fragment() {
-    private val myViewModelMovie: MvvmViewModelMovie by viewModels()
     var list: MutableList<MovieDto> = ArrayList()
     var adapterActors= ActorsAdapter()
 
@@ -31,10 +30,8 @@ class DetailkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val position = arguments?.getString("MyArg")
-
         val view =  inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
-
         var listfilm = getMovieAt(position!!.toInt())
         adapterActors.initData(listfilm?.actor)
 

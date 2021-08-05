@@ -1,5 +1,6 @@
 package ru.kavunov.mtsproject
 
+import android.app.ProgressDialog
 import android.content.Context
 import androidx.lifecycle.Observer
 import android.os.Bundle
@@ -18,14 +19,14 @@ import kotlinx.coroutines.*
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
-import ru.kavunov.mtsproject.mvvm.MvvmViewModelCateg
 import ru.kavunov.mtsproject.mvvm.MvvmViewModelMovie
+import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 
 
 class ListFilmFragment : Fragment() {
-    private val myViewModelCategorie: MvvmViewModelCateg by viewModels()
-    private val myViewModelMovie: MvvmViewModelMovie by viewModels()
 
+    private val myViewModelMovie: MvvmViewModelMovie by viewModels()
+    private val progressDialog by lazy { ProgressDialog.show(requireActivity(), "", getString(R.string.please_wait)) }
     private var movieClickListener: MovieClickListener? = null
     private var adapterCateg= CategoryAdapter()
 
@@ -45,17 +46,15 @@ class ListFilmFragment : Fragment() {
         Log.d("tag25", ListFilm.listMov.toString())
         if(ListFilm.listMov.size < 1){
             CoroutineScope(Dispatchers.Main).launch() {
-
-                myViewModelMovie.text.observe(requireActivity(), Observer(::changeListF))
-                adapterMovie.changeList(ListFilm.listMov)
                 myViewModelMovie.loadMovie()
+                myViewModelMovie.viewState.observe(requireActivity(), Observer(:: render))
+                myViewModelMovie.listmovie.observe(requireActivity(), Observer(::changeListF))
+                adapterMovie.changeList(ListFilm.listMov)
+
             }}
         else adapterMovie.changeList(ListFilm.listMov)
 
-
-        myViewModelCategorie.loadCateg()
-        myViewModelCategorie.categList.observe(requireActivity(), Observer(adapterCateg::initData))
-
+        adapterCateg.initData(CategoryDataSourceImpl().getMovies())
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcCateg.adapter = adapterCateg
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
@@ -78,7 +77,8 @@ class ListFilmFragment : Fragment() {
                 if (x==1)Integer.parseInt("one")
                 if(ListFilm.flag == 0) ListFilm.flag = 1 else ListFilm.flag = 0
                 myViewModelMovie.loadMovie()
-                myViewModelMovie.text.observe(requireActivity(), Observer(::changeListF))
+                myViewModelMovie.listmovie.observe(requireActivity(), Observer(::changeListF))
+
                 adapterMovie.changeList(ListFilm.listMov)
                 swipeToRefreshCentreal.isRefreshing = false
             }
@@ -107,6 +107,17 @@ class ListFilmFragment : Fragment() {
             ListFilm.listMov.clear()
             ListFilm.listMov.addAll(movie)}
 
+    }
+    data class ViewState(
+        val isDownloaded: Boolean = false
+    )
+
+    private fun render(viewState: ViewState) = with(viewState) {
+        if (isDownloaded) {
+            progressDialog.show()
+        } else {
+            progressDialog.dismiss()
+        }
     }
 
 }
