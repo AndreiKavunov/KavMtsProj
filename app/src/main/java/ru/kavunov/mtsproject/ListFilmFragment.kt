@@ -1,8 +1,10 @@
 package ru.kavunov.mtsproject
 
+
 import android.app.ProgressDialog
 import android.content.Context
 import androidx.lifecycle.Observer
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,12 +12,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+
 import androidx.fragment.app.viewModels
+
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.coroutines.*
+
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
@@ -55,6 +60,7 @@ class ListFilmFragment : Fragment() {
         else adapterMovie.changeList(ListFilm.listMov)
 
         adapterCateg.initData(CategoryDataSourceImpl().getMovies())
+
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcCateg.adapter = adapterCateg
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
@@ -70,14 +76,17 @@ class ListFilmFragment : Fragment() {
             Toast.makeText(requireActivity(), "Не удалось получить данные, повторите попытку.", Toast.LENGTH_SHORT).show()
             swipeToRefreshCentreal.isRefreshing = false
         }
+
         swipeToRefreshCentreal.setOnRefreshListener {
             job?.cancel()
             job = CoroutineScope(Dispatchers.Main).launch(handler) {
                 val x = (1..3).random()
                 if (x==1)Integer.parseInt("one")
                 if(ListFilm.flag == 0) ListFilm.flag = 1 else ListFilm.flag = 0
+
                 myViewModelMovie.loadMovie()
                 myViewModelMovie.listmovie.observe(requireActivity(), Observer(::changeListF))
+
 
                 adapterMovie.changeList(ListFilm.listMov)
                 swipeToRefreshCentreal.isRefreshing = false
@@ -101,6 +110,7 @@ class ListFilmFragment : Fragment() {
 
     fun convertDpToPixels(context: Context, dp: Float) =
         dp * context.resources.displayMetrics.density
+
 
     fun changeListF(movie: List<MovieDto>?){
         if (movie!=null){
@@ -126,3 +136,4 @@ object ListFilm {
     var listMov = ArrayList<MovieDto>()
     var flag = 0
    }
+

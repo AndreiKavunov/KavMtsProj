@@ -1,6 +1,7 @@
 package ru.kavunov.mtsproject
 
 import android.app.Activity
+
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
@@ -19,12 +20,14 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
     private var listfilmFragment: ListFilmFragment? = null
     lateinit var binding: ActivityMovieDetailsBinding
     private val progressDialog by lazy { ProgressDialog.show(this, "", getString(R.string.actor1)) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Orient.orInt = getResources().getConfiguration().orientation
+
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -47,6 +50,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
             progressDialog.dismiss()
         }
     }
+
 }
 
 object Orient {var orInt = 1}
