@@ -10,12 +10,11 @@ import ru.kavunov.mtsproject.ListFilm
 import ru.kavunov.mtsproject.MainActivity
 
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
-import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImplNEW
-import ru.mts.teta.summer.android.homework.list.data.features.movies.OnDataReadyCallback
 typealias MyViewState = MainActivity.ViewState
 
 class MvvmViewModelMovie: ViewModel() {
-    var movieModel: MoviesDataSourceImplNEW = MoviesDataSourceImplNEW()
+    val l = MoviesDataSourceImpl()
+    var movieModel: RepoMovie = RepoMovie(l.getMovies())
     val text: LiveData<List<MovieDto>> get() = _text
     var _text = MutableLiveData<List<MovieDto>>()
     val viewState: LiveData<MyViewState> get() = _viewState
@@ -36,7 +35,7 @@ class MvvmViewModelMovie: ViewModel() {
 //        repoModel.refreshData(onDataReadyCallback)
 //    }
 
-    suspend fun refresh()  = withContext(Dispatchers.IO){
+    suspend fun loadMovie()  = withContext(Dispatchers.IO){
         movieModel.refreshData( object : OnDataReadyCallback {
             override fun onDataReady(data: List<List<MovieDto>>) {
                 _text.postValue(data[ListFilm.flag])
@@ -45,7 +44,7 @@ class MvvmViewModelMovie: ViewModel() {
         }
         )}
 
-    suspend fun loadMovie() = withContext(Dispatchers.IO) {
-        _dataList.postValue(MoviesDataSourceImpl().getMovies()[ListFilm.flag])
-    }
+//    suspend fun loadMovie() = withContext(Dispatchers.IO) {
+//        _dataList.postValue(MoviesDataSourceImpl().getMovies()[ListFilm.flag])
+//    }
 }

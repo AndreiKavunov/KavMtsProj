@@ -45,12 +45,13 @@ class ListFilmFragment : Fragment() {
         Log.d("tag25", ListFilm.listMov.toString())
         if(ListFilm.listMov.size < 1){
             CoroutineScope(Dispatchers.Main).launch() {
-//                changeListF()
-                myViewModelMovie.refresh()
+
                 myViewModelMovie.text.observe(requireActivity(), Observer(::changeListF))
                 adapterMovie.changeList(ListFilm.listMov)
+                myViewModelMovie.loadMovie()
             }}
         else adapterMovie.changeList(ListFilm.listMov)
+
 
         myViewModelCategorie.loadCateg()
         myViewModelCategorie.categList.observe(requireActivity(), Observer(adapterCateg::initData))
@@ -76,13 +77,8 @@ class ListFilmFragment : Fragment() {
                 val x = (1..3).random()
                 if (x==1)Integer.parseInt("one")
                 if(ListFilm.flag == 0) ListFilm.flag = 1 else ListFilm.flag = 0
-//                myViewModelMovie.loadMovie()
-//                myViewModelMovie.dataList.observe(requireActivity(), Observer(::changeListF))
-
-                myViewModelMovie.refresh()
+                myViewModelMovie.loadMovie()
                 myViewModelMovie.text.observe(requireActivity(), Observer(::changeListF))
-
-//                Log.d("tag11", "WWW" + ListFilm.x)
                 adapterMovie.changeList(ListFilm.listMov)
                 swipeToRefreshCentreal.isRefreshing = false
             }
@@ -101,26 +97,21 @@ class ListFilmFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         movieClickListener = null
-
     }
 
     fun convertDpToPixels(context: Context, dp: Float) =
         dp * context.resources.displayMetrics.density
 
     fun changeListF(movie: List<MovieDto>?){
-        Log.d("tag11", "HHH" + movie.toString())
         if (movie!=null){
             ListFilm.listMov.clear()
             ListFilm.listMov.addAll(movie)}
 
     }
-    fun xxx(a: String){
-        ListFilm.x = a
-        Log.d("tag11", "HHH" + ListFilm.x)
-    }
+
 }
 
 object ListFilm {
     var listMov = ArrayList<MovieDto>()
     var flag = 0
-    var x = "sdss"}
+   }
