@@ -26,10 +26,10 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDat
 class ListFilmFragment : Fragment() {
 
     private val myViewModelMovie: MvvmViewModelMovie by viewModels()
-    private val progressDialog by lazy { ProgressDialog.show(requireActivity(), "", getString(R.string.please_wait)) }
     private var movieClickListener: MovieClickListener? = null
     private var adapterCateg= CategoryAdapter()
-
+//    private var progressDialog: ProgressDialog? = null
+    private val progressDialog by lazy { ProgressDialog.show(requireActivity(), "", getString(R.string.please_wait)) }
     private var adapterMovie= MovieAdapter()
     private var job: Job? = null
 
@@ -44,14 +44,17 @@ class ListFilmFragment : Fragment() {
         val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
 
         Log.d("tag25", ListFilm.listMov.toString())
-//        if(ListFilm.listMov.size < 1){
+        if(ListFilm.listMov.size < 1){
+            progressDialog.show()
             CoroutineScope(Dispatchers.Main).launch() {
+
                 myViewModelMovie.loadMovie()
-                myViewModelMovie.viewState.observe(requireActivity(), Observer(:: render))
                 myViewModelMovie.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
+                myViewModelMovie.viewState.observe(requireActivity(), Observer(::render))
+
             }
-//        }
-//        else adapterMovie.changeList(ListFilm.listMov)
+        }
+        else adapterMovie.changeList(ListFilm.listMov)
 
         adapterCateg.initData(CategoryDataSourceImpl().getMovies())
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
@@ -100,16 +103,20 @@ class ListFilmFragment : Fragment() {
         dp * context.resources.displayMetrics.density
 
     data class ViewState(
-        val isDownloaded: Boolean = false
+        var isDownloaded: Boolean = false
     )
-
     private fun render(viewState: ViewState) = with(viewState) {
-        if (isDownloaded) {
-            progressDialog.show()
-        } else {
             progressDialog.dismiss()
-        }
     }
+
+//    private fun render(viewState: ViewState) = with(viewState) {
+//        if (isDownloaded) {
+//            progressDialog.show()
+//        }
+//        else {
+//            progressDialog.dismiss()
+//        }
+//    }
 
 }
 

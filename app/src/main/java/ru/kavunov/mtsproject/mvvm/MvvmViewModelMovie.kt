@@ -13,9 +13,10 @@ import ru.kavunov.mtsproject.ListFilmFragment
 import ru.kavunov.mtsproject.MainActivity
 
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
-typealias MyViewState = ListFilmFragment.ViewState
 
+typealias MyViewState = ListFilmFragment.ViewState
 class MvvmViewModelMovie: ViewModel() {
+
     lateinit var movieModel: RepoMovie
 
     val viewState: LiveData<MyViewState> get() = _viewState
@@ -29,8 +30,8 @@ suspend fun loadMovie() = withContext(Dispatchers.IO){
     movieModel.refreshData( object : OnDataReadyCallback {
         override  fun onDataReady(data: List<List<MovieDto>>) {
             _listmovie.postValue(data[ListFilm.flag])
-            _viewState.postValue(MyViewState(isDownloaded = false))
             changeListF(data[ListFilm.flag])
+            _viewState.postValue(MyViewState(isDownloaded = false))
 
         }
     }

@@ -16,9 +16,7 @@ import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
     val bundle = Bundle()
-    private var listfilmFragment: ListFilmFragment? = null
     lateinit var binding: ActivityMovieDetailsBinding
-    private val progressDialog by lazy { ProgressDialog.show(this, "", getString(R.string.actor1)) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,16 +35,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         bundle.putString("MyArg", position.toString())
         Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle)
           }
-    data class ViewState(
-        val isDownloaded: Boolean = false
-    )
-    private fun render(viewState: ViewState) = with(viewState) {
-        if (isDownloaded) {
-            progressDialog.show()
-        } else {
-            progressDialog.dismiss()
-        }
-    }
+
 }
 
 object Orient {var orInt = 1}
