@@ -41,6 +41,7 @@ class DetailkFragment : Fragment() {
             profilViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
             rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
             rcActors.adapter = adapterActors
+
         }
 
         return view
