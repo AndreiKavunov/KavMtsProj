@@ -13,33 +13,22 @@ import ru.kavunov.mtsproject.ListFilmFragment
 import ru.kavunov.mtsproject.MainActivity
 
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
-typealias MyViewState = ListFilmFragment.ViewState
 
-class MvvmViewModelMovie: ViewModel() {
+class ViewModelDetail: ViewModel() {
     lateinit var movieModel: RepoMovie
 
-    val viewState: LiveData<MyViewState> get() = _viewState
-    private val _viewState = MutableLiveData<MyViewState>()
-
-    val listmovie: LiveData<List<MovieDto>> get() = _listmovie
-    var _listmovie = MutableLiveData<List<MovieDto>>()
+    val listDetail: LiveData<List<MovieDto>> get() = _listDetail
+    var _listDetail = MutableLiveData<List<MovieDto>>()
 
 suspend fun loadMovie() = withContext(Dispatchers.IO){
     movieModel= RepoMovie(MoviesDataSourceImpl().getMovies())
     movieModel.refreshData( object : OnDataReadyCallback {
         override  fun onDataReady(data: List<List<MovieDto>>) {
-            _listmovie.postValue(data[ListFilm.flag])
-            _viewState.postValue(MyViewState(isDownloaded = false))
-            changeListF(data[ListFilm.flag])
+            _listDetail.postValue(data[ListFilm.flag])
 
         }
     }
     )}
 
-    fun changeListF(movie: List<MovieDto>){
-        ListFilm.listMov.clear()
-        ListFilm.listMov.addAll(movie)
-
-    }
 
 }

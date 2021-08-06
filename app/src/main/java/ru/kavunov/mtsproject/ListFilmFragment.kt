@@ -44,15 +44,14 @@ class ListFilmFragment : Fragment() {
         val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
 
         Log.d("tag25", ListFilm.listMov.toString())
-        if(ListFilm.listMov.size < 1){
+//        if(ListFilm.listMov.size < 1){
             CoroutineScope(Dispatchers.Main).launch() {
                 myViewModelMovie.loadMovie()
                 myViewModelMovie.viewState.observe(requireActivity(), Observer(:: render))
-                myViewModelMovie.listmovie.observe(requireActivity(), Observer(::changeListF))
-                adapterMovie.changeList(ListFilm.listMov)
-
-            }}
-        else adapterMovie.changeList(ListFilm.listMov)
+                myViewModelMovie.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
+            }
+//        }
+//        else adapterMovie.changeList(ListFilm.listMov)
 
         adapterCateg.initData(CategoryDataSourceImpl().getMovies())
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
@@ -77,9 +76,7 @@ class ListFilmFragment : Fragment() {
                 if (x==1)Integer.parseInt("one")
                 if(ListFilm.flag == 0) ListFilm.flag = 1 else ListFilm.flag = 0
                 myViewModelMovie.loadMovie()
-                myViewModelMovie.listmovie.observe(requireActivity(), Observer(::changeListF))
-
-                adapterMovie.changeList(ListFilm.listMov)
+                myViewModelMovie.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
                 swipeToRefreshCentreal.isRefreshing = false
             }
         }
@@ -102,12 +99,6 @@ class ListFilmFragment : Fragment() {
     fun convertDpToPixels(context: Context, dp: Float) =
         dp * context.resources.displayMetrics.density
 
-    fun changeListF(movie: List<MovieDto>?){
-        if (movie!=null){
-            ListFilm.listMov.clear()
-            ListFilm.listMov.addAll(movie)}
-
-    }
     data class ViewState(
         val isDownloaded: Boolean = false
     )

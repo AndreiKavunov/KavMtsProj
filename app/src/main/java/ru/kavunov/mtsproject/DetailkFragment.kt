@@ -22,7 +22,7 @@ import androidx.lifecycle.Observer
 
 
 class DetailkFragment : Fragment() {
-    var list: MutableList<MovieDto> = ArrayList()
+
     var adapterActors= ActorsAdapter()
 
     override fun onCreateView(
