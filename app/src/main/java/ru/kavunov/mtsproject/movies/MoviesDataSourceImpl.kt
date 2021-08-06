@@ -6,6 +6,7 @@ import ru.kavunov.mtsproject.DTC.MovieDto
 //import ru.mts.teta.summer.android.homework.list.data.dto.MovieDto
 
 class MoviesDataSourceImpl : MoviesDataSource {
+
 	override fun getMovies(): List<List<MovieDto>> {
 		Thread.sleep(2000)
 
@@ -195,6 +196,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 			),
 
 
+
 			listOf(
 
 				MovieDto(
@@ -204,6 +206,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 					ageRestriction = 16,
 					imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mbtN6V6y5kdawvAkzqN4ohi576a.jpg",
 					actor = listOf(
+
 						Actors(
 							img = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6NsMbJXRlDZuDzatN2akFdGuTvx.jpg",
 							name = "Scarlett Johansson"
@@ -220,8 +223,10 @@ class MoviesDataSourceImpl : MoviesDataSource {
 							img = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/chPekukMF5SNnW6b22NbYPqAStr.jpg",
 							name = "David Harbour"
 						),
+
 					)
 				),
+
 
 
 				MovieDto(
@@ -283,6 +288,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 					)
 				),
 
+
 				MovieDto(
 					title = "Гнев человеческий",
 					description = "Эйч — загадочный и холодный на вид джентльмен, но внутри него пылает жажда справедливости. Преследуя...",
@@ -290,6 +296,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 					ageRestriction = 18,
 					imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5JP9X5tCZ6qz7DYMabLmrQirlWh.jpg",
 					actor = listOf(
+
 						Actors(
 							img = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lldeQ91GwIVff43JBrpdbAAeYWj.jpg",
 							name = "Jason Statham"
@@ -308,6 +315,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 						),
 					)
 				),
+
 				MovieDto(
 					title = "Мортал Комбат",
 					description = "Боец смешанных единоборств Коул Янг не раз соглашался проиграть за деньги. Он не знает о своем наследии...",
@@ -315,6 +323,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 					ageRestriction = 18,
 					imageUrl = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/pMIixvHwsD5RZxbvgsDSNkpKy0R.jpg",
 					actor = listOf(
+
 						Actors(
 							img = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lkW8gh20BuwzHecXqYH1eRVuWpb.jpg",
 							name = "Lewis Tan"
@@ -332,11 +341,14 @@ class MoviesDataSourceImpl : MoviesDataSource {
 							name = "Tadanobu Asano"
 						),
 
+
 						)
 				),
+
 
 				)
 		)
 		return x
 	}
+
 }
