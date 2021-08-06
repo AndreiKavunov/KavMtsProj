@@ -105,7 +105,7 @@ class ListFilmFragment : Fragment() {
     data class ViewState(
         var isDownloaded: Boolean = false
     )
-    private fun render(viewState: ViewState) = with(viewState) {
+    private fun render(viewState: ViewState){
             progressDialog.dismiss()
     }
 
