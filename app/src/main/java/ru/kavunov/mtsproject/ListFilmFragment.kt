@@ -19,6 +19,7 @@ import kotlinx.coroutines.*
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
+import ru.kavunov.mtsproject.mvvm.MvvmViewModelCateg
 import ru.kavunov.mtsproject.mvvm.MvvmViewModelMovie
 import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 
@@ -26,6 +27,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDat
 class ListFilmFragment : Fragment() {
 
     private val myViewModelMovie: MvvmViewModelMovie by viewModels()
+    private val myViewModelCateg: MvvmViewModelCateg by viewModels()
     private var movieClickListener: MovieClickListener? = null
     private var adapterCateg= CategoryAdapter()
 //    private var progressDialog: ProgressDialog? = null
@@ -53,10 +55,13 @@ class ListFilmFragment : Fragment() {
                 myViewModelMovie.viewState.observe(requireActivity(), Observer(::render))
 
             }
+
         }
         else adapterMovie.changeList(ListFilm.listMov)
-
-        adapterCateg.initData(CategoryDataSourceImpl().getMovies())
+        CoroutineScope(Dispatchers.Main).launch() {
+            myViewModelCateg.loadMovie()
+            myViewModelCateg.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
+        }
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcCateg.adapter = adapterCateg
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
