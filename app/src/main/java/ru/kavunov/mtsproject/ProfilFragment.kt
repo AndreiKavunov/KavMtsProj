@@ -23,6 +23,7 @@ import ru.kavunov.mtsproject.bd.ProfilModel
 import ru.kavunov.mtsproject.mvvm.ProfilViewModel
 import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryUser
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import coil.load
 
 class ProfilFragment : Fragment() {
@@ -65,19 +66,16 @@ class ProfilFragment : Fragment() {
         }
         CoroutineScope(Dispatchers.Main).launch() {
             withContext(Dispatchers.IO){profilViewModel.getAll(requireActivity())}
-            profilViewModel.listProfil.observe(requireActivity(), Observer(::log))}
+            profilViewModel.listProfil.observe(requireActivity(), Observer(::log))
+        }
         button.setOnClickListener(){
-            profilViewModel.insertData(requireActivity(), name = "Иван", email = "Andrei@mail.ru", phone = "8-909-000-9999",
-                foto = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oTB9vGIBacH5aQNS0pUM74QSWuf.jpg",
-                interests1 = "боевики",
-                interests2= "драмы",
-        interests3 = "комедии",)
+            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.listFilmFragment)
         }
 
         return view
     }
     fun loadProf(prof: ProfilModel?){
-        if(prof != null)
+        if(prof!=null)
             profil = prof
     }
     fun log(profs: List<ProfilModel>?){
