@@ -19,14 +19,19 @@ class MvvmViewModelCateg: ViewModel() {
     val listcateg: LiveData<List<Categorie>> get() = _listcateg
     var _listcateg = MutableLiveData<List<Categorie>>()
 
-suspend fun loadMovie() = withContext(Dispatchers.IO){
+suspend fun loadCateg() = withContext(Dispatchers.IO){
     categoryModel= RepoCateg(CategoryDataSourceImpl().getMovies())
     categoryModel.refreshData( object: OnDataReadyCallbackCateg{
         override fun onDataReady(data: List<Categorie>) {
             _listcateg.postValue(data)
+            changeListF(data)
         }
     }
     )}
 
+    fun changeListF(categ: List<Categorie>){
+        ListFilm.listCat.clear()
+        ListFilm.listCat.addAll(categ)
 
+    }
 }

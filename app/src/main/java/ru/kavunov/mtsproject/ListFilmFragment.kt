@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.coroutines.*
+import ru.kavunov.mtsproject.DTC.Categorie
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
 import ru.kavunov.mtsproject.mvvm.MvvmViewModelCateg
 import ru.kavunov.mtsproject.mvvm.MvvmViewModelMovie
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 
 
 class ListFilmFragment : Fragment() {
@@ -49,16 +49,16 @@ class ListFilmFragment : Fragment() {
             CoroutineScope(Dispatchers.Main).launch() {
 
                 myViewModelMovie.loadMovie()
+                myViewModelCateg.loadCateg()
+                myViewModelCateg.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
                 myViewModelMovie.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
                 myViewModelMovie.viewState.observe(requireActivity(), Observer(::render))
             }
         }
-        else adapterMovie.changeList(ListFilm.listMov)
-
-        CoroutineScope(Dispatchers.Main).launch() {
-            myViewModelCateg.loadMovie()
-            myViewModelCateg.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
+        else {adapterMovie.changeList(ListFilm.listMov)
+              adapterCateg.initData(ListFilm.listCat)
         }
+
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcCateg.adapter = adapterCateg
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
@@ -124,5 +124,6 @@ class ListFilmFragment : Fragment() {
 
 object ListFilm {
     var listMov = ArrayList<MovieDto>()
+    var listCat = ArrayList<Categorie>()
     var flag = 0
    }
