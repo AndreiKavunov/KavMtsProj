@@ -49,7 +49,6 @@ class DetailkFragment : Fragment() {
 
     fun viewMovie(movieDto: MovieDto){
         view?.findViewById<TextView>(R.id.titleId)?.text = movieDto.title
-        view?.findViewById<TextView>(R.id.textgenre)?.text = movieDto.textgenre
         view?.findViewById<TextView>(R.id.descripId)?.text = movieDto.description
         view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating = (movieDto.rateScore?.toFloat() ?: 0.0) as Float
         view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieDto.ageRestriction.toString() + "+"

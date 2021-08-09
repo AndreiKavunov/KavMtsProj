@@ -134,6 +134,7 @@
                 android:layout_marginTop="32dp"
                 android:background="@drawable/oval2"
                 android:gravity="center_horizontal|center_vertical"
+                android:text="@string/film_genre"
                 android:textColor="@color/black"
                 android:textSize="@dimen/textCatFilm"
                 app:layout_constraintStart_toStartOf="parent"

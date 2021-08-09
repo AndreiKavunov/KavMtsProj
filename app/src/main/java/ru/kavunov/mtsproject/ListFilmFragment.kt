@@ -30,7 +30,6 @@ class ListFilmFragment : Fragment() {
     private val myViewModelCateg: MvvmViewModelCateg by viewModels()
     private var movieClickListener: MovieClickListener? = null
     private var adapterCateg= CategoryAdapter()
-//    private var progressDialog: ProgressDialog? = null
     private val progressDialog by lazy { ProgressDialog.show(requireActivity(), "", getString(R.string.please_wait)) }
     private var adapterMovie= MovieAdapter()
     private var job: Job? = null
@@ -45,7 +44,6 @@ class ListFilmFragment : Fragment() {
         val rcCateg = view.findViewById<RecyclerView>(R.id.RcCateg)
         val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
 
-        Log.d("tag25", ListFilm.listMov.toString())
         if(ListFilm.listMov.size < 1){
             progressDialog.show()
             CoroutineScope(Dispatchers.Main).launch() {
@@ -53,11 +51,10 @@ class ListFilmFragment : Fragment() {
                 myViewModelMovie.loadMovie()
                 myViewModelMovie.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
                 myViewModelMovie.viewState.observe(requireActivity(), Observer(::render))
-
             }
-
         }
         else adapterMovie.changeList(ListFilm.listMov)
+
         CoroutineScope(Dispatchers.Main).launch() {
             myViewModelCateg.loadMovie()
             myViewModelCateg.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
