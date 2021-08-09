@@ -2,29 +2,27 @@ package ru.kavunov.mtsproject
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import ru.kavunov.mtsproject.DTC.Categorie
-import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.CategoryAdapterNEW
 import ru.kavunov.mtsproject.bd.ProfilModel
 import ru.kavunov.mtsproject.mvvm.ProfilViewModel
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryUser
-import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
-import coil.load
 
 class ProfilFragment : Fragment() {
     lateinit var profilViewModel: ProfilViewModel
@@ -70,6 +68,8 @@ class ProfilFragment : Fragment() {
         }
         button.setOnClickListener(){
             Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.listFilmFragment)
+//            FragmentManager().popBackStack()
+//            FragmentManager().BackStackEntry()
         }
 
         return view
@@ -83,4 +83,12 @@ class ProfilFragment : Fragment() {
             for(prof in profs)
                 Log.d("tag11", prof.toString())
         }}
+//    private fun clearBackStack() {
+////        val manager: FragmentManager = getSupportFragmentManager()
+//        val manager= FragmentManager()
+//        if (manager.backStackEntryCount > 0) {
+//            val first = manager.getBackStackEntryAt(0)
+//            manager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+//        }
+//    }
 }
