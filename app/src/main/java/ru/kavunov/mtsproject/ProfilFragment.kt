@@ -67,9 +67,9 @@ class ProfilFragment : Fragment() {
             profilViewModel.listProfil.observe(requireActivity(), Observer(::log))
         }
         button.setOnClickListener(){
-            Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.listFilmFragment)
-//            FragmentManager().popBackStack()
-//            FragmentManager().BackStackEntry()
+            val navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+            navController.popBackStack(R.id.listFilmFragment,true)
+            navController.navigate(R.id.listFilmFragment)
         }
 
         return view
@@ -83,12 +83,5 @@ class ProfilFragment : Fragment() {
             for(prof in profs)
                 Log.d("tag11", prof.toString())
         }}
-//    private fun clearBackStack() {
-////        val manager: FragmentManager = getSupportFragmentManager()
-//        val manager= FragmentManager()
-//        if (manager.backStackEntryCount > 0) {
-//            val first = manager.getBackStackEntryAt(0)
-//            manager.popBackStack(first.id, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-//        }
-//    }
+
 }
