@@ -1,9 +1,12 @@
 package ru.kavunov.mtsproject.mvvm
 
+
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.Categorie
 
 class RepoCateg(val list: List<Categorie>){
-   fun refreshData(onDataReadyCallback: OnDataReadyCallbackCateg){
+    suspend fun refreshData(onDataReadyCallback: OnDataReadyCallbackCateg)= withContext(Dispatchers.IO){
 
         onDataReadyCallback.onDataReady(list)
     }

@@ -1,9 +1,12 @@
 package ru.kavunov.mtsproject.mvvm
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.MovieDto
 
 class RepoDetail(val list: ArrayList<MovieDto>){
-   fun refreshDataDet(onDataReadyCallback: OnDataReadyCallbackDetail){
+    suspend fun refreshDataDet(onDataReadyCallback: OnDataReadyCallbackDetail)= withContext(
+        Dispatchers.IO){
 
         onDataReadyCallback.onDataReady2(list)
     }
