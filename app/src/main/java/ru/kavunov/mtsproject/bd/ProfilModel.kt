@@ -1,25 +1,43 @@
 package ru.kavunov.mtsproject.bd
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 
-@Entity
+@Entity(tableName = "ProfilModel")
 data class ProfilModel(
-    var name: String,
-    var email: String,
-    var phone: String,
-    var foto: String,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "profId")
+    val profId: Long,
+    val name: String,
+    val email: String,
+    val phone: String,
+    val foto: String,
     var interests1: String,
     var interests2: String,
     var interests3: String,
-
     )
-{
-
+//
+@Entity(tableName = "CategoryModel")
+data class CategoryModel(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    var id: Int? = null
+    @ColumnInfo(name = "categId")
+    val categId: Long,
+    val category: String,
+)
 
-}
+@Entity(primaryKeys = ["profId", "categId"])
+data class ProfilCateg(
+    val profId: Long,
+    val categId: Long
+)
+
+data class ProfListWithCateg(
+    @Embedded val playlist: ProfilModel,
+    @Relation(
+        parentColumn = "profId",
+        entityColumn = "categId",
+        associateBy = Junction(ProfilCateg::class)
+    )
+    val songs: List<CategoryModel>
+)
+

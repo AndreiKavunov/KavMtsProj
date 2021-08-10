@@ -6,10 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [ProfilModel::class], version = 1)
+@Database(entities = [ProfilModel::class, CategoryModel::class, ProfilCateg::class], version = 8)
 //@TypeConverters(DateTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun profilDAO(): ProfilDAO
+    abstract fun categDAO(): CategDAO
+    abstract fun profilCategDAO(): ProfilCategDAO
+//    abstract fun profListWithCategDAO(): ProfListWithCategDAO
+
 
 //    companion object {
 //        private const val DATABASE_NAME = "Films.db"

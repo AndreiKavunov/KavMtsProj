@@ -20,4 +20,13 @@ interface ProfilDAO {
 
     @Query("SELECT * FROM ProfilModel")
     fun get(): List<ProfilModel>
+
+    @Transaction
+    @Query("SELECT * FROM ProfilModel")
+    fun getPlaylistsWithSongs(): List<ProfListWithCateg>
+
+//    @Transaction
+//    @Query("SELECT * FROM ProfilModel")
+//    fun getProfilWithCateg(): List<PlaylistWithSongs>
+
 }
