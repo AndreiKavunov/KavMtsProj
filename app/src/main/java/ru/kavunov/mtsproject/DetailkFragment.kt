@@ -35,14 +35,11 @@ class DetailkFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
 
-        CoroutineScope(Dispatchers.Main).launch() {
-            withContext(Dispatchers.IO){profilViewModel.loadDetail(position!!.toInt())}
+            profilViewModel.loadDetail(position!!.toInt())
             profilViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
             profilViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
             rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
             rcActors.adapter = adapterActors
-
-        }
 
         return view
     }
