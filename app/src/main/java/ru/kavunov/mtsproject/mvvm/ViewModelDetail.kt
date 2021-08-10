@@ -1,9 +1,10 @@
 package ru.kavunov.mtsproject.mvvm
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.Actors
 import ru.kavunov.mtsproject.DTC.MovieDto
@@ -19,16 +20,18 @@ class ViewModelDetail: ViewModel() {
     val listActors: LiveData<List<Actors>> get() = _listActors
     var _listActors = MutableLiveData<List<Actors>>()
 
-suspend fun loadDetail(position: Int) = withContext(Dispatchers.IO){
-    movieDetail= RepoDetail(ListFilm.listMov)
-    movieDetail.refreshDataDet( object : OnDataReadyCallbackDetail {
-        override fun onDataReady2(data: ArrayList<MovieDto>) {
-            _listDetail.postValue(ListFilm.listMov[position])
-            _listActors.postValue(ListFilm.listMov[position].actor)
+    fun loadDetail(position: Int) {
+        CoroutineScope(Dispatchers.Main).launch() {
+            movieDetail = RepoDetail(ListFilm.listMov)
+            movieDetail.refreshDataDet(object : OnDataReadyCallbackDetail {
+                override fun onDataReady2(data: ArrayList<MovieDto>) {
+                    _listDetail.postValue(ListFilm.listMov[position])
+                    _listActors.postValue(ListFilm.listMov[position].actor)
+                }
+            }
+            )
         }
+
     }
-    )}
-
-
 
 }
