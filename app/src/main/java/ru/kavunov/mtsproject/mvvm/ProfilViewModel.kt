@@ -5,16 +5,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.kavunov.mtsproject.DTC.MovieDto
-import ru.kavunov.mtsproject.bd.CategoryModel
-import ru.kavunov.mtsproject.bd.ProfListWithCateg
-import ru.kavunov.mtsproject.bd.ProfilCateg
-import ru.kavunov.mtsproject.bd.ProfilModel
+import ru.kavunov.mtsproject.bd.*
 
 
 class ProfilViewModel : ViewModel() {
 
     val listProfilT: LiveData<List<ProfListWithCateg>> get() = _listProfilT
     var _listProfilT = MutableLiveData<List<ProfListWithCateg>>()
+
+    val listProfilTT: LiveData<List<MovListWithAct>> get() = _listProfilTT
+    var _listProfilTT = MutableLiveData<List<MovListWithAct>>()
+
+    val listProfilM: LiveData<List<MovieModel>> get() = _listProfilM
+    var _listProfilM = MutableLiveData<List<MovieModel>>()
 
     val listProfil: LiveData<List<ProfilModel>> get() = _listProfil
     var _listProfil = MutableLiveData<List<ProfilModel>>()
@@ -29,9 +32,13 @@ class ProfilViewModel : ViewModel() {
     var _profil = MutableLiveData<ProfilModel>()
 
 
-    fun insertProfil(context: Context, id: Long, name: String, email: String, phone: String, foto: String,
-                     interests1: String, interests2: String, interests3: String) {
-        ProfilRepos.insertData(context, id, name, email, phone, foto, interests1, interests2, interests3)
+    fun insertProfil(context: Context, id: Long, name: String, email: String, phone: String, foto: String,) {
+        ProfilRepos.insertData(context, id, name, email, phone, foto)
+    }
+
+    fun getAllMovie(context: Context){
+        var aaa = MovieRepos.getAll(context)
+        _listProfilM.postValue(aaa)
     }
 
     fun getAllProfil(context: Context){
@@ -47,6 +54,11 @@ class ProfilViewModel : ViewModel() {
     fun getAllProfilTEST(context: Context){
         var aaa = ProfilRepos.getTEST(context)
         _listProfilT.postValue(aaa)
+    }
+
+    fun getAllMovieTEST(context: Context){
+        var aaa = MovieRepos.getTEST(context)
+        _listProfilTT.postValue(aaa)
     }
 
 

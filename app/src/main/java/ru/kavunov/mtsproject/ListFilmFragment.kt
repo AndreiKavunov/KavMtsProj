@@ -105,14 +105,7 @@ class ListFilmFragment : Fragment() {
         swipeToRefreshCentreal.isRefreshing = isRefreshing
 
     }
-//    private fun render(viewState: ViewState) = with(viewState) {
-//        if (isDownloaded) {
-//            progressDialog.show()
-//        }
-//        else {
-//            progressDialog.dismiss()
-//        }
-//    }
+
 
 }
 

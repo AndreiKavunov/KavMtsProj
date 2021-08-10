@@ -20,8 +20,5 @@ interface CategDAO {
     @Query("SELECT * FROM CategoryModel")
     fun get(): List<CategoryModel>
 
-//    @Transaction
-//    @Query("SELECT * FROM ProfilModel")
-//    fun getProfilWithCateg(): List<PlaylistWithSongs>
 
 }

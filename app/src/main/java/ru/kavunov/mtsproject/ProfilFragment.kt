@@ -29,6 +29,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDat
 class ProfilFragment : Fragment() {
     lateinit var profilViewModel: ProfilViewModel
 var tTEST: List<ProfListWithCateg> = ArrayList()
+var tTEST1: ProfListWithCateg? = null
     var listUser: MutableList<String> = ArrayList()
     private val adapterUser = CategoryAdapterNEW()
     lateinit var profil: ProfilModel
@@ -49,15 +50,22 @@ var tTEST: List<ProfListWithCateg> = ArrayList()
 
         CoroutineScope(Dispatchers.Main).launch() {
             withContext(Dispatchers.IO){profilViewModel.getNameProfil(requireActivity(), "Иван")}
+            withContext(Dispatchers.IO){profilViewModel.getAllProfilTEST(requireActivity())}
             profilViewModel.profil.observe(requireActivity(), Observer(::loadProf))
-
-            profil = ProfilModel(1,"dddd", "dvdfvffv", "dddvvvv","https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5JP9X5tCZ6qz7DYMabLmrQirlWh.jpg", "dddd", "dff", "dddd")
+            profilViewModel.listProfilT.observe(requireActivity(),{
+                tTEST1 = it.getOrNull(0)
+                for(i in tTEST1?.listCat!!)Log.d("tag11", "777" + i.category)
+            })
+//           profil = ProfilModel(1,"dddd", "dvdfvffv", "dddvvvv","https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5JP9X5tCZ6qz7DYMabLmrQirlWh.jpg", "dddd", "dff", "dddd")
 
             rcUser.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
             rcUser.adapter = adapterUser
-            listUser.add(profil.interests1)
-            listUser.add(profil.interests2)
-            listUser.add(profil.interests3)
+
+//            listUser.add(profil.interests1)
+//            listUser.add(profil.interests2)
+//            listUser.add(profil.interests3)
+
+            for (i in tTEST1?.listCat!!)listUser.add(i.category)
 
             adapterUser.initData(listUser)
             nameUser.text = profil.name
@@ -72,15 +80,21 @@ var tTEST: List<ProfListWithCateg> = ArrayList()
             withContext(Dispatchers.IO){profilViewModel.getAllProfil(requireActivity())}
             withContext(Dispatchers.IO){profilViewModel.getAllCateg(requireActivity())}
             withContext(Dispatchers.IO){profilViewModel.getAllPrCt(requireActivity())}
-            withContext(Dispatchers.IO){profilViewModel.getAllProfilTEST(requireActivity())}
-//            Log.d("tag11", "prof.toString()")
+            withContext(Dispatchers.IO){profilViewModel.getAllMovie(requireActivity())}
+            withContext(Dispatchers.IO){profilViewModel.getAllMovieTEST(requireActivity())}
+
+
             profilViewModel.listProfil.observe(requireActivity(), Observer(::log))
             profilViewModel.listCateg.observe(requireActivity(), Observer(::logCat))
             profilViewModel.listPrCt.observe(requireActivity(), Observer(::logPC))
-            profilViewModel.listProfilT.observe(requireActivity(),{
-                tTEST = it
-                Log.d("tag11", "777" + tTEST.toString())
+            profilViewModel.listProfilM.observe(requireActivity(),{
+                Log.d("tag11", it.toString())
             })
+
+            profilViewModel.listProfilTT.observe(requireActivity(),{
+                Log.d("tag11", it.toString())
+            })
+
         }
         button.setOnClickListener(){
 
