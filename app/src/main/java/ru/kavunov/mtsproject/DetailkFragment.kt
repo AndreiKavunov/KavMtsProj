@@ -12,20 +12,15 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.ActorsAdapter
 import androidx.lifecycle.Observer
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import ru.kavunov.mtsproject.mvvm.ViewModelDetail
+import ru.kavunov.mtsproject.bd.MovieTableModel
+import ru.kavunov.mtsproject.mvvm.viewModel.DetailViewModel
 
 
 class DetailkFragment : Fragment() {
-    private val profilViewModel: ViewModelDetail by viewModels()
+    private val detailViewModel: DetailViewModel by viewModels()
     var adapterActors= ActorsAdapter()
-    lateinit var movieDto: MovieDto
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,20 +30,20 @@ class DetailkFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
 
-        profilViewModel.loadDetail(position!!.toInt())
-        profilViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
-        profilViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
+        detailViewModel.loadDetail(position!!.toLong())
+        detailViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
+        detailViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
         rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcActors.adapter = adapterActors
 
         return view
     }
 
-    fun viewMovie(movieDto: MovieDto){
-        view?.findViewById<TextView>(R.id.titleId)?.text = movieDto.title
-        view?.findViewById<TextView>(R.id.descripId)?.text = movieDto.description
-        view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating = (movieDto.rateScore?.toFloat() ?: 0.0) as Float
-        view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieDto.ageRestriction.toString() + "+"
-        view?.findViewById<ImageView>(R.id.imageDetId)?.load(movieDto.imageUrl)
+    fun viewMovie(movieTableModel: MovieTableModel){
+        view?.findViewById<TextView>(R.id.titleId)?.text = movieTableModel.title
+        view?.findViewById<TextView>(R.id.descripId)?.text = movieTableModel.description
+        view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating = (movieTableModel.rateScore?.toFloat() ?: 0.0) as Float
+        view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieTableModel.ageRestriction.toString() + "+"
+        view?.findViewById<ImageView>(R.id.imageDetId)?.load(movieTableModel.imageUrl)
     }
 }

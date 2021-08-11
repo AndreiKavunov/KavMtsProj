@@ -6,19 +6,19 @@ import androidx.room.*
 @Dao
 interface ProfilCategDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(profilCateg: ProfilCateg)
+    fun insert(profilCategTableModel: ProfilCategTableModel)
 
     @Update
-    fun update(profilCateg: ProfilCateg)
+    fun update(profilCategTableModel: ProfilCategTableModel)
 
     @Delete
-    fun delete(profilCateg: ProfilCateg)
+    fun delete(profilCategTableModel: ProfilCategTableModel)
 
-    @Query("SELECT * FROM ProfilCateg WHERE categId == :id")
-    fun getByName(id: Long): ProfilCateg
+    @Query("SELECT * FROM ProfilCategTableModel WHERE categId == :id")
+    fun getByName(id: Long): ProfilCategTableModel
 
-    @Query("SELECT * FROM ProfilCateg")
-    fun get(): List<ProfilCateg>
+    @Query("SELECT * FROM ProfilCategTableModel")
+    fun get(): List<ProfilCategTableModel>
 
 //    @Query("SELECT ProfilModel.name, CategoryModel.category FROM ProfilModel, CategoryModel " +
 //                "WHERE films.id == actors.film_id")

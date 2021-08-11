@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.kavunov.mtsproject.DTC.Categorie
 import ru.kavunov.mtsproject.R
+import ru.kavunov.mtsproject.bd.CategoryTableModel
 import ru.kavunov.mtsproject.databinding.CategoryItemBinding
 import java.util.ArrayList
 
 class CategoryAdapterNEW():RecyclerView.Adapter<CategoryHolderNEW>() {
-    var categtList: MutableList<String> = ArrayList()
+    var categtList: MutableList<CategoryTableModel> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryHolderNEW {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
@@ -24,7 +25,7 @@ class CategoryAdapterNEW():RecyclerView.Adapter<CategoryHolderNEW>() {
     override fun getItemCount(): Int {
         return categtList.size
     }
-    fun initData(categ: List<String>?) {
+    fun initData(categ: List<CategoryTableModel>?) {
         if (categ!=null){
             categtList.clear()
             categtList.addAll(categ)
@@ -36,8 +37,8 @@ class CategoryAdapterNEW():RecyclerView.Adapter<CategoryHolderNEW>() {
 
 class CategoryHolderNEW(item: View):RecyclerView.ViewHolder(item) {
     val building = CategoryItemBinding.bind(item)
-    fun bind(category: String){
-        building.idCateg.text = category
+    fun bind(category: CategoryTableModel){
+        building.idCateg.text = category.category
     }
 
 }

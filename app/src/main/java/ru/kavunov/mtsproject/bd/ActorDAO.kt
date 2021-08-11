@@ -7,19 +7,19 @@ import androidx.room.*
 @Dao
 interface ActorDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(actorModel: ActorModel)
+    fun insert(actorTableModel: ActorTableModel)
 
     @Update
-    fun update(actorModel: ActorModel)
+    fun update(actorTableModel: ActorTableModel)
 
     @Delete
-    fun delete(actorModel: ActorModel)
+    fun delete(actorTableModel: ActorTableModel)
 
     @Query("SELECT * FROM ActorModel WHERE actId == :id")
-    fun getByName(id: Long): ActorModel
+    fun getByName(id: Long): ActorTableModel
 
     @Query("SELECT * FROM ActorModel")
-    fun get(): List<ActorModel>
+    fun get(): List<ActorTableModel>
 
 
 }

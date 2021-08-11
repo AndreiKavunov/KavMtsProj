@@ -4,7 +4,7 @@ import androidx.room.*
 
 
 @Entity(tableName = "ProfilModel")
-data class ProfilModel(
+data class ProfilTableModel(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "profId")
     val profId: Long,
@@ -15,7 +15,7 @@ data class ProfilModel(
     )
 
 @Entity(tableName = "CategoryModel")
-data class CategoryModel(
+data class CategoryTableModel(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "categId")
     val categId: Long,
@@ -23,13 +23,13 @@ data class CategoryModel(
 )
 
 @Entity(primaryKeys = ["profId", "categId"])
-data class ProfilCateg(
+data class ProfilCategTableModel(
     val profId: Long,
     val categId: Long
 )
 
 @Entity(tableName = "MovieModel")
-data class MovieModel(
+data class MovieTableModel(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "movId")
     val movId: Long,
@@ -41,7 +41,7 @@ data class MovieModel(
 )
 
 @Entity(tableName = "ActorModel")
-data class ActorModel(
+data class ActorTableModel(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "actId")
     val actId: Long,
@@ -51,7 +51,7 @@ data class ActorModel(
 )
 
 @Entity(primaryKeys = ["movId", "actId"])
-data class MovieAct(
+data class MovieActTableModel(
     val movId: Long,
     val actId: Long
 )
@@ -62,8 +62,8 @@ data class MovListWithAct (
 
     @Relation(parentColumn = "movId",
         entityColumn = "actId",
-        associateBy = Junction(MovieAct::class))
-    val listAct: List<ActorModel>? = null
+        associateBy = Junction(MovieActTableModel::class))
+    val listAct: List<ActorTableModel>? = null
 )
 
 data class ProfListWithCateg (
@@ -72,7 +72,7 @@ data class ProfListWithCateg (
 
     @Relation(parentColumn = "profId",
         entityColumn = "categId",
-        associateBy = Junction(ProfilCateg::class))
-    val listCat: List<CategoryModel>? = null
+        associateBy = Junction(ProfilCategTableModel::class))
+    val listCat: List<CategoryTableModel>? = null
 )
 
