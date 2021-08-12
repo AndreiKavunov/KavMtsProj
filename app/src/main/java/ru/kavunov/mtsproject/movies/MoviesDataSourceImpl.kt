@@ -8,7 +8,7 @@ import ru.kavunov.mtsproject.DTC.MovieDto
 class MoviesDataSourceImpl : MoviesDataSource {
 
 	override fun getMovies(): List<List<MovieDto>> {
-		Thread.sleep(2000)
+//		Thread.sleep(2000)
 
 		val x = listOf(
 			listOf(

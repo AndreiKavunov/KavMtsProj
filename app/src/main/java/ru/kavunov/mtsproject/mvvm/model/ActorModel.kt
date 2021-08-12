@@ -1,6 +1,7 @@
 package ru.kavunov.mtsproject.mvvm.model
 
 import android.content.Context
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,11 +21,11 @@ class ActorModel {
             return AppDatabase.getDataseClient(context)
         }
 
-        suspend fun insertData(context: Context, id: Long, imgAct: String, nameAct: String)  = withContext(Dispatchers.IO) {{
+        suspend fun insertData(context: Context, id: Long, imgAct: String, nameAct: String)  = withContext(Dispatchers.IO) {
             db = initializeDB(context)
             val loginDetails = ActorTableModel(id, imgAct, nameAct)
             db!!.actorDAO().insert(loginDetails)
-            }
+
         }
 
         suspend fun getLoginDetails(context: Context, id: Long) : ActorTableModel? = withContext(Dispatchers.IO) {

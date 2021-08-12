@@ -7,7 +7,7 @@ import ru.kavunov.mtsproject.DTC.MovieDto
 
 class CategoryDataSourceImpl: CategsDataSource{
 	 override fun getMovies(): List<Categorie>{
-		 Thread.sleep(2000)
+
 	val x = listOf(
 
 		Categorie(category = "боевики"),

@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         val navController = navHostFragment.navController
         findViewById<BottomNavigationView>(R.id.BoNav)
             .setupWithNavController(navController)
-        test111(this)
+
 
     }
 
@@ -47,41 +47,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 
 }
-fun test111(context: Context){
-    CoroutineScope(Dispatchers.Main).launch() {
-        if(ProfilModel.getAll(context)?.size == 0){
-            ProfilCatModel.insertData(context, 1, 2)
-            ProfilCatModel.insertData(context, 1, 4)
-            ProfilCatModel.insertData(context, 1, 5)
-            ProfilModel.insertData(
-                context,
-                id = 1,
-                name = "Иван",
-                email = "Ivan@mail.ru",
-                phone = "8-909-000-9999",
-                foto = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oTB9vGIBacH5aQNS0pUM74QSWuf.jpg",
-            )
-            for (x in CategoryDataSourceImpl().getMovies()) CategModel.insertData(
-                context,
-                0,
-                x.category
-            )
-            var idF = 0L
-            var idA = 0L
-            for (x in MoviesDataSourceImpl().getMovies()[0]) {
-                idF ++
-                MovieModel.insertData(
-                    context, id = idF, title = x.title, description = x.description,
-                    rateScore = x.rateScore, ageRestriction = x.ageRestriction.toString(), imageUrl = x.imageUrl
-                )
 
-                for(i in x.actor){
-                    idA++
-                    ActorModel.insertData(context, id = idA, imgAct = i.img, nameAct = i.name)
-
-                    MovieActModel.insertData(context, idF, idA)}
-            }
-        }}}
 
 
 object Orient {var orInt = 1}
