@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+
 import ru.kavunov.mtsproject.adapter.ActorsAdapter
 import androidx.lifecycle.Observer
 import ru.kavunov.mtsproject.bd.MovieTableModel
@@ -22,6 +23,7 @@ class DetailkFragment : Fragment() {
     private val detailViewModel: DetailViewModel by viewModels()
     var adapterActors= ActorsAdapter()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,14 +32,17 @@ class DetailkFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
 
+
         detailViewModel.loadDetail(position!!.toLong())
         detailViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
         detailViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
         rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcActors.adapter = adapterActors
 
+
         return view
     }
+
 
     fun viewMovie(movieTableModel: MovieTableModel){
         view?.findViewById<TextView>(R.id.titleId)?.text = movieTableModel.title
@@ -45,5 +50,6 @@ class DetailkFragment : Fragment() {
         view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating = (movieTableModel.rateScore?.toFloat() ?: 0.0) as Float
         view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieTableModel.ageRestriction.toString() + "+"
         view?.findViewById<ImageView>(R.id.imageDetId)?.load(movieTableModel.imageUrl)
+
     }
 }

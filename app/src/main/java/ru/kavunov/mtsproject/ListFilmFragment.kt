@@ -1,4 +1,5 @@
 package ru.kavunov.mtsproject
+
 import android.app.ProgressDialog
 import android.content.Context
 import androidx.lifecycle.Observer
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
 import ru.kavunov.mtsproject.bd.CategoryTableModel
@@ -21,10 +23,13 @@ import ru.kavunov.mtsproject.mvvm.viewModel.CategViewModel
 import ru.kavunov.mtsproject.mvvm.viewModel.MovieViewModel
 
 
+
 class ListFilmFragment : Fragment() {
+
 
     private val myViewModelMovieViewModel: MovieViewModel by viewModels()
     private val myViewModelCategViewModel: CategViewModel by viewModels()
+
     private var movieClickListener: MovieClickListener? = null
     private var adapterCateg= CategoryAdapter()
     private val progressDialog by lazy { ProgressDialog.show(requireActivity(), "", getString(R.string.please_wait)) }
@@ -42,6 +47,7 @@ class ListFilmFragment : Fragment() {
         val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
 
         if(ListFilm.listMov.size < 1){
+
             progressDialog.show()
             myViewModelMovieViewModel.loadMovie()
             myViewModelCategViewModel.loadCateg()
@@ -51,6 +57,7 @@ class ListFilmFragment : Fragment() {
         }
         else {adapterMovie.changeList(ListFilm.listMov)
             adapterCateg.initData(ListFilm.listCat)
+
         }
 
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
@@ -65,9 +72,11 @@ class ListFilmFragment : Fragment() {
         swipeToRefreshCentreal = view.findViewById(R.id.swip)
         swipeToRefreshCentreal.setOnRefreshListener {
 
+
             myViewModelMovieViewModel.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
             myViewModelMovieViewModel.viewStateUp.observe(requireActivity(), Observer(::render2))
             myViewModelMovieViewModel.updateMovie()
+
 
         }
 
@@ -97,17 +106,22 @@ class ListFilmFragment : Fragment() {
         var isRefreshing: Boolean = false
     )
     private fun render(viewState: ViewState){
+
         progressDialog.dismiss()
+
     }
     fun render2(viewState: ViewStateUpdete) = with(viewState) {
         swipeToRefreshCentreal.isRefreshing = isRefreshing
 
     }
 
+
 }
 
 object ListFilm {
+
     var listMov = ArrayList<MovieTableModel>()
     var listCat = ArrayList<CategoryTableModel>()
 }
+
 

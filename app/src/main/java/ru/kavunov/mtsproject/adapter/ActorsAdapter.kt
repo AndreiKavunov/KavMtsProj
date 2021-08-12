@@ -16,7 +16,9 @@ import ru.kavunov.mtsproject.bd.ActorTableModel
 import ru.kavunov.mtsproject.databinding.ItemActorBinding
 
 class ActorsAdapter(): RecyclerView.Adapter<ActorsHolder>() {
+
     var actorstList: MutableList<ActorTableModel> = ArrayList()
+
 
 
 
@@ -34,7 +36,9 @@ class ActorsAdapter(): RecyclerView.Adapter<ActorsHolder>() {
         return actorstList.size
     }
 
+
     fun initData(actor: List<ActorTableModel>?) {
+
         if (actor!=null){
             actorstList.clear()
             actorstList.addAll(actor)

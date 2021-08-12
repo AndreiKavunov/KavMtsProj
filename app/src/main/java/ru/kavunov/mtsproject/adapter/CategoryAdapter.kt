@@ -14,7 +14,9 @@ import ru.kavunov.mtsproject.databinding.CategoryItemBinding
 import java.util.ArrayList
 
 class CategoryAdapter():RecyclerView.Adapter<CategoryHolder>() {
+
     var categtList: MutableList<CategoryTableModel> = ArrayList()
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryHolder {
@@ -30,7 +32,9 @@ class CategoryAdapter():RecyclerView.Adapter<CategoryHolder>() {
         return categtList.size
     }
 
+
     fun initData(categ: List<CategoryTableModel>?) {
+
         if (categ!=null){
             categtList.clear()
             categtList.addAll(categ)

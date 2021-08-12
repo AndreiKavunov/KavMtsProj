@@ -27,6 +27,7 @@ import ru.kavunov.mtsproject.mvvm.viewModel.ProfilViewModel
 
 class ProfilFragment : Fragment() {
 
+
     private val profilViewModel: ProfilViewModel by viewModels()
     private val adapterUser = CategoryAdapterNEW()
 
@@ -44,9 +45,11 @@ class ProfilFragment : Fragment() {
         rcUser.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcUser.adapter = adapterUser
 
+
         button.setOnClickListener(){
             fragListFilmF()
         }
+
 
         return view
             }

@@ -21,7 +21,9 @@ import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 class MovieAdapter(): RecyclerView.Adapter<MovieHolder>() {
 //    var movietList = ListMain.toMutableList()
+
     var movietList: MutableList<MovieTableModel> = ArrayList()
+
 
 
 
@@ -40,7 +42,9 @@ class MovieAdapter(): RecyclerView.Adapter<MovieHolder>() {
     }
 
 
+
     fun changeList(movie: List<MovieTableModel>?) {
+
         if (movie!=null){
             movietList.clear()
             movietList.addAll(movie)
