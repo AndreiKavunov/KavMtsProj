@@ -2,7 +2,9 @@ package ru.kavunov.mtsproject
 
 import android.app.Activity
 import android.app.ProgressDialog
+
 import android.content.Context
+
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,9 +14,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 import ru.kavunov.mtsproject.mvvm.model.*
 import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
@@ -30,6 +34,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Orient.orInt = getResources().getConfiguration().orientation
+
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -47,6 +52,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 
 }
+
 
 
 
