@@ -24,7 +24,7 @@ abstract class AppDatabase : RoomDatabase() {
         private const val DATABASE_NAME = "Films.db"
         fun getDataseClient(context: Context) : AppDatabase {
 
-            if (INSTANCE != null) return INSTANCE!!
+            if (INSTANCE != null) return INSTANCE as AppDatabase
 
             synchronized(this) {
 
@@ -33,7 +33,7 @@ abstract class AppDatabase : RoomDatabase() {
                     .fallbackToDestructiveMigration()
                     .build()
 
-                return INSTANCE!!
+                return INSTANCE as AppDatabase
 
             }
         }

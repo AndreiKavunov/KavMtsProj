@@ -32,7 +32,7 @@ class ProfilFragment : Fragment() {
         val rcUser = view.findViewById<RecyclerView>(R.id.RcUserInter)
         val button = view.findViewById<Button>(R.id.buttonExit)
 
-        profilViewModel.loadDetail1(1L)
+        profilViewModel.loadDetail1()
         profilViewModel.listProfil.observe(requireActivity(), Observer(::viewProf))
         profilViewModel.listCateg.observe(requireActivity(), Observer(adapterUser::initData))
         rcUser.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)

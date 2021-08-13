@@ -11,7 +11,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 	override fun getMovies(): List<List<MovieDto>> {
 //		Thread.sleep(2000)
 
-		val x = listOf(
+		val listFilm = listOf(
 			listOf(
 				MovieDto(
 					title = "Гнев человеческий",
@@ -352,7 +352,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 
 				)
 		)
-		return x
+		return listFilm
 	}
 
 }

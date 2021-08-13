@@ -12,7 +12,7 @@ class MovieModel {
 
         var movieTable: MovieTable? = null
         var movieTableAll: List<MovieTable>? = null
-        var profilTEST: List<MovListWithAct>? = null
+        var profilActs: List<MovListWithAct>? = null
 
         fun initializeDB(context: Context) : AppDatabase {
             return AppDatabase.getDataseClient(context)
@@ -42,8 +42,8 @@ class MovieModel {
 
         suspend fun getActorList(context: Context, id: Long) : List<MovListWithAct>?= withContext(Dispatchers.IO) {
                 db = ProfilModel.initializeDB(context)
-                profilTEST = db?.movieDAO()?.getMovlistsWithAct(id)
-                return@withContext profilTEST
+                profilActs = db?.movieDAO()?.getMovlistsWithAct(id)
+                return@withContext profilActs
 
         }
 

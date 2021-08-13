@@ -1,26 +1,38 @@
 package ru.kavunov.mtsproject.mvvm.repo
 
+import android.content.Context
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.DTC.Profil
 import ru.kavunov.mtsproject.bd.*
+import ru.kavunov.mtsproject.mvvm.model.ProfilModel
 
 
+class ProfilRepo(){
+    fun refreshDataDet(context: Context, onCallbacCategT: OnCallbacCategT,
+                       onCallbacProf: OnCallbacProf){
+        CoroutineScope(Dispatchers.Main).launch() {
+        val listM: List<ProfListWithCateg>? = ProfilModel.getCategList(context, 1L)
 
-class ProfilRepo(val listM: List<ProfListWithCateg>, val prof: ProfilTable){
-    fun refreshDataDet(onDataReadyCallback1: OnDataReadyCallbacProfil1, onDataReadyCallback2: OnDataReadyCallbacProfil2){
+        val prof: ProfilTable? =  ProfilModel.getProfilId(context, 1L)
         var listAct: ArrayList<CategoryTable> = ArrayList()
-        listAct.addAll(listM.getOrNull(0)?.listCat!!)
+        listM?.getOrNull(0)?.listCat?.let { listAct.addAll(it) }
 
-        onDataReadyCallback1.onDataReady1(listAct)
+        onCallbacCategT.onDataCatL(listAct)
 
-        val profil = Profil(name = prof.name, email = prof.email, phone = prof.phone, foto = prof.foto)
-        onDataReadyCallback2.onDataReady2(profil)
-    }
+        val profil =
+            prof?.name?.let { Profil(name = it, email = prof.email, phone = prof.phone, foto = prof.foto) }
+            if (profil != null) {
+                onCallbacProf.onDataProf(profil)
+            }
+    }}
 }
-interface OnDataReadyCallbacProfil1 {
-    fun onDataReady1(data: List<CategoryTable>)
+interface OnCallbacCategT {
+    fun onDataCatL(data: List<CategoryTable>)
 
 }
-interface OnDataReadyCallbacProfil2 {
-    fun onDataReady2(data: Profil)
+interface OnCallbacProf {
+    fun onDataProf(data: Profil)
 
 }

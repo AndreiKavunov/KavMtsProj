@@ -8,9 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.bd.ActorTable
-import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.*
-import ru.kavunov.mtsproject.mvvm.model.MovieModel
 
 //class ViewModelDetail: ViewModel() {
 class DetailViewModel(application: Application) : AndroidViewModel(application) {
@@ -24,14 +22,14 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
 
     fun loadDetail(position: Long) {
         CoroutineScope(Dispatchers.Main).launch() {
-            detailRepo = DetailRepo(MovieModel.getMovieID(getApplication(), position)!!, MovieModel.getActorList(getApplication(), position)!!)
-            detailRepo.refreshDataDet(object : OnDataReadyCallbackDetail1 {
-                override fun onDataReady1(data: MovieDto) {
+            detailRepo = DetailRepo(position)
+            detailRepo.refreshDataDet(getApplication(), object : OnCallbackMovD {
+                override fun onDataMovD(data: MovieDto) {
                     _listDetail.postValue(data)
                 }
             },
-                object : OnDataReadyCallbackDetail2 {
-                    override fun onDataReady2(data: List<ActorTable>) {
+                object : OnCallbacActT {
+                    override fun onDataActT(data: List<ActorTable>) {
                         _listActors.postValue(data)
                     }}
             )
