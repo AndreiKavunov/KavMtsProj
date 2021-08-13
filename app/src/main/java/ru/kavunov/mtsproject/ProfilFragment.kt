@@ -1,28 +1,21 @@
 package ru.kavunov.mtsproject
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import ru.kavunov.mtsproject.DTC.Profil
 import ru.kavunov.mtsproject.adapter.CategoryAdapterNEW
-import ru.kavunov.mtsproject.bd.*
 import ru.kavunov.mtsproject.mvvm.viewModel.ProfilViewModel
 
 class ProfilFragment : Fragment() {
@@ -51,13 +44,13 @@ class ProfilFragment : Fragment() {
         return view
             }
 
-    fun viewProf(profilTableModel: ProfilTableModel){
-        view?.findViewById<TextView>(R.id.nameUser)?.text = profilTableModel.name
-        view?.findViewById<TextView>(R.id.emailUser)?.text = profilTableModel.email
-        view?.findViewById<TextView>(R.id.S_nameUser)?.text = profilTableModel.name
-        view?.findViewById<TextView>(R.id.s_phone)?.text = profilTableModel.phone
-        view?.findViewById<TextView>(R.id.s_email)?.text = profilTableModel.email
-        view?.findViewById<ImageView>(R.id.imageView)?.load(profilTableModel.foto)
+    fun viewProf(profil: Profil){
+        view?.findViewById<TextView>(R.id.nameUser)?.text = profil.name
+        view?.findViewById<TextView>(R.id.emailUser)?.text = profil.email
+        view?.findViewById<TextView>(R.id.S_nameUser)?.text = profil.name
+        view?.findViewById<TextView>(R.id.s_phone)?.text = profil.phone
+        view?.findViewById<TextView>(R.id.s_email)?.text = profil.email
+        view?.findViewById<ImageView>(R.id.imageView)?.load(profil.foto)
         view?.findViewById<ImageView>(R.id.imageView)?.background = null
     }
 

@@ -6,19 +6,19 @@ import androidx.room.*
 @Dao
 interface MovieActorDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(movieActTableModel: MovieActTableModel)
+    fun insert(movieActTable: MovieActTable)
 
     @Update
-    fun update(movieActTableModel: MovieActTableModel)
+    fun update(movieActTable: MovieActTable)
 
     @Delete
-    fun delete(movieActTableModel: MovieActTableModel)
+    fun delete(movieActTable: MovieActTable)
 
-    @Query("SELECT * FROM MovieActTableModel WHERE movId == :id")
-    fun getByName(id: Long): MovieActTableModel
+    @Query("SELECT * FROM MovieActTable WHERE movId == :id")
+    fun getByName(id: Long): MovieActTable
 
-    @Query("SELECT * FROM MovieActTableModel")
-    fun get(): List<MovieActTableModel>
+    @Query("SELECT * FROM MovieActTable")
+    fun get(): List<MovieActTable>
 
 
 }

@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.ListFilm
-import ru.kavunov.mtsproject.bd.CategoryTableModel
+import ru.kavunov.mtsproject.bd.CategoryTable
 import ru.kavunov.mtsproject.mvvm.CategRepo
 import ru.kavunov.mtsproject.mvvm.OnDataReadyCallbackCateg
 import ru.kavunov.mtsproject.mvvm.model.CategModel
@@ -16,17 +16,17 @@ import ru.kavunov.mtsproject.mvvm.model.CategModel
 //class MvvmViewModelCateg: ViewModel() {
 class CategViewModel(application: Application) : AndroidViewModel(application) {
 
-    lateinit var categoryModel: CategRepo
+    lateinit var categoryRepo: CategRepo
 
 
-    val listcateg: LiveData<List<CategoryTableModel>> get() = _listcateg
-    var _listcateg = MutableLiveData<List<CategoryTableModel>>()
+    val listcateg: LiveData<List<CategoryTable>> get() = _listcateg
+    var _listcateg = MutableLiveData<List<CategoryTable>>()
 
     fun loadCateg(){
         CoroutineScope(Dispatchers.Main).launch() {
-            categoryModel= CategRepo(CategModel.getAll(getApplication())!!)
-            categoryModel.refreshData( object : OnDataReadyCallbackCateg {
-                override fun onDataReady(data: List<CategoryTableModel>) {
+            categoryRepo= CategRepo()
+            categoryRepo.refreshData( getApplication(), object : OnDataReadyCallbackCateg {
+                override fun onDataReady(data: List<CategoryTable>) {
                     _listcateg.postValue(data)
                     changeListF(data)
                 }
@@ -34,7 +34,7 @@ class CategViewModel(application: Application) : AndroidViewModel(application) {
             }
             )}}
 
-    fun changeListF(categ: List<CategoryTableModel>){
+    fun changeListF(categ: List<CategoryTable>){
         ListFilm.listCat.clear()
         ListFilm.listCat.addAll(categ)
     }

@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
-import ru.kavunov.mtsproject.bd.CategoryTableModel
-import ru.kavunov.mtsproject.bd.MovieTableModel
+import ru.kavunov.mtsproject.bd.CategoryTable
+import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.viewModel.CategViewModel
 
 import ru.kavunov.mtsproject.mvvm.viewModel.MovieViewModel
@@ -107,7 +107,7 @@ class ListFilmFragment : Fragment() {
 }
 
 object ListFilm {
-    var listMov = ArrayList<MovieTableModel>()
-    var listCat = ArrayList<CategoryTableModel>()
+    var listMov = ArrayList<MovieTable>()
+    var listCat = ArrayList<CategoryTable>()
 }
 

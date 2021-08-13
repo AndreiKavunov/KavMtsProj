@@ -6,19 +6,19 @@ import androidx.room.*
 @Dao
 interface ProfilDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(profilTableModel: ProfilTableModel)
+    fun insert(profilTable: ProfilTable)
 
     @Update
-    fun update(profilTableModel: ProfilTableModel)
+    fun update(profilTable: ProfilTable)
 
     @Delete
-    fun delete(profilTableModel: ProfilTableModel)
+    fun delete(profilTable: ProfilTable)
 
     @Query("SELECT * FROM ProfilModel WHERE profId == :id")
-    fun getByName(id: Long): ProfilTableModel
+    fun getByName(id: Long): ProfilTable
 
     @Query("SELECT * FROM ProfilModel")
-    fun get(): List<ProfilTableModel>
+    fun get(): List<ProfilTable>
 
     @Transaction
     @Query("SELECT * FROM ProfilModel WHERE profId == :id")

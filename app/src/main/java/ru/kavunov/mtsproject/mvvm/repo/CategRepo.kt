@@ -1,16 +1,23 @@
 package ru.kavunov.mtsproject.mvvm
 
 
-import ru.kavunov.mtsproject.bd.CategoryTableModel
+import android.content.Context
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import ru.kavunov.mtsproject.bd.CategoryTable
+import ru.kavunov.mtsproject.mvvm.model.CategModel
 
-class CategRepo(val list: List<CategoryTableModel>){
-    fun refreshData(onDataReadyCallback: OnDataReadyCallbackCateg){
-
-        onDataReadyCallback.onDataReady(list)
-    }
+//class CategRepo(val list: List<CategoryTable>){
+class CategRepo(){
+    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallbackCateg){
+        CoroutineScope(Dispatchers.Main).launch() {
+        val list: List<CategoryTable>? = CategModel.getAll(contetx)
+            if (list!=null)onDataReadyCallback.onDataReady(list)
+    }}
 }
 interface OnDataReadyCallbackCateg {
-    fun onDataReady(data: List<CategoryTableModel>)
+    fun onDataReady(data: List<CategoryTable>)
 
 }
 

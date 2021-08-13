@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.bd.AppDatabase
-import ru.kavunov.mtsproject.bd.ProfilCategTableModel
+import ru.kavunov.mtsproject.bd.ProfilCategTable
 
 class ProfilCatModel {
 
@@ -14,8 +14,8 @@ class ProfilCatModel {
 
         var db: AppDatabase? = null
 
-        var profilCatModelTableModel: ProfilCategTableModel? = null
-        var profilCatModelAllTableModel: List<ProfilCategTableModel>? = null
+        var profilCatModelTable: ProfilCategTable? = null
+        var profilCatModelAllTable: List<ProfilCategTable>? = null
 
         fun initializeDB(context: Context): AppDatabase {
             return AppDatabase.getDataseClient(context)
@@ -24,21 +24,21 @@ class ProfilCatModel {
         suspend fun insertData(context: Context, idPr: Long, idCt: Long, ) = withContext(Dispatchers.IO) {
             db = initializeDB(context)
             CoroutineScope(Dispatchers.IO).launch {
-                val loginDetails = ProfilCategTableModel(idPr, idCt)
-                db!!.profilCategDAO().insert(loginDetails)
+                val loginDetails = ProfilCategTable(idPr, idCt)
+                db?.profilCategDAO()?.insert(loginDetails)
             }
         }
 
-        suspend fun getLoginDetails(context: Context, id: Long): ProfilCategTableModel? = withContext(Dispatchers.IO) {
+        suspend fun getLoginDetails(context: Context, id: Long): ProfilCategTable? = withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            profilCatModelTableModel = db!!.profilCategDAO().getByName(id)
-            return@withContext profilCatModelTableModel
+            profilCatModelTable = db?.profilCategDAO()?.getByName(id)
+            return@withContext profilCatModelTable
         }
 
-        suspend fun getAll(context: Context): List<ProfilCategTableModel>? = withContext(Dispatchers.IO) {
+        suspend fun getAll(context: Context): List<ProfilCategTable>? = withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            profilCatModelAllTableModel = db!!.profilCategDAO().get()
-            return@withContext profilCatModelAllTableModel
+            profilCatModelAllTable = db?.profilCategDAO()?.get()
+            return@withContext profilCatModelAllTable
         }
 
     }

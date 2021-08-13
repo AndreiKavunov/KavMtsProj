@@ -1,12 +1,9 @@
 package ru.kavunov.mtsproject.mvvm.model
 
 import android.content.Context
-import android.util.Log
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import ru.kavunov.mtsproject.bd.ActorTableModel
+import ru.kavunov.mtsproject.bd.ActorTable
 import ru.kavunov.mtsproject.bd.AppDatabase
 
 class ActorModel {
@@ -14,8 +11,8 @@ class ActorModel {
 
         var db: AppDatabase? = null
 
-        var actorTableModel: ActorTableModel? = null
-        var actorTableModelAll: List<ActorTableModel>? = null
+        var actorTable: ActorTable? = null
+        var actorTableAll: List<ActorTable>? = null
 
         fun initializeDB(context: Context) : AppDatabase {
             return AppDatabase.getDataseClient(context)
@@ -23,21 +20,21 @@ class ActorModel {
 
         suspend fun insertData(context: Context, id: Long, imgAct: String, nameAct: String)  = withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            val loginDetails = ActorTableModel(id, imgAct, nameAct)
-            db!!.actorDAO().insert(loginDetails)
+            val loginDetails = ActorTable(id, imgAct, nameAct)
+            db?.actorDAO()?.insert(loginDetails)
 
         }
 
-        suspend fun getLoginDetails(context: Context, id: Long) : ActorTableModel? = withContext(Dispatchers.IO) {
+        suspend fun getLoginDetails(context: Context, id: Long) : ActorTable? = withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            actorTableModel = db!!.actorDAO().getByName(id)
-            return@withContext actorTableModel
+            actorTable = db?.actorDAO()?.getByName(id)
+            return@withContext actorTable
         }
 
-        suspend fun getAll(context: Context) : List<ActorTableModel>? = withContext(Dispatchers.IO){
+        suspend fun getAll(context: Context) : List<ActorTable>? = withContext(Dispatchers.IO){
             db = initializeDB(context)
-            actorTableModelAll = db!!.actorDAO().get()
-            return@withContext actorTableModelAll
+            actorTableAll = db?.actorDAO()?.get()
+            return@withContext actorTableAll
         }
 
     }

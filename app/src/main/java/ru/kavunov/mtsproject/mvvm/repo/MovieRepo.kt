@@ -1,18 +1,24 @@
 package ru.kavunov.mtsproject.mvvm
 
+import android.content.Context
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import ru.kavunov.mtsproject.DTC.MovieDto
-import ru.kavunov.mtsproject.bd.MovieTableModel
+import kotlinx.coroutines.launch
+import ru.kavunov.mtsproject.bd.MovieTable
+import ru.kavunov.mtsproject.mvvm.model.MovieModel
 
-class MovieRepo(val list: List<MovieTableModel>){
-    fun refreshData(onDataReadyCallback: OnDataReadyCallback){
+//class MovieRepo(val list: List<MovieTable>){
+class MovieRepo(){
+    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallback){
+    CoroutineScope(Dispatchers.Main).launch() {
+        val contextA = contetx
+        val list: List<MovieTable>? = MovieModel.getAll(contextA)
 
-        onDataReadyCallback.onDataReady(list)
-    }
+        if (list!=null)onDataReadyCallback.onDataReady(list)
+    }}
 }
 interface OnDataReadyCallback {
-    fun onDataReady(data: List<MovieTableModel>)
+    fun onDataReady(data: List<MovieTable>)
 
 }
 

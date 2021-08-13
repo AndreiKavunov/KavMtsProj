@@ -1,13 +1,12 @@
 package ru.kavunov.mtsproject.mvvm.model
 
 import android.content.Context
-import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.bd.AppDatabase
-import ru.kavunov.mtsproject.bd.MovieActTableModel
+import ru.kavunov.mtsproject.bd.MovieActTable
 
 
 class MovieActModel {
@@ -15,8 +14,8 @@ class MovieActModel {
 
         var db: AppDatabase? = null
 
-        var movActTableModelModel: MovieActTableModel? = null
-        var movActTableModelModelAll: List<MovieActTableModel>? = null
+        var movActTableModel: MovieActTable? = null
+        var movActTableModelAll: List<MovieActTable>? = null
 
         fun initializeDB(context: Context) : AppDatabase {
             return AppDatabase.getDataseClient(context)
@@ -25,21 +24,21 @@ class MovieActModel {
         suspend fun insertData(context: Context, idMo: Long, idAc: Long)= withContext(Dispatchers.IO) {
             db = initializeDB(context)
             CoroutineScope(Dispatchers.IO).launch {
-                val loginDetails = MovieActTableModel(idMo, idAc)
-                db!!.movieActorDAO().insert(loginDetails)
+                val loginDetails = MovieActTable(idMo, idAc)
+                db?.movieActorDAO()?.insert(loginDetails)
             }
         }
 
-        suspend fun getLoginDetails(context: Context, id: Long) : MovieActTableModel?= withContext(Dispatchers.IO) {
+        suspend fun getLoginDetails(context: Context, id: Long) : MovieActTable?= withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            movActTableModelModel = db!!.movieActorDAO().getByName(id)
-            return@withContext movActTableModelModel
+            movActTableModel = db?.movieActorDAO()?.getByName(id)
+            return@withContext movActTableModel
         }
 
-        suspend fun getAll(context: Context) : List<MovieActTableModel>?= withContext(Dispatchers.IO) {
+        suspend fun getAll(context: Context) : List<MovieActTable>?= withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            movActTableModelModelAll = db!!.movieActorDAO().get()
-            return@withContext movActTableModelModelAll
+            movActTableModelAll = db?.movieActorDAO()?.get()
+            return@withContext movActTableModelAll
         }
 
     }

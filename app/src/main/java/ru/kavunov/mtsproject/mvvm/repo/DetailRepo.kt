@@ -1,15 +1,13 @@
 package ru.kavunov.mtsproject.mvvm
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import ru.kavunov.mtsproject.bd.ActorTableModel
+import ru.kavunov.mtsproject.bd.ActorTable
 import ru.kavunov.mtsproject.bd.MovListWithAct
-import ru.kavunov.mtsproject.bd.MovieTableModel
+import ru.kavunov.mtsproject.bd.MovieTable
 
-class DetailRepo(val movie: MovieTableModel, val listM: List<MovListWithAct>){
+class DetailRepo(val movie: MovieTable, val listM: List<MovListWithAct>){
     fun refreshDataDet(onDataReadyCallback1: OnDataReadyCallbackDetail1, onDataReadyCallback2: OnDataReadyCallbackDetail2){
 
-       var listAct: ArrayList<ActorTableModel> = ArrayList()
+       var listAct: ArrayList<ActorTable> = ArrayList()
         listAct.addAll(listM.getOrNull(0)?.listAct!!)
 
         onDataReadyCallback1.onDataReady1(movie)
@@ -17,10 +15,10 @@ class DetailRepo(val movie: MovieTableModel, val listM: List<MovListWithAct>){
     }
 }
 interface OnDataReadyCallbackDetail1 {
-    fun onDataReady1(data: MovieTableModel)
+    fun onDataReady1(data: MovieTable)
 }
 
 interface OnDataReadyCallbackDetail2 {
-    fun onDataReady2(data: List<ActorTableModel>)
+    fun onDataReady2(data: List<ActorTable>)
 }
 

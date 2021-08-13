@@ -6,19 +6,19 @@ import androidx.room.*
 @Dao
 interface CategDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(categoryTableModel: CategoryTableModel)
+    fun insert(categoryTable: CategoryTable)
 
     @Update
-    fun update(categoryTableModel: CategoryTableModel)
+    fun update(categoryTable: CategoryTable)
 
     @Delete
-    fun delete(categoryTableModel: CategoryTableModel)
+    fun delete(categoryTable: CategoryTable)
 
     @Query("SELECT * FROM CategoryModel WHERE categId == :id")
-    fun getByName(id: Long): CategoryTableModel
+    fun getByName(id: Long): CategoryTable
 
     @Query("SELECT * FROM CategoryModel")
-    fun get(): List<CategoryTableModel>
+    fun get(): List<CategoryTable>
 
 
 }

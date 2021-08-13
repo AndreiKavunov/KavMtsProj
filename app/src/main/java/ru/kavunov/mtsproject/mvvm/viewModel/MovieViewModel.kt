@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.*
 import kotlinx.coroutines.*
 import ru.kavunov.mtsproject.*
-import ru.kavunov.mtsproject.bd.MovieTableModel
+import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.MovieRepo
 import ru.kavunov.mtsproject.mvvm.OnDataReadyCallback
 import ru.kavunov.mtsproject.mvvm.model.*
@@ -21,7 +21,7 @@ typealias MyViewStateUpdate = ListFilmFragment.ViewStateUpdete
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
     //class MvvmViewModelMovie: ViewModel() {
     private var job: Job? = null
-    lateinit var movieRepoModel: MovieRepo
+    lateinit var movieRepo: MovieRepo
     val contextM: Context = getApplication()
 
     val viewState: LiveData<MyViewState> get() = _viewState
@@ -30,8 +30,8 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     val viewStateUp: LiveData<MyViewStateUpdate> get() = _viewStateUp
     private val _viewStateUp = MutableLiveData<MyViewStateUpdate>()
 
-    val listmovie: LiveData<List<MovieTableModel>> get() = _listmovie
-    var _listmovie = MutableLiveData<List<MovieTableModel>>()
+    val listmovie: LiveData<List<MovieTable>> get() = _listmovie
+    var _listmovie = MutableLiveData<List<MovieTable>>()
 
     val handler = CoroutineExceptionHandler { context, exception ->
         Log.d("tagErr","handled $exception")
@@ -43,11 +43,9 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
         CoroutineScope(Dispatchers.Main).launch() {
             startBd(contextM)
-            Log.d("tag11", ActorModel.getAll(getApplication()).toString())
-
-            movieRepoModel = MovieRepo(MovieModel.getAll(getApplication())!!)
-            movieRepoModel.refreshData( object : OnDataReadyCallback {
-                override  fun onDataReady(data: List<MovieTableModel>) {
+            movieRepo = MovieRepo()
+            movieRepo.refreshData( getApplication(), object : OnDataReadyCallback {
+                override  fun onDataReady(data: List<MovieTable>) {
                     _listmovie.postValue(data)
                     changeListF(data)
                     _viewState.postValue(MyViewState(isDownloaded = false))
@@ -64,11 +62,10 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             _viewStateUp.postValue(MyViewStateUpdate(isRefreshing = true))
             val x = (1..3).random()
             if (x==4)Integer.parseInt("one")
-            movieRepoModel = MovieRepo(MovieModel.getAll(getApplication())!!)
-            movieRepoModel.refreshData( object : OnDataReadyCallback {
-
-                override  fun onDataReady(data: List<MovieTableModel>) {
-                    var list : List<MovieTableModel> = data.shuffled()
+            movieRepo = MovieRepo()
+            movieRepo.refreshData(getApplication(), object : OnDataReadyCallback {
+                override  fun onDataReady(data: List<MovieTable>) {
+                    var list : List<MovieTable> = data.shuffled()
                     _listmovie.postValue(list)
                     changeListF(list)
                     _viewStateUp.postValue(MyViewStateUpdate(isRefreshing = false))
@@ -78,7 +75,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun changeListF(movie: List<MovieTableModel>){
+    fun changeListF(movie: List<MovieTable>){
         ListFilm.listMov.clear()
         ListFilm.listMov.addAll(movie)
     }

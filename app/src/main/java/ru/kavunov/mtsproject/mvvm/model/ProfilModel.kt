@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.bd.AppDatabase
 import ru.kavunov.mtsproject.bd.ProfListWithCateg
-import ru.kavunov.mtsproject.bd.ProfilTableModel
+import ru.kavunov.mtsproject.bd.ProfilTable
 
 
 class ProfilModel {
@@ -16,8 +16,8 @@ class ProfilModel {
 
         var db: AppDatabase? = null
 
-        var profilTableModel: ProfilTableModel? = null
-        var profilTableModel1: List<ProfilTableModel>? = null
+        var profilTable: ProfilTable? = null
+        var profilTable1: List<ProfilTable>? = null
         var profilTEST: List<ProfListWithCateg>? = null
 
         fun initializeDB(context: Context) : AppDatabase {
@@ -27,26 +27,26 @@ class ProfilModel {
         suspend fun insertData(context: Context, id: Long,name: String, email: String, phone: String, foto: String,)= withContext(Dispatchers.IO) {
             db = initializeDB(context)
             CoroutineScope(Dispatchers.IO).launch {
-                val loginDetails = ProfilTableModel(id, name, email, phone, foto)
-                db!!.profilDAO().insert(loginDetails)
+                val loginDetails = ProfilTable(id, name, email, phone, foto)
+                db?.profilDAO()?.insert(loginDetails)
             }
         }
 
-        suspend fun getProfilId(context: Context, id: Long) : ProfilTableModel? = withContext(Dispatchers.IO) {
+        suspend fun getProfilId(context: Context, id: Long) : ProfilTable? = withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            profilTableModel = db!!.profilDAO().getByName(id)
-            return@withContext profilTableModel
+            profilTable = db?.profilDAO()?.getByName(id)
+            return@withContext profilTable
         }
 
-        suspend fun getAll(context: Context) : List<ProfilTableModel>? = withContext(Dispatchers.IO) {
+        suspend fun getAll(context: Context) : List<ProfilTable>? = withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            profilTableModel1 = db!!.profilDAO().get()
-            return@withContext profilTableModel1
+            profilTable1 = db?.profilDAO()?.get()
+            return@withContext profilTable1
         }
 
         suspend fun getCategList(context: Context, id: Long) : List<ProfListWithCateg>? = withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            profilTEST = db!!.profilDAO().getProflistsWithCat(id)
+            profilTEST = db?.profilDAO()?.getProflistsWithCat(id)
             return@withContext profilTEST
         }
     }

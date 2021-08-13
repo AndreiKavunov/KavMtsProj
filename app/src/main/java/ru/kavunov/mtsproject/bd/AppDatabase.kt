@@ -4,16 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import ru.kavunov.mtsproject.mvvm.model.*
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
-import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 
-@Database(entities = [ProfilTableModel::class, CategoryTableModel::class, ProfilCategTableModel::class, MovieTableModel::class,
-                     ActorTableModel::class, MovieActTableModel::class], version = 45)
+@Database(entities = [ProfilTable::class, CategoryTable::class, ProfilCategTable::class, MovieTable::class,
+                     ActorTable::class, MovieActTable::class], version = 46)
 //@TypeConverters(DateTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun profilDAO(): ProfilDAO
