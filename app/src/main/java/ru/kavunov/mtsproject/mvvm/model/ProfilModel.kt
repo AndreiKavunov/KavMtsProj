@@ -17,7 +17,7 @@ class ProfilModel {
         var db: AppDatabase? = null
 
         var profilTable: ProfilTable? = null
-        var profilTable1: List<ProfilTable>? = null
+        var profilTableList: List<ProfilTable>? = null
         var profilActs: List<ProfListWithCateg>? = null
 
         fun initializeDB(context: Context) : AppDatabase {
@@ -40,8 +40,8 @@ class ProfilModel {
 
         suspend fun getAll(context: Context) : List<ProfilTable>? = withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            profilTable1 = db?.profilDAO()?.get()
-            return@withContext profilTable1
+            profilTableList = db?.profilDAO()?.get()
+            return@withContext profilTableList
         }
 
         suspend fun getCategList(context: Context, id: Long) : List<ProfListWithCateg>? = withContext(Dispatchers.IO) {

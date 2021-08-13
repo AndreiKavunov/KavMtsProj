@@ -23,7 +23,7 @@ class ProfilViewModel(application: Application) : AndroidViewModel(application) 
     val listCateg: LiveData<List<CategoryTable>> get() = _listCateg
     var _listCateg = MutableLiveData<List<CategoryTable>>()
 
-    fun loadDetail1() {
+    fun loadDetail() {
         CoroutineScope(Dispatchers.Main).launch() {
             profilRepo = ProfilRepo()
             profilRepo.refreshDataDet(getApplication(), object : OnCallbacCategT {

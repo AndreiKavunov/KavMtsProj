@@ -66,7 +66,7 @@ class ListFilmFragment : Fragment() {
         swipeToRefreshCentreal.setOnRefreshListener {
 
             myViewModelMovieViewModel.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
-            myViewModelMovieViewModel.viewStateUp.observe(requireActivity(), Observer(::render2))
+            myViewModelMovieViewModel.viewStateUp.observe(requireActivity(), Observer(::renderSwipe))
             myViewModelMovieViewModel.updateMovie()
 
         }
@@ -99,7 +99,7 @@ class ListFilmFragment : Fragment() {
     private fun render(viewState: ViewState){
         progressDialog.dismiss()
     }
-    fun render2(viewState: ViewStateUpdete) = with(viewState) {
+    fun renderSwipe(viewState: ViewStateUpdete) = with(viewState) {
         swipeToRefreshCentreal.isRefreshing = isRefreshing
 
     }
