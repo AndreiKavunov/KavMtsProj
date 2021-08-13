@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.bd.ActorTable
 import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.*
@@ -15,8 +16,8 @@ import ru.kavunov.mtsproject.mvvm.model.MovieModel
 class DetailViewModel(application: Application) : AndroidViewModel(application) {
     lateinit var detailRepo: DetailRepo
 
-    val listDetail: LiveData<MovieTable> get() = _listDetail
-    var _listDetail = MutableLiveData<MovieTable>()
+    val listDetail: LiveData<MovieDto> get() = _listDetail
+    var _listDetail = MutableLiveData<MovieDto>()
 
     val listActors: LiveData<List<ActorTable>> get() = _listActors
     var _listActors = MutableLiveData<List<ActorTable>>()
@@ -25,7 +26,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
         CoroutineScope(Dispatchers.Main).launch() {
             detailRepo = DetailRepo(MovieModel.getMovieID(getApplication(), position)!!, MovieModel.getActorList(getApplication(), position)!!)
             detailRepo.refreshDataDet(object : OnDataReadyCallbackDetail1 {
-                override fun onDataReady1(data: MovieTable) {
+                override fun onDataReady1(data: MovieDto) {
                     _listDetail.postValue(data)
                 }
             },

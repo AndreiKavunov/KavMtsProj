@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.kavunov.mtsproject.adapter.ActorsAdapter
 import androidx.lifecycle.Observer
+import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.viewModel.DetailViewModel
 
@@ -39,11 +40,11 @@ class DetailkFragment : Fragment() {
         return view
     }
 
-    fun viewMovie(movieTable: MovieTable){
-        view?.findViewById<TextView>(R.id.titleId)?.text = movieTable.title
-        view?.findViewById<TextView>(R.id.descripId)?.text = movieTable.description
-        view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating = (movieTable.rateScore?.toFloat() ?: 0.0) as Float
-        view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieTable.ageRestriction.toString() + "+"
-        view?.findViewById<ImageView>(R.id.imageDetId)?.load(movieTable.imageUrl)
+    fun viewMovie(movieDto: MovieDto){
+        view?.findViewById<TextView>(R.id.titleId)?.text = movieDto.title
+        view?.findViewById<TextView>(R.id.descripId)?.text = movieDto.description
+        view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating = (movieDto.rateScore?.toFloat() ?: 0.0) as Float
+        view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieDto.ageRestriction.toString() + "+"
+        view?.findViewById<ImageView>(R.id.imageDetId)?.load(movieDto.imageUrl)
     }
 }
