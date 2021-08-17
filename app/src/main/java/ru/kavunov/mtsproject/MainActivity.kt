@@ -83,11 +83,12 @@ fun okHTTPonly(){
     Log.d("tag11", "33333")
     val client = OkHttpClient()
     val request = Request.Builder()
-        .url("https://api.themoviedb.org/3/genre/movie/list?api_key=b62341778732f78e2661370039f79b84&language=en-US")
+//        .url("https://api.themoviedb.org/3/movie/550?api_key=b62341778732f78e2661370039f79b84")
+        .url("https://api.themoviedb.org/3/genre/movie/list?api_key=b62341778732f78e2661370039f79b84&language=RU")
         .build()
     client.newCall(request).enqueue(object : Callback {
         override fun onFailure(call: Call, e: IOException) {
-            Log.d("tag11", "33333")
+//            Log.d("tag11", "33333")
             e.printStackTrace()
         }
 
@@ -96,10 +97,10 @@ fun okHTTPonly(){
                 try {
                     if (!response.isSuccessful) throw IOException("Unexpected code $response")
                     val result = response.body?.string() ?: "error"
-                    val json = Json { ignoreUnknownKeys = true }
-                    val objectResponse = json.decodeFromString<FilmResponse>(result)
-                    Log.d("tag11", result.toString())
-                    Log.d("tag11", objectResponse.toString())
+//                    val json = Json { ignoreUnknownKeys = true }
+//                    val objectResponse = json.decodeFromString<FilmResponse>(result)
+                    Log.d("tag11", "111" + result.toString())
+//                    Log.d("tag11", "222" + objectResponse.toString())
                 } catch (e: IOException) {
 
                     e.printStackTrace()
