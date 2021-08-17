@@ -17,6 +17,9 @@ interface ApiService {
                          @Query("api_key") key: String = AUTH_HEADER,
                          @Query("language") language: String = "ru"): ObjectResponse
 
+//    @GET("movie")
+//    suspend fun getFilms(): ObjectResponse
+
     companion object {
         fun create(): ApiService {
             return Retrofit.Builder()

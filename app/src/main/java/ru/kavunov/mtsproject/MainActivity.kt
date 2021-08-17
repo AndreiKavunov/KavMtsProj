@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         val navController = navHostFragment.navController
         findViewById<BottomNavigationView>(R.id.BoNav)
             .setupWithNavController(navController)
-        okHTTPonly()
+
         CoroutineScope(Dispatchers.Main).launch() {
                     try {
                         val photos: List<FilmResponse> = withContext(Dispatchers.IO) {
@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
                         Log.d("tag11","ЖОПА")
                     }
                 }
+        okHTTPonly()
     }
 
     override fun clickDetail(position: Long) {
