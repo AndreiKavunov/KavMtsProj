@@ -1,44 +1,27 @@
 package ru.kavunov.mtsproject
 
-import android.app.Activity
-import android.app.Application
-import android.app.ProgressDialog
-
-import android.content.Context
-
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.gson.internal.bind.TypeAdapters.URL
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializer
+import kotlinx.coroutines.withContext
 
 import okhttp3.*
 import okio.IOException
-import retrofit2.Retrofit
-import retrofit2.http.GET
-import retrofit2.http.Query
 
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
-import ru.kavunov.mtsproject.mvvm.model.*
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
-import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
-import java.io.BufferedInputStream
-import java.net.HttpURLConnection
-import java.net.URL
-import java.util.concurrent.TimeUnit
-import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+import ru.kavunov.mtsproject.DTC.*
+import ru.kavunov.mtsproject.recponse.App
+
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
     val bundle = Bundle()
@@ -57,9 +40,18 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         findViewById<BottomNavigationView>(R.id.BoNav)
             .setupWithNavController(navController)
         okHTTPonly()
-
-
-
+        CoroutineScope(Dispatchers.Main).launch() {
+                    try {
+                        val photos: List<FilmResponse> = withContext(Dispatchers.IO) {
+                            App.instance.apiService.getFilms().results
+                        }
+                        Log.d("tag11","УРА!!!!")
+                        Log.d("tag11",photos.toString())
+//                        photoAdapter.addPhotos(photos)
+                    } catch (e: Exception) {
+                        Log.d("tag11","ЖОПА")
+                    }
+                }
     }
 
     override fun clickDetail(position: Long) {
@@ -70,21 +62,31 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 }
 
+
+
+
+
+
+const val BASE_URL = "https://api.themoviedb.org/3/discover/"
+const val APPLICATION_JSON_TYPE = "application/json"
+const val AUTH_HEADER = "b62341778732f78e2661370039f79b84"
+
+object Orient {var orInt = 1}
+
+
+
+
+
+
 fun okHTTPonly(){
+    Log.d("tag11", "33333")
     val client = OkHttpClient()
     val request = Request.Builder()
-//            .url("https://api.themoviedb.org/3/movie/550?api_key=b62341778732f78e2661370039f79b84")
-            .url("https://api.themoviedb.org/3/discover/movie?&sort_by=popularity.desc&api_key=b62341778732f78e2661370039f79b84")
-
-
+        .url("https://api.themoviedb.org/3/genre/movie/list?api_key=b62341778732f78e2661370039f79b84&language=en-US")
         .build()
-
-//            client.newCall(request).execute().use { response ->
-//                if (!response.isSuccessful) throw IOException("Unexpected code $response")
-//                val result = response.body!!.string()
-
     client.newCall(request).enqueue(object : Callback {
         override fun onFailure(call: Call, e: IOException) {
+            Log.d("tag11", "33333")
             e.printStackTrace()
         }
 
@@ -94,10 +96,11 @@ fun okHTTPonly(){
                     if (!response.isSuccessful) throw IOException("Unexpected code $response")
                     val result = response.body?.string() ?: "error"
                     val json = Json { ignoreUnknownKeys = true }
-                    val objectResponse = json.decodeFromString<ObjectResponse>(result)
-//                        x = result
+                    val objectResponse = json.decodeFromString<FilmResponse>(result)
                     Log.d("tag11", result.toString())
+                    Log.d("tag11", objectResponse.toString())
                 } catch (e: IOException) {
+
                     e.printStackTrace()
                 }
             }
@@ -107,19 +110,6 @@ fun okHTTPonly(){
 
 }
 
-@Serializable
-data class ObjectResponse(
-    @SerialName("results") val results: List<FilmResponse>
-)
-@Serializable
-data class FilmResponse(
-    @SerialName("id") val id: Int,
-    @SerialName("title") val title: String,
-    @SerialName("overview") val overview: String,
-//    val source: SourceResponse
-)
 
 
 
-
-object Orient {var orInt = 1}
