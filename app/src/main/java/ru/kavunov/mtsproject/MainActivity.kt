@@ -1,6 +1,7 @@
 package ru.kavunov.mtsproject
 
 import android.app.Activity
+import android.app.Application
 import android.app.ProgressDialog
 
 import android.content.Context
@@ -14,17 +15,27 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.internal.bind.TypeAdapters.URL
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
 import okhttp3.*
 import okio.IOException
+import retrofit2.Retrofit
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 import ru.kavunov.mtsproject.mvvm.model.*
 import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
+import java.io.BufferedInputStream
+import java.net.HttpURLConnection
+import java.net.URL
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
@@ -56,13 +67,11 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 }
 
 fun okHTTPonly(){
-//    var x: String = "ss"
     val client = OkHttpClient()
     val request = Request.Builder()
-//            .url("https://www.simplifiedcoding.net/demos/marvel/")
-            .url("https://api.themoviedb.org/3/movie/popular/550?api_key=b62341778732f78e2661370039f79b84")
-
 //            .url("https://api.themoviedb.org/3/movie/550?api_key=b62341778732f78e2661370039f79b84")
+            .url("https://api.themoviedb.org/3/discover/movie?&sort_by=popularity.desc&api_key=b62341778732f78e2661370039f79b84")
+
 
         .build()
 
@@ -91,6 +100,19 @@ fun okHTTPonly(){
     })
 
 }
+
+@Serializable
+data class ObjectResponse(
+    val results: List<FilmResponse>
+)
+@Serializable
+data class FilmResponse(
+    val id: Int,
+    val title: String,
+    val overview: String,
+//    val source: SourceResponse
+)
+
 
 
 
