@@ -21,7 +21,9 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.serialization.json.Json
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializer
+
 import okhttp3.*
 import okio.IOException
 import retrofit2.Retrofit
@@ -36,7 +38,7 @@ import java.io.BufferedInputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.TimeUnit
-
+import kotlinx.serialization.Serializable
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
     val bundle = Bundle()
@@ -55,6 +57,8 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         findViewById<BottomNavigationView>(R.id.BoNav)
             .setupWithNavController(navController)
         okHTTPonly()
+
+
 
     }
 
@@ -89,6 +93,8 @@ fun okHTTPonly(){
                 try {
                     if (!response.isSuccessful) throw IOException("Unexpected code $response")
                     val result = response.body?.string() ?: "error"
+                    val json = Json { ignoreUnknownKeys = true }
+                    val objectResponse = json.decodeFromString<ObjectResponse>(result)
 //                        x = result
                     Log.d("tag11", result.toString())
                 } catch (e: IOException) {
@@ -103,13 +109,13 @@ fun okHTTPonly(){
 
 @Serializable
 data class ObjectResponse(
-    val results: List<FilmResponse>
+    @SerialName("results") val results: List<FilmResponse>
 )
 @Serializable
 data class FilmResponse(
-    val id: Int,
-    val title: String,
-    val overview: String,
+    @SerialName("id") val id: Int,
+    @SerialName("title") val title: String,
+    @SerialName("overview") val overview: String,
 //    val source: SourceResponse
 )
 
