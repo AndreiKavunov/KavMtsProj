@@ -1,6 +1,8 @@
 package ru.kavunov.mtsproject.mvvm.viewModel
 import android.app.Application
+
 import android.util.Log
+
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -24,7 +26,9 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     fun loadDetail(position: Long) {
         CoroutineScope(Dispatchers.Main).launch() {
             detailRepo = DetailRepo(position)
+
             detailRepo.refreshDataDet(object : OnCallbackMovD {
+
                 override fun onDataMovD(data: MovieDto) {
                     _listDetail.postValue(data)
                 }
@@ -32,7 +36,9 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
                 object : OnCallbacActT {
                     override fun onDataActT(data: List<ActorTable>) {
                         _listActors.postValue(data)
+
                  }}
+
             )
         }
     }

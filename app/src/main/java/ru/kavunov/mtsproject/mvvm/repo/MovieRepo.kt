@@ -1,6 +1,7 @@
 package ru.kavunov.mtsproject.mvvm
 
 import android.content.Context
+
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,6 +42,7 @@ class MovieRepo(){
 
             if (list!=null)onDataReadyCallback.onDataReady(list)
         }}
+
 }
 interface OnDataReadyCallback {
     fun onDataReady(data: List<MovieTable>)

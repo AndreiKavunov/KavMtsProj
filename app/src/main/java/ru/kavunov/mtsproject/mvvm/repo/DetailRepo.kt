@@ -1,18 +1,23 @@
 package ru.kavunov.mtsproject.mvvm
 
 import android.content.Context
+
 import android.util.Log
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.DTC.Actors
 import ru.kavunov.mtsproject.DTC.MovieDto
+
 import ru.kavunov.mtsproject.DTC.MovieResponse
 import ru.kavunov.mtsproject.ListFilm
+
 import ru.kavunov.mtsproject.bd.ActorTable
 import ru.kavunov.mtsproject.bd.MovListWithAct
 import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.model.MovieModel
+
 import ru.kavunov.mtsproject.recponse.ActorResp
 import ru.kavunov.mtsproject.recponse.ActorResp1
 import ru.kavunov.mtsproject.recponse.ActorRespList
@@ -91,13 +96,16 @@ class DetailRepo(position: Long){
                     ageRestriction = 18,
                     imageUrl = IMG_HEADER + movie.poster_path,
                     actor = listOf(
+
                         Actors(
                             img = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lldeQ91GwIVff43JBrpdbAAeYWj.jpg",
                             name = "Jason Statham"
                         ),
+
                     )
                 )
             }
+
 
 
 
@@ -115,6 +123,7 @@ interface OnCallbacActT {
     fun onDataActT(data: List<ActorTable>)
 }
 
+
 fun genreOnId(id: Long): String{
     var genre= "empty"
     if(ListFilm.listCat.size > 0){
@@ -126,3 +135,4 @@ fun genreOnId(id: Long): String{
     }
     return genre
 }
+

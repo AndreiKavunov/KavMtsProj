@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
 import ru.kavunov.mtsproject.DTC.MovieResponse
+
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
 import ru.kavunov.mtsproject.bd.CategoryTable
@@ -109,8 +111,10 @@ class ListFilmFragment : Fragment() {
 
 object ListFilm {
     var listMov = ArrayList<MovieTable>()
+
     var listMovRecp = ArrayList<MovieResponse>()
     var listCat = ArrayList<CategoryTable>()
     var idFilm = "436969"
+
 }
 

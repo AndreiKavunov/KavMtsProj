@@ -193,9 +193,11 @@ class MoviesDataSourceImpl : MoviesDataSource {
 					)
 				),
 				MovieDto(
+
 					backdrop_path = "empty",
 					genre = "empty",
 					release_date = "empty",
+
 
 					title = "Чёрная вдова",
 					description = "Чёрной Вдове придется вспомнить о том, что было в её жизни задолго до присоединения к команде Мстителей",
