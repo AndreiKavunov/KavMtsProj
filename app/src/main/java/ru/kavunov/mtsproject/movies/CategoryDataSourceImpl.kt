@@ -1,14 +1,13 @@
 package ru.mts.teta.summer.android.homework.list.data.features.movies
 
 import ru.kavunov.mtsproject.DTC.Categorie
-import ru.kavunov.mtsproject.DTC.MovieDto
 
 //import ru.mts.teta.summer.android.homework.list.data.dto.MovieDto
 
 class CategoryDataSourceImpl: CategsDataSource{
 	 override fun getMovies(): List<Categorie>{
-		 Thread.sleep(2000)
-	val x = listOf(
+
+	val listCateg = listOf(
 
 		Categorie(category = "боевики"),
 		Categorie(category = "драмы"),
@@ -21,6 +20,6 @@ class CategoryDataSourceImpl: CategsDataSource{
 		Categorie(category = "вестерн"),
 
 	)
-		 return x
+		 return listCateg
 }
 }

@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import ru.kavunov.mtsproject.DTC.Actors
 
-import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.R
+import ru.kavunov.mtsproject.bd.ActorTable
 import ru.kavunov.mtsproject.databinding.ItemActorBinding
 
 class ActorsAdapter(): RecyclerView.Adapter<ActorsHolder>() {
-    var actorstList: MutableList<Actors> = ArrayList()
+    var actorstList: MutableList<ActorTable> = ArrayList()
 
 
 
@@ -33,7 +32,7 @@ class ActorsAdapter(): RecyclerView.Adapter<ActorsHolder>() {
         return actorstList.size
     }
 
-    fun initData(actor: List<Actors>?) {
+    fun initData(actor: List<ActorTable>?) {
         if (actor!=null){
             actorstList.clear()
             actorstList.addAll(actor)
@@ -48,9 +47,9 @@ class ActorsAdapter(): RecyclerView.Adapter<ActorsHolder>() {
 class ActorsHolder(item: View): RecyclerView.ViewHolder(item) {
 
     val building = ItemActorBinding.bind(item)
-    fun bind(actors: Actors){
-        building.nameActorId.text = actors.name
-        building.imgActorID.load(actors.img)
+    fun bind(actors: ActorTable){
+        building.nameActorId.text = actors.nameAct
+        building.imgActorID.load(actors.imgAct)
 
     }
 

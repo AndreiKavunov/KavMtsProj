@@ -1,26 +1,22 @@
 package ru.kavunov.mtsproject.adapter
 
 
-import android.util.Log
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 
-import ru.kavunov.mtsproject.DTC.Categorie
-
 import ru.kavunov.mtsproject.MovieClickListener
-import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.R
+import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.databinding.ItemMovieBinding
 
 
 
 class MovieAdapter(): RecyclerView.Adapter<MovieHolder>() {
 //    var movietList = ListMain.toMutableList()
-    var movietList: MutableList<MovieDto> = ArrayList()
+    var movietList: MutableList<MovieTable> = ArrayList()
 
 
 
@@ -39,7 +35,7 @@ class MovieAdapter(): RecyclerView.Adapter<MovieHolder>() {
     }
 
 
-    fun changeList(movie: List<MovieDto>?) {
+    fun changeList(movie: List<MovieTable>?) {
         if (movie!=null){
             movietList.clear()
             movietList.addAll(movie)
@@ -53,14 +49,14 @@ class MovieAdapter(): RecyclerView.Adapter<MovieHolder>() {
 class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
 
     val building = ItemMovieBinding.bind(item)
-    fun bind(movie: MovieDto){building.apply {
+    fun bind(movie: MovieTable){building.apply {
         filmImg.load(movie.imageUrl)
         filmName.text = movie.title
         filmContent.text = movie.description
         filmOgr.text = movie.ageRestriction.toString() + "+"
         filmRating.rating = movie.rateScore.toFloat()
-        filmImg.setOnClickListener { view ->
-            (itemView.context as MovieClickListener)?.clickDetail(position)}
+        itemView.setOnClickListener { view ->
+            (itemView.context as MovieClickListener)?.clickDetail(movie.movId)}
 
     }
 

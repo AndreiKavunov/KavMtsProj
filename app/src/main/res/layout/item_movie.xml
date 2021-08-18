@@ -38,7 +38,7 @@
     <TextView
         android:id="@+id/filmContent"
         android:layout_width="@dimen/filmW"
-        android:layout_height="84dp"
+        android:layout_height="88dp"
         android:layout_marginTop="10dp"
         android:text="TextView"
         android:textColor="@color/black"
@@ -54,12 +54,13 @@
 
         android:layout_marginTop="16dp"
         android:layout_marginBottom="55dp"
-        android:isIndicator="false"
+        android:indeterminateOnly="false"
+        android:isIndicator="true"
+
+
         android:numStars="5"
         android:progressDrawable="@drawable/star_change"
-
         android:rating="3.0"
-
         android:stepSize="0.2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

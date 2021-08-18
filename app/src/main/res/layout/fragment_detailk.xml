@@ -62,8 +62,9 @@
 
                 android:layout_marginStart="@dimen/mainMarginStartEnd"
                 android:layout_marginTop="8dp"
-                android:isIndicator="false"
+
                 android:numStars="5"
+                android:isIndicator="true"
 
                 android:progressDrawable="@drawable/star_change"
 

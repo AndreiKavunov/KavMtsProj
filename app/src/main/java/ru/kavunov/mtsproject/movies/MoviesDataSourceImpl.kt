@@ -7,10 +7,11 @@ import ru.kavunov.mtsproject.DTC.MovieDto
 
 class MoviesDataSourceImpl : MoviesDataSource {
 
-	override fun getMovies(): List<List<MovieDto>> {
-		Thread.sleep(2000)
 
-		val x = listOf(
+	override fun getMovies(): List<List<MovieDto>> {
+//		Thread.sleep(2000)
+
+		val listFilm = listOf(
 			listOf(
 				MovieDto(
 					title = "Гнев человеческий",
@@ -85,6 +86,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 						),
 
 
+
 						)
 				),
 				MovieDto(
@@ -106,6 +108,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 							img = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/fDO7vJVRkZOOY1GtQMJzf4N136q.jpg",
 							name = "Gaeko"
 						),
+
 					)
 				),
 				MovieDto(
@@ -169,6 +172,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 					)
 				),
 				MovieDto(
+
 					title = "Чёрная вдова",
 					description = "Чёрной Вдове придется вспомнить о том, что было в её жизни задолго до присоединения к команде Мстителей",
 					rateScore = 3,
@@ -348,7 +352,7 @@ class MoviesDataSourceImpl : MoviesDataSource {
 
 				)
 		)
-		return x
+		return listFilm
 	}
 
 }

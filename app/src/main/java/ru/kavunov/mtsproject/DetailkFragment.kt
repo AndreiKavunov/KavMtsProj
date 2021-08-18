@@ -12,20 +12,16 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.adapter.ActorsAdapter
 import androidx.lifecycle.Observer
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import ru.kavunov.mtsproject.mvvm.ViewModelDetail
+import ru.kavunov.mtsproject.DTC.MovieDto
+import ru.kavunov.mtsproject.bd.MovieTable
+import ru.kavunov.mtsproject.mvvm.viewModel.DetailViewModel
 
 
 class DetailkFragment : Fragment() {
-    private val profilViewModel: ViewModelDetail by viewModels()
+    private val detailViewModel: DetailViewModel by viewModels()
     var adapterActors= ActorsAdapter()
-    lateinit var movieDto: MovieDto
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,11 +31,11 @@ class DetailkFragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
 
-            profilViewModel.loadDetail(position!!.toInt())
-            profilViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
-            profilViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
-            rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
-            rcActors.adapter = adapterActors
+        if(position!=null)detailViewModel.loadDetail(position.toLong())
+        detailViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
+        detailViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
+        rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
+        rcActors.adapter = adapterActors
 
         return view
     }
