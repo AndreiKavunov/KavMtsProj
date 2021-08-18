@@ -44,7 +44,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         CoroutineScope(Dispatchers.Main).launch() {
             startBd(contextM)
             movieRepo = MovieRepo()
-            movieRepo.refreshData( getApplication(), object : OnDataReadyCallback {
+            movieRepo.refreshData(object : OnDataReadyCallback {
                 override  fun onDataReady(data: List<MovieTable>) {
                     _listmovie.postValue(data)
                     changeListF(data)
@@ -63,7 +63,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             val x = (1..3).random()
             if (x==4)Integer.parseInt("one")
             movieRepo = MovieRepo()
-            movieRepo.refreshData(getApplication(), object : OnDataReadyCallback {
+            movieRepo.refreshData(object : OnDataReadyCallback {
                 override  fun onDataReady(data: List<MovieTable>) {
                     var list : List<MovieTable> = data.shuffled()
                     _listmovie.postValue(list)
@@ -105,7 +105,8 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
                     idF ++
                     MovieModel.insertData(
                         context, id = idF, title = x.title, description = x.description,
-                        rateScore = x.rateScore, ageRestriction = x.ageRestriction.toString(), imageUrl = x.imageUrl
+                        rateScore = x.rateScore, ageRestriction = x.ageRestriction.toString(),
+                        imageUrl = x.imageUrl, backdrop_path= x.backdrop_path
                     )
 
                     for(i in x.actor){

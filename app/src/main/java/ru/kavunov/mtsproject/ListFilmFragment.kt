@@ -111,5 +111,6 @@ object ListFilm {
     var listMov = ArrayList<MovieTable>()
     var listMovRecp = ArrayList<MovieResponse>()
     var listCat = ArrayList<CategoryTable>()
+    var idFilm = "436969"
 }
 

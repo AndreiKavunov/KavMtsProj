@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 
 @Database(entities = [ProfilTable::class, CategoryTable::class, ProfilCategTable::class, MovieTable::class,
-                     ActorTable::class, MovieActTable::class], version = 46)
+                     ActorTable::class, MovieActTable::class], version = 48)
 //@TypeConverters(DateTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun profilDAO(): ProfilDAO

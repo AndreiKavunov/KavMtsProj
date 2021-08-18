@@ -35,9 +35,10 @@ data class MovieTable(
     val movId: Long,
     val title: String,
     val description: String,
-    val rateScore: Int,
+    val rateScore: Float,
     val ageRestriction: String,
     val imageUrl: String,
+    val backdrop_path: String,
 )
 
 @Entity(tableName = "ActorModel")
