@@ -1,5 +1,6 @@
 package ru.kavunov.mtsproject
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -17,10 +18,10 @@ import okhttp3.*
 import okio.IOException
 
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 import ru.kavunov.mtsproject.DTC.*
 import ru.kavunov.mtsproject.recponse.App
+import ru.kavunov.mtsproject.recponse.CategResp
+import ru.kavunov.mtsproject.recponse.respModel.CategRecpModel
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
@@ -42,17 +43,20 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
         CoroutineScope(Dispatchers.Main).launch() {
                     try {
-                        val photos: List<FilmResponse> = withContext(Dispatchers.IO) {
-                            App.instance.apiService.getFilms().results
+                        val photos: List<MovieResponse> = withContext(Dispatchers.IO) {
+                            App.instance.apiService.getMovie().results
                         }
                         Log.d("tag11","УРА!!!!")
                         Log.d("tag11",photos.toString())
-//                        photoAdapter.addPhotos(photos)
+
                     } catch (e: Exception) {
                         Log.d("tag11","ЖОПА")
                     }
                 }
-        okHTTPonly()
+        CoroutineScope(Dispatchers.Main).launch() {CategRecpModel.getAll()}
+
+
+//        okHTTPonly()
     }
 
     override fun clickDetail(position: Long) {
@@ -68,7 +72,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 
 
-const val BASE_URL = "https://api.themoviedb.org/3/discover/"
+const val BASE_URL = "https://api.themoviedb.org/3/"
 const val APPLICATION_JSON_TYPE = "application/json"
 const val AUTH_HEADER = "b62341778732f78e2661370039f79b84"
 
