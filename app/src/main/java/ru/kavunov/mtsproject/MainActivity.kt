@@ -21,6 +21,7 @@ import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 import ru.kavunov.mtsproject.DTC.*
 import ru.kavunov.mtsproject.recponse.App
 import ru.kavunov.mtsproject.recponse.CategResp
+import ru.kavunov.mtsproject.recponse.respModel.AgeRecpModel
 import ru.kavunov.mtsproject.recponse.respModel.CategRecpModel
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
@@ -40,7 +41,6 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         val navController = navHostFragment.navController
         findViewById<BottomNavigationView>(R.id.BoNav)
             .setupWithNavController(navController)
-
 
     }
 
@@ -62,40 +62,45 @@ object Orient {var orInt = 1}
 
 
 
-//
-//fun okHTTPonly(){
-//
-//    val client = OkHttpClient()
-//    val request = Request.Builder()
+
+fun okHTTPonly(){
+
+    val client = OkHttpClient()
+    val request = Request.Builder()
 //        .url("https://api.themoviedb.org/3/movie/436969?api_key=b62341778732f78e2661370039f79b84&language=RU")
-////        .url("https://api.themoviedb.org/3/movie/436969/credits?api_key=b62341778732f78e2661370039f79b84&language=RU")
-////        .url("https://api.themoviedb.org/3/genre/movie/list?api_key=b62341778732f78e2661370039f79b84&language=RU")
-//        .build()
-//    client.newCall(request).enqueue(object : Callback {
-//        override fun onFailure(call: Call, e: IOException) {
-////            Log.d("tag11", "33333")
-//            e.printStackTrace()
-//        }
-//
-//        override fun onResponse(call: Call, response: Response){
-//            response.use {
-//                try {
-//                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
-//                    val result = response.body?.string() ?: "error"
-////                    val json = Json { ignoreUnknownKeys = true }
-////                    val objectResponse = json.decodeFromString<FilmResponse>(result)
-//                    Log.d("tag11", "111" + result.toString())
-////                    Log.d("tag11", "222" + objectResponse.toString())
-//                } catch (e: IOException) {
-//
-//                    e.printStackTrace()
-//                }
-//            }
-//
-//        }
-//    })
-//
-//}
+//        .url("https://api.themoviedb.org/3/movie/451048/release_dates?api_key=b62341778732f78e2661370039f79b84&language=RU")
+        .url("https://api.themoviedb.org/3/movie/436969/credits?api_key=b62341778732f78e2661370039f79b84&language=RU")
+//        .url("https://api.themoviedb.org/3/genre/movie/list?api_key=b62341778732f78e2661370039f79b84&language=RU")
+        .build()
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+//            Log.d("tag11", "33333")
+            e.printStackTrace()
+        }
+
+        override fun onResponse(call: Call, response: Response){
+            response.use {
+                try {
+                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
+                    val result = response.body?.string() ?: "error"
+
+
+//                    val json = Json { ignoreUnknownKeys = true }
+//                    val objectResponse = json.decodeFromString<FilmResponse>(result)
+                    Log.d("tag11", "11122" + result.toString())
+//                    Log.d("tag11", "11122" + x.toString())
+
+//                    Log.d("tag11", "222" + objectResponse.toString())
+                } catch (e: IOException) {
+
+                    e.printStackTrace()
+                }
+            }
+
+        }
+    })
+
+}
 
 
 

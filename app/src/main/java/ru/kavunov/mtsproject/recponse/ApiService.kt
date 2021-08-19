@@ -28,6 +28,18 @@ interface ApiService {
         @Query("language") language: String = "ru"): ActorRespList
 
 
+    @GET("movie/{idfilm}/release_dates")
+    suspend fun getAge(
+    @Path("idfilm") idfilm: String = ListFilm.idFilmAge,
+    @Query("api_key") key: String = AUTH_HEADER,
+    @Query("language") language: String = "ru"): AgeRespList
+
+    @GET("movie/581726/release_dates")
+    suspend fun getAge1(
+        @Path("idfilm") idfilm: String = ListFilm.idFilmAge,
+        @Query("api_key") key: String = AUTH_HEADER,
+        @Query("language") language: String = "ru"): AgeRespList
+
     companion object {
         fun create(): ApiService {
             return Retrofit.Builder()

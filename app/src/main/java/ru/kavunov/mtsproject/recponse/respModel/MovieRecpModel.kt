@@ -1,5 +1,6 @@
 package ru.kavunov.mtsproject.recponse.respModel
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.MovieResponse
@@ -14,6 +15,7 @@ class MovieRecpModel {
                 movies = withContext(Dispatchers.IO) {
                     App.instance.apiService.getMovie().results
                 }
+                Log.d("tag11", "11122" + movies.toString())
             } catch (e: Exception) {
                 movies = ArrayList()
             }

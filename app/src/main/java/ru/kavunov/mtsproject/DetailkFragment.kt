@@ -46,7 +46,7 @@ class DetailkFragment : Fragment() {
         view?.findViewById<TextView>(R.id.textData)?.text = movieDto.release_date
         view?.findViewById<TextView>(R.id.descripId)?.text = movieDto.description
         view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating = (movieDto.rateScore?.toFloat() ?: 0.0) as Float
-        view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieDto.ageRestriction.toString() + "+"
+        view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieDto.ageRestriction.toString()
         view?.findViewById<ImageView>(R.id.imageDetId)?.load(movieDto.imageUrl)
 
     }

@@ -20,16 +20,3 @@ data class ActorResp(
 
 
     )
-@Serializable
-data class ActorRespList1(
-    @SerialName("cast") val cast: List<ActorResp1>
-)
-
-
-@Serializable
-data class ActorResp1(
-    @SerialName("id") val id: Int,
-    @SerialName("name") val name: String,
-
-
-    )
