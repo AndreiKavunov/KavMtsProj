@@ -11,16 +11,6 @@ import ru.kavunov.mtsproject.recponse.IMG_HEADER
 import ru.kavunov.mtsproject.recponse.respModel.AgeRecpModel
 import ru.kavunov.mtsproject.recponse.respModel.MovieRecpModel
 
-//class MovieRepo(val list: List<MovieTable>){
-//class MovieRepo(){
-//    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallback){
-//    CoroutineScope(Dispatchers.Main).launch() {
-//        val contextA = contetx
-//        val list: List<MovieTable>? = MovieModel.getAll(contextA)
-//
-//        if (list!=null)onDataReadyCallback.onDataReady(list)
-//    }}
-//}
 
 class MovieRepo(){
     fun refreshData( onDataReadyCallback: OnDataReadyCallback){

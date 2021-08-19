@@ -15,8 +15,7 @@ class MovieRecpModel {
                 movies = withContext(Dispatchers.IO) {
                     App.instance.apiService.getMovie().results
                 }
-                Log.d("tag11", "11122" + movies.toString())
-            } catch (e: Exception) {
+               } catch (e: Exception) {
                 movies = ArrayList()
             }
             return@withContext movies

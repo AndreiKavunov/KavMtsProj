@@ -22,8 +22,4 @@ data class MovieResponse(
     @SerialName("backdrop_path") val backdrop_path: String,
 
 )
-//@Serializable
-//data class PhotoMovResp(@SerialName("poster_path") val poster_path: String)
-//
-//@Serializable
-//data class GerMovResp(@SerialName("genre_ids") val genre_ids: Int)
+

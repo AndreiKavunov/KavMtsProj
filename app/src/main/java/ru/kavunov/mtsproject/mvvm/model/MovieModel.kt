@@ -33,7 +33,7 @@ class MovieModel {
         }
 
         suspend fun getAll(context: Context) : List<MovieTable>? = withContext(Dispatchers.IO) {
-            Thread.sleep(2000)
+
             db = initializeDB(context)
             movieTableAll = db?.movieDAO()?.get()
             return@withContext movieTableAll

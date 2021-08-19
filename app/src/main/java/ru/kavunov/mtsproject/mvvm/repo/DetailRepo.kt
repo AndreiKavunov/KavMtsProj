@@ -12,39 +12,6 @@ import ru.kavunov.mtsproject.recponse.ActorResp
 import ru.kavunov.mtsproject.recponse.IMG_HEADER
 import ru.kavunov.mtsproject.recponse.respModel.ActorRecpModel
 
-//class DetailRepo(val movie: MovieTable, val listM: List<MovListWithAct>){
-//class DetailRepo(position: Long){
-//    val position = position
-//    fun refreshDataDet(contetx: Context, onCallbackMovD: OnCallbackMovD,
-//                       OnCallbacActT: OnCallbacActT){
-//        CoroutineScope(Dispatchers.Main).launch() {
-//
-//        val movie: MovieTable? = MovieModel.getMovieID(contetx, position)
-//
-//        val listM: List<MovListWithAct>? = MovieModel.getActorList(contetx, position)
-//       var listAct: ArrayList<ActorTable> = ArrayList()
-//        listM?.getOrNull(0)?.listAct?.let { listAct.addAll(it) }
-//
-//        val movieDto =
-//            movie?.title?.let {
-//                MovieDto(title = it, description = movie?.description, rateScore = movie.rateScore,
-//                    ageRestriction = movie?.ageRestriction.toInt(), imageUrl= movie.imageUrl, actor = listOf(
-//                        Actors(
-//                            img = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/lldeQ91GwIVff43JBrpdbAAeYWj.jpg",
-//                            name = "Jason Statham"
-//                        ),
-//                    ))
-//            }
-//
-//            if (movieDto != null) {
-//                onCallbackMovD.onDataMovD(movieDto)
-//            }
-//        OnCallbacActT.onDataActT(listAct)
-//    }}
-//}
-
-
-
 class DetailRepo(position: Long){
      val position = position
     fun refreshDataDet(onCallbackMovD: OnCallbackMovD,

@@ -2,10 +2,7 @@ package ru.kavunov.mtsproject.recponse
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-//@Serializable
-//data class AgeRespList1(
-//    @SerialName("results") val results: AgeRespList
-//)
+
 @Serializable
 data class AgeRespList(
     @SerialName("results") val results: List<AgeResp>
