@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.bd.CategoryTable
 import ru.kavunov.mtsproject.mvvm.model.CategModel
+
 import ru.kavunov.mtsproject.recponse.respModel.CategRecpModel
 
 
@@ -21,6 +22,7 @@ class CategRepo(){
 
             if (list!=null)onDataReadyCallback.onDataReady(list)
         }}
+
 }
 interface OnDataReadyCallbackCateg {
     fun onDataReady(data: List<CategoryTable>)
