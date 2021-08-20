@@ -16,7 +16,7 @@ data class ActorRespList(
 data class ActorResp(
     @SerialName("id") val id: Int,
     @SerialName("name") val name: String,
-    @SerialName("profile_path") val profile_path: String?
+    @SerialName("profile_path") val profilePath: String?
 
 
     )

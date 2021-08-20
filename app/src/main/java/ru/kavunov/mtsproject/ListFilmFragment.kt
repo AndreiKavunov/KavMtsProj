@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.DTC.MovieResponse
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
@@ -38,43 +41,73 @@ class ListFilmFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+//
         val view = inflater.inflate(R.layout.fragment_list_film, container, false)
-        val rcCateg = view.findViewById<RecyclerView>(R.id.RcCateg)
-        val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
+//        val rcCateg = view.findViewById<RecyclerView>(R.id.RcCateg)
+//        val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
+//        CoroutineScope(Dispatchers.Main).launch() {
+//            progressDialog.show()
+//
+//            myViewModelMovieViewModel.loadMovie1()
+//                .observe(requireActivity(), Observer(adapterMovie::changeList))
+////        myViewModelMovieViewModel.loadMovie()
+//            myViewModelCategViewModel.loadCateg()
+//            myViewModelCategViewModel.listcateg.observe(
+//                requireActivity(),
+//                Observer(adapterCateg::initData)
+//            )
+////        myViewModelMovieViewModel.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
+//            myViewModelMovieViewModel.viewState.observe(requireActivity(), Observer(::render))
+//        }
 
-        if(ListFilm.listMov.size < 1){
-            progressDialog.show()
-            myViewModelMovieViewModel.loadMovie()
-            myViewModelCategViewModel.loadCateg()
-            myViewModelCategViewModel.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
-            myViewModelMovieViewModel.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
-            myViewModelMovieViewModel.viewState.observe(requireActivity(), Observer(::render))
-        }
-        else {adapterMovie.changeList(ListFilm.listMov)
-            myViewModelCategViewModel.loadCateg()
-            myViewModelCategViewModel.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
-        }
-
-        rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
-        rcCateg.adapter = adapterCateg
-        rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
-        rcMovie.adapter = adapterMovie
-
-        val indent_h = convertDpToPixels(requireActivity(), 150f)
-        val dividerItemDecoration = CharacterItemDecoration(indent_h.toInt())
-        rcMovie.addItemDecoration(dividerItemDecoration)
+//        rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
+//        rcCateg.adapter = adapterCateg
+//        rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
+//        rcMovie.adapter = adapterMovie
+//
+//        val indent_h = convertDpToPixels(requireActivity(), 150f)
+//        val dividerItemDecoration = CharacterItemDecoration(indent_h.toInt())
+//        rcMovie.addItemDecoration(dividerItemDecoration)
 
         swipeToRefreshCentreal = view.findViewById(R.id.swip)
         swipeToRefreshCentreal.setOnRefreshListener {
-
+            myViewModelMovieViewModel.updateMovie()
             myViewModelMovieViewModel.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
             myViewModelMovieViewModel.viewStateUp.observe(requireActivity(), Observer(::renderSwipe))
-            myViewModelMovieViewModel.updateMovie()
+//            myViewModelMovieViewModel.updateMovie1().observe(requireActivity(), Observer(adapterMovie::changeList))
 
         }
 
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+
+        val rcCateg = view?.findViewById<RecyclerView>(R.id.RcCateg)
+        val rcMovie = view?.findViewById<RecyclerView>(R.id.RcMovie)
+
+            progressDialog.show()
+
+            myViewModelMovieViewModel.loadMovie1()
+                .observe(requireActivity(), Observer(adapterMovie::changeList))
+//        myViewModelMovieViewModel.loadMovie()
+            myViewModelCategViewModel.loadCateg()
+            myViewModelCategViewModel.listcateg.observe(
+                requireActivity(),
+                Observer(adapterCateg::initData)
+            )
+//        myViewModelMovieViewModel.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
+            myViewModelMovieViewModel.viewState.observe(requireActivity(), Observer(::render))
+        rcCateg?.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
+        rcCateg?.adapter = adapterCateg
+        rcMovie?.layoutManager = GridLayoutManager(getActivity(), 2)
+        rcMovie?.adapter = adapterMovie
+
+        val indent_h = convertDpToPixels(requireActivity(), 150f)
+        val dividerItemDecoration = CharacterItemDecoration(indent_h.toInt())
+        rcMovie?.addItemDecoration(dividerItemDecoration)
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -109,9 +142,5 @@ class ListFilmFragment : Fragment() {
 
 }
 
-object ListFilm {
-    var listMov = ArrayList<MovieTable>()
-    var listMovForDetail = ArrayList<MovieDto>()
 
-}
 

@@ -7,11 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.kavunov.mtsproject.ListFilm
+
 import ru.kavunov.mtsproject.bd.CategoryTable
 import ru.kavunov.mtsproject.mvvm.CategRepo
 import ru.kavunov.mtsproject.mvvm.OnDataReadyCallbackCateg
-import ru.kavunov.mtsproject.mvvm.model.CategModel
+
 
 //class MvvmViewModelCateg: ViewModel() {
 class CategViewModel(application: Application) : AndroidViewModel(application) {

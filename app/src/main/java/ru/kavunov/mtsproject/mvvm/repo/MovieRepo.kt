@@ -3,42 +3,32 @@ package ru.kavunov.mtsproject.mvvm
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ru.kavunov.mtsproject.DTC.Actors
-import ru.kavunov.mtsproject.DTC.MovieDto
-import ru.kavunov.mtsproject.ListFilm
+import kotlinx.coroutines.withContext
+import ru.kavunov.mtsproject.DTC.MovieResponse
 import ru.kavunov.mtsproject.bd.MovieTable
+import ru.kavunov.mtsproject.recponse.AgeResp
+import ru.kavunov.mtsproject.recponse.App
 import ru.kavunov.mtsproject.recponse.IMG_HEADER
-import ru.kavunov.mtsproject.recponse.respModel.AgeRecpModel
-import ru.kavunov.mtsproject.recponse.respModel.MovieRecpModel
+
 
 
 class MovieRepo(){
     fun refreshData( onDataReadyCallback: OnDataReadyCallback){
         CoroutineScope(Dispatchers.Main).launch() {
             var list: ArrayList<MovieTable>? = ArrayList()
-//            var listMov: ArrayList<MovieDto>? = ArrayList()
-            val listRep = MovieRecpModel.getAll()
+            val listRep = getAllMov()
 
 
             if(listRep != null)for(i in listRep) {
 
-                var age = AgeRecpModel.getAll(i.id.toString())
+                var age = getAllA(i.id.toString())
                 list?.add(MovieTable(movId= i.id.toLong(), title= i.title, description= i.overview,
-                    rateScore= i.vote_average/2, ageRestriction= age, imageUrl = IMG_HEADER + i.poster_path,
+                    rateScore= i.voteAverage/2, ageRestriction= age, imageUrl = IMG_HEADER + i.posterPath,
                      ))
 
-//                listMov?.add(MovieDto(id=i.id.toString(), title=i.title,  description=i.overview,
-//                    releaseDate = i.release_date, rateScore =i.vote_average/2, ageRestriction = age,
-//                    imageUrl = IMG_HEADER + i.poster_path,
-//                        genre = genreOnId(i.genre_ids[0].toLong())
-//                    ))
 
             }
 
-//            ListFilm.listMovForDetail.clear()
-//            if (listMov != null) {
-//                ListFilm.listMovForDetail.addAll(listMov)
-//            }
 
             if (list!=null)onDataReadyCallback.onDataReady(list)
         }}
@@ -46,5 +36,37 @@ class MovieRepo(){
 interface OnDataReadyCallback {
     fun onDataReady(data: List<MovieTable>)
 
+}
+
+suspend fun getAllMov() : List<MovieResponse>? = withContext(Dispatchers.IO){
+    var movies: List<MovieResponse>
+    try {
+        movies = withContext(Dispatchers.IO) {
+            App.instance.apiService.getMovie().results
+        }
+    } catch (e: Exception) {
+        movies = ArrayList()
+    }
+    return@withContext movies
+}
+
+suspend fun getAllA(idF:String) : String = withContext(Dispatchers.IO){
+    var listAge: List<AgeResp>
+    var certification= "No"
+    try {
+        listAge = withContext(Dispatchers.IO) {
+            App.instance.apiService.getAge(idfilm=idF).results
+        }
+        for (i in listAge){
+            if(i.iso31661=="RU") {
+                certification = i.releaseDates[0].certification
+            }
+        }
+    } catch (e: Exception) {
+        certification = "E"
+    }
+    if(certification.length == 0)certification = "No"
+
+    return@withContext certification
 }
 

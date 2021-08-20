@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.kavunov.mtsproject.DTC.MovieRespList
-import ru.kavunov.mtsproject.ListFilm
+
 
 
 interface ApiService {

@@ -30,7 +30,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
 
             detailRepo.refreshDataDet(object : OnCallbackMovD {
 
-                override fun onDataMovD(data: MovieResponse) {
+                override fun onDataMovD(data: MovieDto) {
                     _listDetail.postValue(data)
                 }
             },
