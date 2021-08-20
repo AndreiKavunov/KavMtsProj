@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.DTC.MovieDto
+import ru.kavunov.mtsproject.DTC.MovieResponse
 import ru.kavunov.mtsproject.bd.ActorTable
 import ru.kavunov.mtsproject.mvvm.*
 
@@ -29,7 +30,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
 
             detailRepo.refreshDataDet(object : OnCallbackMovD {
 
-                override fun onDataMovD(data: MovieDto) {
+                override fun onDataMovD(data: MovieResponse) {
                     _listDetail.postValue(data)
                 }
             },

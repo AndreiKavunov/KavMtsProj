@@ -10,6 +10,27 @@ import ru.kavunov.mtsproject.ListFilm
 
 interface ApiService {
 
+
+
+    @GET("movie/{idfilm}/credits")
+    suspend fun getActor(
+        @Path("idfilm") idfilm: String,
+        @Query("api_key") key: String = AUTH_HEADER,
+        @Query("language") language: String = "ru"): ActorRespList
+
+
+
+
+    @GET("movie/{idfilm}/release_dates")
+    suspend fun getAge(
+        @Path("idfilm") idfilm: String,
+        @Query("api_key") key: String = AUTH_HEADER,
+        @Query("language") language: String = "ru"): AgeRespList
+
+
+
+
+
     @GET("discover/movie")
     suspend fun getMovie(@Query("&sort_by") endpoint: String = "popularity.desc",
                          @Query("api_key") key: String = AUTH_HEADER,
@@ -17,22 +38,13 @@ interface ApiService {
 
     @GET("genre/movie/list")
     suspend fun getCateg(
-//        @Query("&sort_by") endpoint: String = "popularity.desc",
                          @Query("api_key") key: String = AUTH_HEADER,
                          @Query("language") language: String = "ru"): CategRespList
 
-    @GET("movie/{idfilm}/credits")
-    suspend fun getActor(
-        @Path("idfilm") idfilm: String = ListFilm.idFilm,
-        @Query("api_key") key: String = AUTH_HEADER,
-        @Query("language") language: String = "ru"): ActorRespList
 
 
-    @GET("movie/{idfilm}/release_dates")
-    suspend fun getAge(
-    @Path("idfilm") idfilm: String = ListFilm.idFilmAge,
-    @Query("api_key") key: String = AUTH_HEADER,
-    @Query("language") language: String = "ru"): AgeRespList
+
+
 
 
     companion object {

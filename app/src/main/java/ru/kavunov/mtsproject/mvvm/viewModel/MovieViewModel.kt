@@ -14,7 +14,7 @@ import ru.kavunov.mtsproject.mvvm.OnDataReadyCallback
 import ru.kavunov.mtsproject.mvvm.model.*
 import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 
-import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
+//import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
 
 typealias MyViewState = ListFilmFragment.ViewState
 typealias MyViewStateUpdate = ListFilmFragment.ViewStateUpdete
@@ -86,7 +86,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     fun startBd(context: Context){
         CoroutineScope(Dispatchers.IO).launch() {
-            if(ActorModel.getAll(context)?.size == 0){
+            if(ProfilModel.getAll(context)?.size == 0){
                 ProfilCatModel.insertData(context, 1, 2)
                 ProfilCatModel.insertData(context, 1, 4)
                 ProfilCatModel.insertData(context, 1, 5)
@@ -97,28 +97,28 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
                     email = "Ivan@mail.ru",
                     phone = "8-909-000-9999",
                     foto = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oTB9vGIBacH5aQNS0pUM74QSWuf.jpg",
-                )
-                for (x in CategoryDataSourceImpl().getMovies()) CategModel.insertData(
-                    context,
-                    0,
-                    x.category
-                )
-                var idF = 0L
-                var idA = 0L
-                for (x in MoviesDataSourceImpl().getMovies()[0]) {
-                    idF ++
-                    MovieModel.insertData(
-                        context, id = idF, title = x.title, description = x.description,
-
-                        rateScore = x.rateScore, ageRestriction = x.ageRestriction.toString(),
-                        imageUrl = x.imageUrl, backdrop_path= x.backdrop_path
-
-                    )
-
-                    for(i in x.actor){
-                        idA++
-                        ActorModel.insertData(context, id = idA, imgAct = i.img, nameAct= i.name)
-                        MovieActModel.insertData(context, idF, idA)}
-                }
-            }}}
+                )}
+//                for (x in CategoryDataSourceImpl().getMovies()) CategModel.insertData(
+//                    context,
+//                    0,
+//                    x.category
+//                )
+//                var idF = 0L
+//                var idA = 0L
+//                for (x in MoviesDataSourceImpl().getMovies()[0]) {
+//                    idF ++
+//                    MovieModel.insertData(
+//                        context, id = idF, title = x.title, description = x.description,
+//
+//                        rateScore = x.rateScore, ageRestriction = x.ageRestriction.toString(),
+//                        imageUrl = x.imageUrl
+//
+//                    )
+//
+////                    for(i in x.actor){
+////                        idA++
+////                        ActorModel.insertData(context, id = idA, imgAct = i.img, nameAct= i.name)
+////                        MovieActModel.insertData(context, idF, idA)}
+//                }
+            }}
 }

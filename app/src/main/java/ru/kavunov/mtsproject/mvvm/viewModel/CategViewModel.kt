@@ -30,14 +30,11 @@ class CategViewModel(application: Application) : AndroidViewModel(application) {
 
                 override fun onDataReady(data: List<CategoryTable>) {
                     _listcateg.postValue(data)
-                    changeListF(data)
+
                 }
 
             }
             )}}
 
-    fun changeListF(categ: List<CategoryTable>){
-        ListFilm.listCat.clear()
-        ListFilm.listCat.addAll(categ)
-    }
+
 }

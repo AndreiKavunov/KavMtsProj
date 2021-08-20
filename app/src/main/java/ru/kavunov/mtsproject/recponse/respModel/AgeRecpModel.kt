@@ -10,12 +10,12 @@ import ru.kavunov.mtsproject.recponse.Release_dates
 
 class AgeRecpModel {
     companion object {
-        suspend fun getAll() : String = withContext(Dispatchers.IO){
+        suspend fun getAll(idF:String) : String = withContext(Dispatchers.IO){
             var listAge: List<AgeResp>
             var certification= "No"
             try {
                 listAge = withContext(Dispatchers.IO) {
-                        App.instance.apiService.getAge().results
+                        App.instance.apiService.getAge(idfilm=idF).results
                 }
                 for (i in listAge){
                     if(i.iso_3166_1=="RU") {

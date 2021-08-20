@@ -15,7 +15,6 @@ import coil.load
 import ru.kavunov.mtsproject.adapter.ActorsAdapter
 import androidx.lifecycle.Observer
 import ru.kavunov.mtsproject.DTC.MovieDto
-import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.viewModel.DetailViewModel
 
 
@@ -43,7 +42,7 @@ class DetailkFragment : Fragment() {
     fun viewMovie(movieDto: MovieDto){
         view?.findViewById<TextView>(R.id.titleId)?.text = movieDto.title
         view?.findViewById<TextView>(R.id.textgenre)?.text = movieDto.genre
-        view?.findViewById<TextView>(R.id.textData)?.text = movieDto.release_date
+        view?.findViewById<TextView>(R.id.textData)?.text = movieDto.releaseDate
         view?.findViewById<TextView>(R.id.descripId)?.text = movieDto.description
         view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating = (movieDto.rateScore?.toFloat() ?: 0.0) as Float
         view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieDto.ageRestriction.toString()

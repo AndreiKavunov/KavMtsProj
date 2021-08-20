@@ -20,9 +20,9 @@ class MovieModel {
 
 
         suspend fun insertData(context: Context, id: Long, title: String, description: String, rateScore: Float,
-                       ageRestriction: String,  imageUrl: String, backdrop_path: String)= withContext(Dispatchers.IO) {
+                       ageRestriction: String,  imageUrl: String)= withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            val loginDetails = MovieTable(id, title, description, rateScore, ageRestriction, imageUrl, backdrop_path)
+            val loginDetails = MovieTable(id, title, description, rateScore, ageRestriction, imageUrl)
 
             db?.movieDAO()?.insert(loginDetails)
 

@@ -52,7 +52,8 @@ class ListFilmFragment : Fragment() {
             myViewModelMovieViewModel.viewState.observe(requireActivity(), Observer(::render))
         }
         else {adapterMovie.changeList(ListFilm.listMov)
-            adapterCateg.initData(ListFilm.listCat)
+            myViewModelCategViewModel.loadCateg()
+            myViewModelCategViewModel.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
         }
 
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
@@ -111,8 +112,6 @@ class ListFilmFragment : Fragment() {
 object ListFilm {
     var listMov = ArrayList<MovieTable>()
     var listMovForDetail = ArrayList<MovieDto>()
-    var listCat = ArrayList<CategoryTable>()
-    var idFilm = "436969"
-    var idFilmAge = "436969"
+
 }
 

@@ -9,11 +9,11 @@ import ru.kavunov.mtsproject.recponse.App
 
 class ActorRecpModel {
     companion object {
-        suspend fun getAll() : List<ActorResp>? = withContext(Dispatchers.IO){
+        suspend fun getAll(idF:String) : List<ActorResp>? = withContext(Dispatchers.IO){
             var actors: List<ActorResp>
             try {
                 actors = withContext(Dispatchers.IO) {
-                    App.instance.apiService.getActor().cast
+                    App.instance.apiService.getActor(idfilm=idF).cast
                 }
             } catch (e: Exception) {
                 actors = ArrayList()
