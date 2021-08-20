@@ -21,7 +21,6 @@ class DetailRepo(position: Long){
     fun refreshDataDet(onCallbackMovD: OnCallbackMovD,
                        OnCallbacActT: OnCallbacActT){
         CoroutineScope(Dispatchers.Main).launch() {
-//            lateinit var movie: MovieDto
             lateinit var movie: MovieDto
 
            val listmodel = MovieRecpModel.getAll()
