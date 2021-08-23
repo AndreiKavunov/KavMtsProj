@@ -40,7 +40,11 @@ class MovieModel {
             movieTableAll = db?.movieDAO()?.get()
             return@withContext movieTableAll
         }
+        suspend fun deleteAll(context: Context)= withContext(Dispatchers.IO) {
+            db = initializeDB(context)
+            db?.movieDAO()?.delete()
 
+        }
 
         suspend fun getActorList(context: Context, id: Long) : List<MovListWithAct>?= withContext(Dispatchers.IO) {
                 db = ProfilModel.initializeDB(context)

@@ -13,8 +13,8 @@ interface MovieDAO {
     @Update
     fun update(movieTable: MovieTable)
 
-    @Delete
-    fun delete(movieTable: MovieTable)
+//    @Delete
+//    fun delete(movieTable: MovieTable)
 
     @Query("SELECT * FROM MovieModel WHERE movId == :id")
     fun getByName(id: Long): MovieTable
@@ -25,4 +25,7 @@ interface MovieDAO {
     @Transaction
     @Query("SELECT * FROM MovieModel WHERE movId == :id")
     fun getMovlistsWithAct(id: Long): List<MovListWithAct>
+
+    @Query("DELETE FROM MovieModel")
+    fun delete()
 }

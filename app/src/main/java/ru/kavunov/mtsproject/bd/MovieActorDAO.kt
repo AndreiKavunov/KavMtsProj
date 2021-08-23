@@ -20,5 +20,8 @@ interface MovieActorDAO {
     @Query("SELECT * FROM MovieActTable")
     fun get(): List<MovieActTable>
 
+    @Query("DELETE FROM MovieActTable")
+    fun delete()
+
 
 }
