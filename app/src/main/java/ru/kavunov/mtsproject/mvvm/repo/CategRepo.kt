@@ -11,22 +11,28 @@ import ru.kavunov.mtsproject.mvvm.model.CategModel
 import ru.kavunov.mtsproject.recponse.App
 import ru.kavunov.mtsproject.recponse.CategResp
 
-
-
-
 class CategRepo(){
-    fun refreshData(onDataReadyCallback: OnDataReadyCallbackCateg){
+    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallbackCateg){
         CoroutineScope(Dispatchers.Main).launch() {
-            var list: ArrayList<CategoryTable>? = ArrayList()
-            val listRep = getAllCat()
-            if(listRep != null)for(i in listRep){
-                list?.add(CategoryTable(categId = i.id.toLong(), category = i.name))
-            }
-
+        val list: List<CategoryTable>? = CategModel.getAll(contetx)
             if (list!=null)onDataReadyCallback.onDataReady(list)
-        }}
-
+    }}
 }
+
+
+//class CategRepo(){
+//    fun refreshData(onDataReadyCallback: OnDataReadyCallbackCateg){
+//        CoroutineScope(Dispatchers.Main).launch() {
+//            var list: ArrayList<CategoryTable>? = ArrayList()
+//            val listRep = getAllCat()
+//            if(listRep != null)for(i in listRep){
+//                list?.add(CategoryTable(categId = i.id.toLong(), category = i.name))
+//            }
+//
+//            if (list!=null)onDataReadyCallback.onDataReady(list)
+//        }}
+//
+//}
 interface OnDataReadyCallbackCateg {
     fun onDataReady(data: List<CategoryTable>)
 

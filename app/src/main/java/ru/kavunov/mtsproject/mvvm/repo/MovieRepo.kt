@@ -1,38 +1,50 @@
 package ru.kavunov.mtsproject.mvvm
 
+import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.MovieResponse
 import ru.kavunov.mtsproject.bd.MovieTable
+import ru.kavunov.mtsproject.mvvm.model.MovieModel
 import ru.kavunov.mtsproject.recponse.AgeResp
 import ru.kavunov.mtsproject.recponse.App
 import ru.kavunov.mtsproject.recponse.IMG_HEADER
 
 
-
 class MovieRepo(){
-    fun refreshData( onDataReadyCallback: OnDataReadyCallback){
-        CoroutineScope(Dispatchers.Main).launch() {
-            var list: ArrayList<MovieTable>? = ArrayList()
-            val listRep = getAllMov()
+    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallback){
+    CoroutineScope(Dispatchers.Main).launch() {
+        val contextA = contetx
+        val list: List<MovieTable>? = MovieModel.getAll(contextA)
 
-
-            if(listRep != null)for(i in listRep) {
-
-                var age = getAllA(i.id.toString())
-                list?.add(MovieTable(movId= i.id.toLong(), title= i.title, description= i.overview,
-                    rateScore= i.voteAverage/2, ageRestriction= age, imageUrl = IMG_HEADER + i.posterPath,
-                     ))
-
-
-            }
-
-
-            if (list!=null)onDataReadyCallback.onDataReady(list)
-        }}
+        if (list!=null)onDataReadyCallback.onDataReady(list)
+    }}
 }
+
+
+//class MovieRepo(){
+//    fun refreshData( onDataReadyCallback: OnDataReadyCallback){
+//        CoroutineScope(Dispatchers.Main).launch() {
+//            var list: ArrayList<MovieTable>? = ArrayList()
+//            val listRep = getAllMov()
+//
+//
+//            if(listRep != null)for(i in listRep) {
+//
+//                var age = getAllA(i.id.toString())
+//                list?.add(MovieTable(movId= i.id.toLong(), title= i.title, description= i.overview,
+//                    rateScore= i.voteAverage/2, ageRestriction= age, imageUrl = IMG_HEADER + i.posterPath,
+//                     ))
+//
+//
+//            }
+//
+//
+//            if (list!=null)onDataReadyCallback.onDataReady(list)
+//        }}
+//}
 interface OnDataReadyCallback {
     fun onDataReady(data: List<MovieTable>)
 
