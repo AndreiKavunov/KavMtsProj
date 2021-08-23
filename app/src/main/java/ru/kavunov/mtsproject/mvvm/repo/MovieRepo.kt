@@ -25,16 +25,6 @@ class MovieRepo(){
     }}
 }
 
-class MovieRepo1(){
-    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallback){
-        CoroutineScope(Dispatchers.Main).launch() {
-            changeBd(contetx)
-            val contextA = contetx
-            val list: List<MovieTable>? = MovieModel.getAll(contextA)
-
-            if (list!=null)onDataReadyCallback.onDataReady(list)
-        }}
-}
 
 
 interface OnDataReadyCallback {

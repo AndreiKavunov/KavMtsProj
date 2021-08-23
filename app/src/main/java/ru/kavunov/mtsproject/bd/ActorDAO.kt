@@ -12,9 +12,6 @@ interface ActorDAO {
     @Update
     fun update(actorTable: ActorTable)
 
-//    @Delete
-//    fun delete(actorTable: ActorTable)
-
     @Query("DELETE FROM ActorModel")
     fun delete()
 
