@@ -81,7 +81,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
 }
 fun startBd(context: Context){
-    CoroutineScope(Dispatchers.Main).launch() {
+    CoroutineScope(Dispatchers.IO).launch() {
         if(MovieModel.getAll(context)?.size == 0){
             ProfilCatModel.insertData(context, 1, 28)
             ProfilCatModel.insertData(context, 1, 12)
