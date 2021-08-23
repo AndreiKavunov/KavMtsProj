@@ -1,6 +1,7 @@
 package ru.kavunov.mtsproject.mvvm
 
 import android.content.Context
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -59,6 +60,7 @@ suspend fun getAllMov() : List<MovieResponse>? = withContext(Dispatchers.IO){
     } catch (e: Exception) {
         movies = ArrayList()
     }
+
     return@withContext movies
 }
 

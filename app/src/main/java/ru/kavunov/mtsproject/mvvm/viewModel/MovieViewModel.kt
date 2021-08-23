@@ -9,9 +9,9 @@ import androidx.lifecycle.*
 import kotlinx.coroutines.*
 import ru.kavunov.mtsproject.*
 import ru.kavunov.mtsproject.bd.MovieTable
-import ru.kavunov.mtsproject.mvvm.MovieRepo
-import ru.kavunov.mtsproject.mvvm.OnDataReadyCallback
+import ru.kavunov.mtsproject.mvvm.*
 import ru.kavunov.mtsproject.mvvm.model.*
+import ru.kavunov.mtsproject.recponse.IMG_HEADER
 import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 
 
@@ -23,24 +23,29 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     private var job: Job? = null
     lateinit var movieRepo: MovieRepo
     val contextM: Context = getApplication()
-    var listMov : MutableLiveData<List<MovieTable>> = MutableLiveData()
+    var listMov: MutableLiveData<List<MovieTable>> = MutableLiveData()
     val viewState: LiveData<MyViewState> get() = _viewState
     private val _viewState = MutableLiveData<MyViewState>()
     val viewStateUp: LiveData<MyViewStateUpdate> get() = _viewStateUp
     private val _viewStateUp = MutableLiveData<MyViewStateUpdate>()
     val handler = CoroutineExceptionHandler { context, exception ->
-        Log.d("tagErr","handled $exception")
+        Log.d("tagErr", "handled $exception")
         _viewStateUp.postValue(MyViewStateUpdate(isRefreshing = false))
-        Toast.makeText(contextM, "Не удалось получить данные, повторите попытку.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(
+            contextM,
+            "Не удалось получить данные, повторите попытку.",
+            Toast.LENGTH_SHORT
+        ).show()
 
     }
 
-    fun loadMovie() :MutableLiveData<List<MovieTable>> {
+    fun loadMovie(): MutableLiveData<List<MovieTable>> {
         CoroutineScope(Dispatchers.Main).launch() {
             startBd(contextM)
-            if(listMov.value == null) {
+            if (listMov.value == null) {
+                Log.d("tag11", listMov.value.toString())
                 movieRepo = MovieRepo()
-                movieRepo.refreshData(object : OnDataReadyCallback {
+                movieRepo.refreshData(getApplication(), object : OnDataReadyCallback {
                     override fun onDataReady(data: List<MovieTable>) {
                         listMov.value = data
                         _viewState.postValue(MyViewState(isDownloaded = false))
@@ -48,23 +53,23 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
                 }
                 )
             }
-    }
+        }
         return listMov
     }
 
 
-    fun updateMovie():MutableLiveData<List<MovieTable>>{
+    fun updateMovie(): MutableLiveData<List<MovieTable>> {
 
         job?.cancel()
         job = CoroutineScope(Dispatchers.Main).launch(handler) {
 
             _viewStateUp.postValue(MyViewStateUpdate(isRefreshing = true))
             val x = (1..3).random()
-            if (x==3)Integer.parseInt("one")
+            if (x == 3) Integer.parseInt("one")
             movieRepo = MovieRepo()
-            movieRepo.refreshData(object : OnDataReadyCallback {
-                override  fun onDataReady(data: List<MovieTable>) {
-                    var list : List<MovieTable> = data.shuffled()
+            movieRepo.refreshData(getApplication(), object : OnDataReadyCallback {
+                override fun onDataReady(data: List<MovieTable>) {
+                    var list: List<MovieTable> = data.shuffled()
                     listMov.value = list
                     _viewStateUp.postValue(MyViewStateUpdate(isRefreshing = false))
                 }
@@ -74,26 +79,57 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         return listMov
     }
 
-
-    fun startBd(context: Context){
-        CoroutineScope(Dispatchers.IO).launch() {
-            if(ProfilModel.getAll(context)?.size == 0){
-                ProfilCatModel.insertData(context, 1, 2)
-                ProfilCatModel.insertData(context, 1, 4)
-                ProfilCatModel.insertData(context, 1, 5)
-                ProfilModel.insertData(
-                    context,
-                    id = 1,
-                    name = "Иван",
-                    email = "Ivan@mail.ru",
-                    phone = "8-909-000-9999",
-                    foto = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oTB9vGIBacH5aQNS0pUM74QSWuf.jpg",
-                )}
-                for (x in CategoryDataSourceImpl().getMovies()) CategModel.insertData(
-                    context,
-                    0,
-                    x.category
-                )
-
-            }}
 }
+fun startBd(context: Context){
+    CoroutineScope(Dispatchers.Main).launch() {
+        if(MovieModel.getAll(context)?.size == 0){
+            ProfilCatModel.insertData(context, 1, 28)
+            ProfilCatModel.insertData(context, 1, 12)
+            ProfilCatModel.insertData(context, 1, 16)
+            ProfilModel.insertData(
+                context,
+                id = 1,
+                name = "Иван",
+                email = "Ivan@mail.ru",
+                phone = "8-909-000-9999",
+                foto = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oTB9vGIBacH5aQNS0pUM74QSWuf.jpg",
+            )
+
+            val listCateg = getAllCat()
+            Log.d("tag11", "555" +listCateg.toString())
+            if (listCateg != null) {
+                for(i in listCateg) {
+                    CategModel.insertData(context, i.id.toLong(), i.name)
+                }
+
+            }
+            val listMov = getAllMov()
+            if (listMov != null) {
+                var idF = 0L
+                var idA = 0L
+                for(i in listMov){
+                    idF = i.id.toLong()
+                    var age = getAllA(i.id.toString())
+                    var genre = CategModel.getLoginDetails(context, i.genreIds[0].toLong())!!.category
+                    val listActor = getAllActors(i.id.toString())
+                    MovieModel.insertData(context= context, id= i.id.toLong(), title = i.title, description= i.overview,
+                    imageUrl = IMG_HEADER + i.posterPath, ageRestriction = age, rateScore = i.voteAverage/2,
+                        releaseDate= i.releaseDate, genre = genre)
+
+                    if (listActor != null) {
+                        for (actor in listActor.take(5)){
+                            idA = actor.id.toLong()
+                            ActorModel.insertData(context = context, id = actor.id.toLong(),
+                            imgAct = IMG_HEADER + actor.profilePath, nameAct = actor.name)
+                            MovieActModel.insertData(context, idF, idA)
+
+                        }
+
+
+                    }
+                }}
+
+}
+    }
+}
+

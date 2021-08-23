@@ -32,7 +32,7 @@ class DetailRepo(position: Long){
         val movieDto =
             movie?.title?.let {
                 MovieDto(id = movie.movId.toString() ,title = it, description = movie?.description, rateScore = movie.rateScore,
-                    ageRestriction = movie?.ageRestriction, imageUrl= movie.imageUrl, releaseDate= "1111", genre = "dddd")
+                    ageRestriction = movie?.ageRestriction, imageUrl= movie.imageUrl, releaseDate= movie.releaseDate, genre = movie.genre)
             }
 
             if (movieDto != null) {

@@ -26,7 +26,7 @@ class CategViewModel(application: Application) : AndroidViewModel(application) {
         CoroutineScope(Dispatchers.Main).launch() {
             categoryRepo= CategRepo()
 
-            categoryRepo.refreshData(object : OnDataReadyCallbackCateg {
+            categoryRepo.refreshData(getApplication(), object : OnDataReadyCallbackCateg {
 
                 override fun onDataReady(data: List<CategoryTable>) {
                     _listcateg.postValue(data)

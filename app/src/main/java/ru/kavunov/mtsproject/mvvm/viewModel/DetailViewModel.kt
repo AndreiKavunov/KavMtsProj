@@ -28,7 +28,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
         CoroutineScope(Dispatchers.Main).launch() {
             detailRepo = DetailRepo(position)
 
-            detailRepo.refreshDataDet(object : OnCallbackMovD {
+            detailRepo.refreshDataDet(getApplication(), object : OnCallbackMovD {
 
                 override fun onDataMovD(data: MovieDto) {
                     _listDetail.postValue(data)
