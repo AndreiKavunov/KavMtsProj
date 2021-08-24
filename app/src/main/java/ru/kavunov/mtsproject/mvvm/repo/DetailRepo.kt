@@ -148,7 +148,7 @@ suspend fun getAllCateg() : List<CategResp>? = withContext(Dispatchers.IO){
     return@withContext categs
 }
 
-suspend fun getAllAge(idF:String) : String = withContext(Dispatchers.IO){
+suspend fun getAllAge(language: String, idF: String) : String = withContext(Dispatchers.IO){
     var listAge: List<AgeResp>
     var certification= "No"
     try {
@@ -156,12 +156,11 @@ suspend fun getAllAge(idF:String) : String = withContext(Dispatchers.IO){
             App.instance.apiService.getAge(idfilm=idF).results
         }
         for (i in listAge){
-            if(i.iso31661=="RU") {
+            if(i.iso31661== language) {
                 certification = i.releaseDates[0].certification
             }
         }
     } catch (e: Exception) {
-        certification = "E"
     }
     if(certification.length == 0)certification = "No"
 
