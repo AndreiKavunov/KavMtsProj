@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [ProfilTable::class, CategoryTable::class, ProfilCategTable::class, MovieTable::class,
 
-                     ActorTable::class, MovieActTable::class], version = 87)
+                     ActorTable::class, MovieActTable::class], version = 90)
 
 //@TypeConverters(DateTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {

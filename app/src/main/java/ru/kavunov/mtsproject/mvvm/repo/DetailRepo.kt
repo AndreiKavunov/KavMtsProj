@@ -42,55 +42,6 @@ class DetailRepo(position: Long){
     }}
 }
 
-
-//class DetailRepo(position: Long){
-//     val position = position
-//    fun refreshDataDet(onCallbackMovD: OnCallbackMovD,
-//                       OnCallbacActT: OnCallbacActT){
-//        CoroutineScope(Dispatchers.Main).launch() {
-//            lateinit var movie: MovieDto
-//
-//           val listmodel = getAllMovie()
-//            var listMov: ArrayList<MovieDto>? = ArrayList()
-//            if(listmodel != null)for(i in listmodel){
-//                var age = getAllAge(i.id.toString())
-//                listMov?.add(MovieDto(id=i.id.toString(), title=i.title,  description=i.overview,
-//                    releaseDate = i.releaseDate, rateScore =i.voteAverage/2, ageRestriction = age,
-//                    imageUrl = IMG_HEADER + i.posterPath,
-//                    genre = genreOnId(i.genreIds[0].toLong())
-//                    ))
-//            }
-//            if (listMov != null) {
-//                for(i in listMov) {
-//                    if( i.id == position.toString()) {
-//                        movie = i
-//                    }
-//                }
-//            }
-//       val listM: List<ActorResp>? = getAllActors(position.toString())
-//       var listAct: ArrayList<ActorTable> = ArrayList()
-//            if (listM != null) {
-//                for(i in listM){
-//                    if(i.profilePath!=null) {
-//                        listAct.add(
-//                            ActorTable(
-//                                actId = i.id.toLong(),
-//                                imgAct = IMG_HEADER + i.profilePath,
-//                                nameAct = i.name
-//                            )
-//                        )
-//                    }
-//                }
-//            }
-//
-//
-//
-//            if (movie != null) {
-//                onCallbackMovD.onDataMovD(movie)
-//            }
-//        OnCallbacActT.onDataActT(listAct)
-//    }}
-//}
 interface OnCallbackMovD {
     fun onDataMovD(data: MovieDto)
 }

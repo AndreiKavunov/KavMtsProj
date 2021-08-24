@@ -118,6 +118,7 @@ suspend fun startBd(context: Context)= withContext(Dispatchers.IO){
 }
 
 suspend fun changeBd(context: Context)= withContext(Dispatchers.IO){
+    Log.d("tag11", "EEEEEEEEEEEEEEEEEEEEEEEE")
         MovieModel.deleteAll(context)
         ActorModel.deleteAll(context)
         MovieActModel.deleteAll(context)

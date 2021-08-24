@@ -20,19 +20,6 @@ class CategRepo(){
 }
 
 
-//class CategRepo(){
-//    fun refreshData(onDataReadyCallback: OnDataReadyCallbackCateg){
-//        CoroutineScope(Dispatchers.Main).launch() {
-//            var list: ArrayList<CategoryTable>? = ArrayList()
-//            val listRep = getAllCat()
-//            if(listRep != null)for(i in listRep){
-//                list?.add(CategoryTable(categId = i.id.toLong(), category = i.name))
-//            }
-//
-//            if (list!=null)onDataReadyCallback.onDataReady(list)
-//        }}
-//
-//}
 interface OnDataReadyCallbackCateg {
     fun onDataReady(data: List<CategoryTable>)
 
