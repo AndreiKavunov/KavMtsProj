@@ -118,7 +118,6 @@ suspend fun startBd(context: Context)= withContext(Dispatchers.IO){
 }
 
 suspend fun changeBd(context: Context)= withContext(Dispatchers.IO){
-    Log.d("tag11", "EEEEEEEEEEEEEEEEEEEEEEEE")
         MovieModel.deleteAll(context)
         ActorModel.deleteAll(context)
         MovieActModel.deleteAll(context)
@@ -126,7 +125,7 @@ suspend fun changeBd(context: Context)= withContext(Dispatchers.IO){
         if (listMov != null) {
             var idF = 0L
             var idA = 0L
-            for(i in listMov.take(3)){
+            for(i in listMov){
                 idF = i.id.toLong()
                 var age = getAllA(i.id.toString())
                 var genre = CategModel.getIdGence(context, i.genreIds[0].toLong())!!.category
