@@ -23,7 +23,7 @@ class DetailRepo(position: Long){
            val listmodel = getAllMovie()
             var listMov: ArrayList<MovieDto>? = ArrayList()
             if(listmodel != null)for(i in listmodel){
-                var age = getAllAge(i.id.toString())
+                var age = getAllAge(LANGUAGE, i.id.toString())
                 listMov?.add(MovieDto(id=i.id.toString(), title=i.title,  description=i.overview,
                     releaseDate = i.releaseDate, rateScore =i.voteAverage/2, ageRestriction = age,
                     imageUrl = IMG_HEADER + i.posterPath,
@@ -118,7 +118,7 @@ suspend fun getAllCateg() : List<CategResp>? = withContext(Dispatchers.IO){
     return@withContext categs
 }
 
-suspend fun getAllAge(idF:String) : String = withContext(Dispatchers.IO){
+suspend fun getAllAge(language: String, idF: String) : String = withContext(Dispatchers.IO){
     var listAge: List<AgeResp>
     var certification= "No"
     try {
@@ -126,12 +126,11 @@ suspend fun getAllAge(idF:String) : String = withContext(Dispatchers.IO){
             App.instance.apiService.getAge(idfilm=idF).results
         }
         for (i in listAge){
-            if(i.iso31661=="RU") {
+            if(i.iso31661== language) {
                 certification = i.releaseDates[0].certification
             }
         }
     } catch (e: Exception) {
-        certification = "E"
     }
     if(certification.length == 0)certification = "No"
 
