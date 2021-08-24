@@ -17,7 +17,7 @@ import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDat
 
 
 class MovieRepo(){
-    fun refreshData( onDataReadyCallback: OnDataReadyCallback){
+    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallback){
         CoroutineScope(Dispatchers.Main).launch() {
             startBd(contetx)
             var list: ArrayList<MovieTable>? = ArrayList()
@@ -75,7 +75,7 @@ suspend fun getAllA(idF:String) : String = withContext(Dispatchers.IO){
     return@withContext certification
 }
 
-fun startBd(context: Context){
+suspend fun startBd(context: Context){
     CoroutineScope(Dispatchers.IO).launch() {
         if(ProfilModel.getAll(context)?.size == 0){
             ProfilCatModel.insertData(context, 1, 2)
