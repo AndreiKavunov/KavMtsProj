@@ -12,8 +12,9 @@ import ru.kavunov.mtsproject.recponse.App
 import ru.kavunov.mtsproject.recponse.CategResp
 
 class CategRepo(){
-    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallbackCateg){
+    suspend fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallbackCateg){
         CoroutineScope(Dispatchers.Main).launch() {
+        startBd(contetx)
         val list: List<CategoryTable>? = CategModel.getAll(contetx)
             if (list!=null)onDataReadyCallback.onDataReady(list)
     }}

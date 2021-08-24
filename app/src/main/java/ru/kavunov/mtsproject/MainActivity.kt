@@ -35,22 +35,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         findViewById<BottomNavigationView>(R.id.BoNav)
             .setupWithNavController(navController)
 
-        val constraints = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .setRequiresCharging(true)
-            .build()
-
-
-        val workRequest: PeriodicWorkRequest = PeriodicWorkRequestBuilder<SimpleWorker>(
-            18, TimeUnit.MINUTES,
-            15, TimeUnit.MINUTES)
-            .setConstraints(constraints)
-            .build()
-
-
-        WorkManager.getInstance(this)
-            .enqueue(workRequest)
-
+        runWorker(this)
 
     }
 
@@ -67,17 +52,6 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 object Orient {var orInt = 1}
 
-class SimpleWorker(context: Context, workerParams: WorkerParameters) :
-    Worker(context, workerParams) {
-
-    override fun doWork(): Result {
-        CoroutineScope(Dispatchers.Main).launch() {
-            changeBd(context = applicationContext)
-            Log.d("tag11", "Сработал Work manager")
-        }
-    return Result.success()
-    }
-}
 
 
 

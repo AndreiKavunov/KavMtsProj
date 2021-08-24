@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.*
 import kotlinx.coroutines.*
 import ru.kavunov.mtsproject.*
+import ru.kavunov.mtsproject.bd.CategoryTable
 import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.*
 import ru.kavunov.mtsproject.mvvm.model.*
@@ -22,9 +23,11 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     private var job: Job? = null
     lateinit var movieRepo: MovieRepo
+
     val contextM: Context = getApplication()
     var listMov: MutableLiveData<List<MovieTable>> = MutableLiveData()
     val viewState: LiveData<MyViewState> get() = _viewState
+
     private val _viewState = MutableLiveData<MyViewState>()
     val viewStateUp: LiveData<MyViewStateUpdate> get() = _viewStateUp
     private val _viewStateUp = MutableLiveData<MyViewStateUpdate>()
@@ -52,6 +55,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
                 }
                 )
             }
+
         }
         return listMov
     }

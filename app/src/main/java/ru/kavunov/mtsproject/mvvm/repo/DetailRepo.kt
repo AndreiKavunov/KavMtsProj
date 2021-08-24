@@ -50,70 +50,76 @@ interface OnCallbacActT {
     fun onDataActT(data: List<ActorTable>)
 }
 
-suspend fun genreOnId(id: Long): String= withContext(Dispatchers.IO){
+suspend fun genreOnId(id: Long): String{
 
     var genre= "empty"
-    var listCat = getAllCateg()
 
+    var listCat = getAllCateg()
+    withContext(Dispatchers.IO){
         if (listCat != null) {
             for (i in listCat) {
                 if (i.id == id.toInt()) genre = i.name
             }
-        }
-        return@withContext genre
+        }}
+    return genre
 }
 
-suspend fun getAllActors(idF:String) : List<ActorResp>? = withContext(Dispatchers.IO){
+suspend fun getAllActors(idF:String) : List<ActorResp>? {
     var actors: List<ActorResp>
-    try {
-        actors = withContext(Dispatchers.IO) {
-            App.instance.apiService.getActor(idfilm=idF).cast
-        }
-    } catch (e: Exception) {
-        actors = ArrayList()
-    }
-    return@withContext actors
+    withContext(Dispatchers.IO){
+        try {
+            actors = withContext(Dispatchers.IO) {
+                App.instance.apiService.getActor(idfilm=idF).cast
+            }
+        } catch (e: Exception) {
+            actors = ArrayList()
+        }}
+    return actors
 }
 
-suspend fun getAllMovie() : List<MovieResponse>? = withContext(Dispatchers.IO){
+suspend fun getAllMovie() : List<MovieResponse>?{
     var movies: List<MovieResponse>
-    try {
-        movies = withContext(Dispatchers.IO) {
-            App.instance.apiService.getMovie().results
-        }
-    } catch (e: Exception) {
-        movies = ArrayList()
-    }
-    return@withContext movies
+    withContext(Dispatchers.IO){
+        try {
+            movies = withContext(Dispatchers.IO) {
+                App.instance.apiService.getMovie().results
+            }
+        } catch (e: Exception) {
+            movies = ArrayList()
+        }}
+    return movies
 }
 
-suspend fun getAllCateg() : List<CategResp>? = withContext(Dispatchers.IO){
+suspend fun getAllCateg() : List<CategResp>?{
     var categs: List<CategResp>
-    try {
-        categs = withContext(Dispatchers.IO) {
-            App.instance.apiService.getCateg().genres
-        }
-    } catch (e: Exception) {
-        categs = ArrayList()
-    }
-    return@withContext categs
+    withContext(Dispatchers.IO){
+        try {
+            categs = withContext(Dispatchers.IO) {
+                App.instance.apiService.getCateg().genres
+            }
+        } catch (e: Exception) {
+            categs = ArrayList()
+        }}
+    return categs
 }
 
-suspend fun getAllAge(language: String, idF: String) : String = withContext(Dispatchers.IO){
+suspend fun getAllAge(language: String, idF: String) : String{
+
     var listAge: List<AgeResp>
     var certification= "No"
-    try {
-        listAge = withContext(Dispatchers.IO) {
-            App.instance.apiService.getAge(idfilm=idF).results
-        }
-        for (i in listAge){
-            if(i.iso31661== language) {
-                certification = i.releaseDates[0].certification
+    withContext(Dispatchers.IO) {
+        try {
+            listAge = withContext(Dispatchers.IO) {
+                App.instance.apiService.getAge(idfilm = idF).results
             }
+            for (i in listAge) {
+                if (i.iso31661 == language) {
+                    certification = i.releaseDates[0].certification
+                }
+            }
+        } catch (e: Exception) {
         }
-    } catch (e: Exception) {
+        if (certification.length == 0) certification = "No"
     }
-    if(certification.length == 0)certification = "No"
-
-    return@withContext certification
+    return certification
 }

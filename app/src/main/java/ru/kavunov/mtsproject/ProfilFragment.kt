@@ -45,10 +45,8 @@ class ProfilFragment : Fragment() {
 
 
         button.setOnClickListener(){
-            CoroutineScope(Dispatchers.Main).launch() {
             fragListFilmF()
-            changeBd(requireActivity())
-        }}
+        }
 
 
         return view
