@@ -37,7 +37,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadMovie() :MutableLiveData<List<MovieTable>> {
         CoroutineScope(Dispatchers.Main).launch() {
-            startBd(contextM)
+
             if(listMov.value == null) {
                 movieRepo = MovieRepo()
                 movieRepo.refreshData(object : OnDataReadyCallback {
@@ -75,25 +75,5 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun startBd(context: Context){
-        CoroutineScope(Dispatchers.IO).launch() {
-            if(ProfilModel.getAll(context)?.size == 0){
-                ProfilCatModel.insertData(context, 1, 2)
-                ProfilCatModel.insertData(context, 1, 4)
-                ProfilCatModel.insertData(context, 1, 5)
-                ProfilModel.insertData(
-                    context,
-                    id = 1,
-                    name = "Иван",
-                    email = "Ivan@mail.ru",
-                    phone = "8-909-000-9999",
-                    foto = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oTB9vGIBacH5aQNS0pUM74QSWuf.jpg",
-                )}
-                for (x in CategoryDataSourceImpl().getMovies()) CategModel.insertData(
-                    context,
-                    0,
-                    x.category
-                )
 
-            }}
 }

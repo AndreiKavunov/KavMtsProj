@@ -1,20 +1,25 @@
 package ru.kavunov.mtsproject.mvvm
 
+import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.MovieResponse
 import ru.kavunov.mtsproject.bd.MovieTable
+import ru.kavunov.mtsproject.mvvm.model.CategModel
+import ru.kavunov.mtsproject.mvvm.model.ProfilCatModel
+import ru.kavunov.mtsproject.mvvm.model.ProfilModel
 import ru.kavunov.mtsproject.recponse.AgeResp
 import ru.kavunov.mtsproject.recponse.App
 import ru.kavunov.mtsproject.recponse.IMG_HEADER
-
+import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 
 
 class MovieRepo(){
     fun refreshData( onDataReadyCallback: OnDataReadyCallback){
         CoroutineScope(Dispatchers.Main).launch() {
+            startBd(contetx)
             var list: ArrayList<MovieTable>? = ArrayList()
             val listRep = getAllMov()
 
@@ -70,3 +75,24 @@ suspend fun getAllA(idF:String) : String = withContext(Dispatchers.IO){
     return@withContext certification
 }
 
+fun startBd(context: Context){
+    CoroutineScope(Dispatchers.IO).launch() {
+        if(ProfilModel.getAll(context)?.size == 0){
+            ProfilCatModel.insertData(context, 1, 2)
+            ProfilCatModel.insertData(context, 1, 4)
+            ProfilCatModel.insertData(context, 1, 5)
+            ProfilModel.insertData(
+                context,
+                id = 1,
+                name = "Иван",
+                email = "Ivan@mail.ru",
+                phone = "8-909-000-9999",
+                foto = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oTB9vGIBacH5aQNS0pUM74QSWuf.jpg",
+            )}
+        for (x in CategoryDataSourceImpl().getMovies()) CategModel.insertData(
+            context,
+            0,
+            x.category
+        )
+
+    }}
