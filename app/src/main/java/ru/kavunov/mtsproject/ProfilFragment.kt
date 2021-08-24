@@ -19,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.DTC.Profil
 import ru.kavunov.mtsproject.adapter.CategoryAdapterNEW
-import ru.kavunov.mtsproject.mvvm.MovieRepo1
+
 import ru.kavunov.mtsproject.mvvm.changeBd
 import ru.kavunov.mtsproject.mvvm.viewModel.ProfilViewModel
 
