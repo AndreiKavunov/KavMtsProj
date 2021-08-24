@@ -40,7 +40,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
             if(listMov.value == null) {
                 movieRepo = MovieRepo()
-                movieRepo.refreshData(object : OnDataReadyCallback {
+                movieRepo.refreshData(getApplication(), object : OnDataReadyCallback {
                     override fun onDataReady(data: List<MovieTable>) {
                         listMov.value = data
                         _viewState.postValue(MyViewState(isDownloaded = false))
@@ -62,7 +62,7 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             val x = (1..3).random()
             if (x==3)Integer.parseInt("one")
             movieRepo = MovieRepo()
-            movieRepo.refreshData(object : OnDataReadyCallback {
+            movieRepo.refreshData(getApplication(), object : OnDataReadyCallback {
                 override  fun onDataReady(data: List<MovieTable>) {
                     var list : List<MovieTable> = data.shuffled()
                     listMov.value = list

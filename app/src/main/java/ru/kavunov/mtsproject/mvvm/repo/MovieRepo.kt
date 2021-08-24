@@ -24,15 +24,18 @@ class MovieRepo(){
             val listRep = getAllMov()
 
 
-            if(listRep != null)for(i in listRep) {
+            if(listRep != null){
+                for(i in listRep) {
 
-                var age = getAllA(i.id.toString())
-                list?.add(MovieTable(movId= i.id.toLong(), title= i.title, description= i.overview,
-                    rateScore= i.voteAverage/2, ageRestriction= age, imageUrl = IMG_HEADER + i.posterPath,
-                     ))
+                    var age = getAllA(i.id.toString())
+                    list?.add(MovieTable(movId= i.id.toLong(), title= i.title, description= i.overview,
+                        rateScore= i.voteAverage/2, ageRestriction= age, imageUrl = IMG_HEADER + i.posterPath,
+                    ))
 
 
+                }
             }
+
 
 
             if (list!=null)onDataReadyCallback.onDataReady(list)
