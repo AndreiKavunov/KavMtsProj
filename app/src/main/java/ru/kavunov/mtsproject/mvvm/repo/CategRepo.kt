@@ -32,15 +32,17 @@ interface OnDataReadyCallbackCateg {
 
 }
 
-suspend fun getAllCat() : List<CategResp>? = withContext(Dispatchers.IO){
+suspend fun getAllCat() : List<CategResp>? {
     var categs: List<CategResp>
+    withContext(Dispatchers.IO){
     try {
         categs = withContext(Dispatchers.IO) {
             App.instance.apiService.getCateg().genres
         }
     } catch (e: Exception) {
         categs = ArrayList()
-    }
-    return@withContext categs
+    }}
+    return categs
 }
+
 
