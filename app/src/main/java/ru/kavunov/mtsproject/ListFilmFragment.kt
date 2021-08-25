@@ -7,14 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
-import ru.kavunov.mtsproject.mvvm.viewModel.CategViewModel
 import androidx.lifecycle.ViewModelProviders
 import ru.kavunov.mtsproject.mvvm.viewModel.MovieViewModel
 
