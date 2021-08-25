@@ -11,6 +11,7 @@ import ru.kavunov.mtsproject.mvvm.model.CategModel
 import ru.kavunov.mtsproject.recponse.App
 import ru.kavunov.mtsproject.recponse.CategResp
 
+
 class CategRepo(){
     suspend fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallbackCateg){
         CoroutineScope(Dispatchers.Main).launch() {
@@ -18,6 +19,7 @@ class CategRepo(){
             val list: List<CategoryTable>? = CategModel.getAll(contetx)
             if (list!=null)onDataReadyCallback.onDataReady(list)
         }}
+
 }
 
 
@@ -25,6 +27,7 @@ interface OnDataReadyCallbackCateg {
     fun onDataReady(data: List<CategoryTable>)
 
 }
+
 
 //suspend fun getAllCat() : List<CategResp>? = withContext(Dispatchers.IO){
 //    var categs: List<CategResp>
@@ -37,3 +40,4 @@ interface OnDataReadyCallbackCateg {
 //    }
 //    return@withContext categs
 //}
+

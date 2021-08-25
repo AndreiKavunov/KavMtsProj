@@ -35,11 +35,13 @@ data class MovieTable(
     val movId: Long,
     val title: String,
     val description: String,
+
     val releaseDate: String,
     val rateScore: Float,
     val ageRestriction: String,
     val imageUrl: String,
     val genre: String,
+
 
 
     )

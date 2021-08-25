@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.MovieResponse
+
 import ru.kavunov.mtsproject.bd.CategoryTable
 import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.model.*
@@ -28,6 +29,7 @@ class MovieRepo(){
         val listC: List<CategoryTable>? = CategModel.getAll(contetx)
         if (listC!=null)callbackCateg.onDataReadyC(listC)
     }}
+
 }
 
 
@@ -72,6 +74,7 @@ suspend fun getAllA(idF:String) : String = withContext(Dispatchers.IO){
 
     return@withContext certification
 }
+
 
 suspend fun startBd(context: Context)= withContext(Dispatchers.IO){
         if(MovieModel.getAll(context)?.size == 0){
@@ -169,3 +172,4 @@ suspend fun getAllCat() : List<CategResp>? = withContext(Dispatchers.IO){
     }
     return@withContext categs
 }
+

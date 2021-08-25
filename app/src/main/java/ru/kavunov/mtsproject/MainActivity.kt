@@ -1,21 +1,25 @@
 package ru.kavunov.mtsproject
 
 
+
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.work.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 import ru.kavunov.mtsproject.mvvm.changeBd
 import java.util.concurrent.TimeUnit
+
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
         runWorker(this)
 
+
     }
 
     override fun clickDetail(position: Long) {
@@ -51,6 +56,8 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 
 object Orient {var orInt = 1}
+
+
 
 
 
