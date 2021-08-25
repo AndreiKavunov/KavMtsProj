@@ -12,6 +12,7 @@ import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.model.*
 import ru.kavunov.mtsproject.recponse.AgeResp
 import ru.kavunov.mtsproject.recponse.App
+import ru.kavunov.mtsproject.recponse.CategResp
 import ru.kavunov.mtsproject.recponse.IMG_HEADER
 
 
@@ -157,4 +158,14 @@ suspend fun changeBd(context: Context)= withContext(Dispatchers.IO){
 
 
 }
-
+suspend fun getAllCat() : List<CategResp>? = withContext(Dispatchers.IO){
+    var categs: List<CategResp>
+    try {
+        categs = withContext(Dispatchers.IO) {
+            App.instance.apiService.getCateg().genres
+        }
+    } catch (e: Exception) {
+        categs = ArrayList()
+    }
+    return@withContext categs
+}
