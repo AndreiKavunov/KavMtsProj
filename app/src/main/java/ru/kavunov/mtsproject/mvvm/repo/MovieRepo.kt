@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.MovieResponse
+import ru.kavunov.mtsproject.bd.CategoryTable
 import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.model.*
 import ru.kavunov.mtsproject.recponse.AgeResp
@@ -15,20 +16,26 @@ import ru.kavunov.mtsproject.recponse.IMG_HEADER
 
 
 class MovieRepo(){
-    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallback){
+    fun refreshData(contetx: Context, callbackMovie: CallbackMovie, callbackCateg: CallbackCateg){
     CoroutineScope(Dispatchers.Main).launch() {
         startBd(contetx)
         val contextA = contetx
         val list: List<MovieTable>? = MovieModel.getAll(contextA)
 
-        if (list!=null)onDataReadyCallback.onDataReady(list)
+        if (list!=null)callbackMovie.onDataReadyM(list)
+
+        val listC: List<CategoryTable>? = CategModel.getAll(contetx)
+        if (listC!=null)callbackCateg.onDataReadyC(listC)
     }}
 }
 
 
+interface CallbackCateg {
+    fun onDataReadyC(data: List<CategoryTable>)
 
-interface OnDataReadyCallback {
-    fun onDataReady(data: List<MovieTable>)
+}
+interface CallbackMovie {
+    fun onDataReadyM(data: List<MovieTable>)
 
 }
 

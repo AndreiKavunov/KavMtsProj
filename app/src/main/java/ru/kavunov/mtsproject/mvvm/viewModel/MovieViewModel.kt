@@ -11,9 +11,6 @@ import ru.kavunov.mtsproject.*
 import ru.kavunov.mtsproject.bd.CategoryTable
 import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.*
-import ru.kavunov.mtsproject.mvvm.model.*
-import ru.kavunov.mtsproject.recponse.IMG_HEADER
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 
 
 typealias MyViewState = ListFilmFragment.ViewState
@@ -23,6 +20,9 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
     private var job: Job? = null
     lateinit var movieRepo: MovieRepo
+
+    val listcateg: LiveData<List<CategoryTable>> get() = _listcateg
+    var _listcateg = MutableLiveData<List<CategoryTable>>()
 
     val contextM: Context = getApplication()
     var listMov: MutableLiveData<List<MovieTable>> = MutableLiveData()
@@ -47,12 +47,20 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             if (listMov.value == null) {
                 Log.d("tag11", listMov.value.toString())
                 movieRepo = MovieRepo()
-                movieRepo.refreshData(getApplication(), object : OnDataReadyCallback {
-                    override fun onDataReady(data: List<MovieTable>) {
+                movieRepo.refreshData(getApplication(), object : CallbackMovie {
+                    override fun onDataReadyM(data: List<MovieTable>) {
                         listMov.value = data
                         _viewState.postValue(MyViewState(isDownloaded = false))
                     }
-                }
+                },
+
+                    object : CallbackCateg {
+                        override fun onDataReadyC(data: List<CategoryTable>) {
+                            _listcateg.postValue(data)
+                        }
+
+                    }
+
                 )
             }
 
@@ -70,13 +78,19 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
             val x = (1..3).random()
             if (x == 3) Integer.parseInt("one")
             movieRepo = MovieRepo()
-            movieRepo.refreshData(getApplication(), object : OnDataReadyCallback {
-                override fun onDataReady(data: List<MovieTable>) {
+            movieRepo.refreshData(getApplication(), object : CallbackMovie {
+                override fun onDataReadyM(data: List<MovieTable>) {
                     var list: List<MovieTable> = data.shuffled()
                     listMov.value = list
                     _viewStateUp.postValue(MyViewStateUpdate(isRefreshing = false))
                 }
-            }
+            },
+                object : CallbackCateg {
+                    override fun onDataReadyC(data: List<CategoryTable>) {
+                        _listcateg.postValue(data)
+                    }
+
+                }
             )
         }
         return listMov
