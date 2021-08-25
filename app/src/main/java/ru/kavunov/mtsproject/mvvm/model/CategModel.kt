@@ -34,7 +34,6 @@ class CategModel {
         }
 
         suspend fun getAll(context: Context) : List<CategoryTable>? = withContext(Dispatchers.IO){
-            Thread.sleep(2000)
             db = initializeDB(context)
             categTableAll = db?.categDAO()?.get()
             return@withContext categTableAll

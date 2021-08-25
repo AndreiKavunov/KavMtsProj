@@ -53,8 +53,8 @@ class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
         filmImg.load(movie.imageUrl)
         filmName.text = movie.title
         filmContent.text = movie.description
-        filmOgr.text = movie.ageRestriction.toString() + "+"
-        filmRating.rating = movie.rateScore.toFloat()
+        filmOgr.text = movie.ageRestriction
+        filmRating.rating = movie.rateScore
         itemView.setOnClickListener { view ->
             (itemView.context as MovieClickListener)?.clickDetail(movie.movId)}
 

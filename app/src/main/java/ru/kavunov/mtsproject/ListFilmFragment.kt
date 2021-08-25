@@ -14,17 +14,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
-import ru.kavunov.mtsproject.bd.CategoryTable
-import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.mvvm.viewModel.CategViewModel
-
+import androidx.lifecycle.ViewModelProviders
 import ru.kavunov.mtsproject.mvvm.viewModel.MovieViewModel
 
 
 class ListFilmFragment : Fragment() {
 
-    private val myViewModelMovieViewModel: MovieViewModel by viewModels()
-    private val myViewModelCategViewModel: CategViewModel by viewModels()
+
+    private val MovieViewModel by lazy {ViewModelProviders.of(requireActivity()).get(MovieViewModel::class.java)}
+    private val CategViewModel: CategViewModel by viewModels()
     private var movieClickListener: MovieClickListener? = null
     private var adapterCateg= CategoryAdapter()
     private val progressDialog by lazy { ProgressDialog.show(requireActivity(), "", getString(R.string.please_wait)) }
@@ -36,22 +35,16 @@ class ListFilmFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+//
         val view = inflater.inflate(R.layout.fragment_list_film, container, false)
         val rcCateg = view.findViewById<RecyclerView>(R.id.RcCateg)
         val rcMovie = view.findViewById<RecyclerView>(R.id.RcMovie)
 
-        if(ListFilm.listMov.size < 1){
-            progressDialog.show()
-            myViewModelMovieViewModel.loadMovie()
-            myViewModelCategViewModel.loadCateg()
-            myViewModelCategViewModel.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
-            myViewModelMovieViewModel.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
-            myViewModelMovieViewModel.viewState.observe(requireActivity(), Observer(::render))
-        }
-        else {adapterMovie.changeList(ListFilm.listMov)
-            adapterCateg.initData(ListFilm.listCat)
-        }
+        progressDialog.show()
+        MovieViewModel.loadMovie().observe(requireActivity(), Observer(adapterMovie::changeList))
+        CategViewModel.loadCateg()
+        CategViewModel.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
+        MovieViewModel.viewState.observe(requireActivity(), Observer(::render))
 
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcCateg.adapter = adapterCateg
@@ -64,15 +57,14 @@ class ListFilmFragment : Fragment() {
 
         swipeToRefreshCentreal = view.findViewById(R.id.swip)
         swipeToRefreshCentreal.setOnRefreshListener {
-
-            myViewModelMovieViewModel.listmovie.observe(requireActivity(), Observer(adapterMovie::changeList))
-            myViewModelMovieViewModel.viewStateUp.observe(requireActivity(), Observer(::renderSwipe))
-            myViewModelMovieViewModel.updateMovie()
+            MovieViewModel.updateMovie().observe(requireActivity(), Observer(adapterMovie::changeList))
+            MovieViewModel.viewStateUp.observe(requireActivity(), Observer(::renderSwipe))
 
         }
 
         return view
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is MovieClickListener){
@@ -106,8 +98,7 @@ class ListFilmFragment : Fragment() {
 
 }
 
-object ListFilm {
-    var listMov = ArrayList<MovieTable>()
-    var listCat = ArrayList<CategoryTable>()
-}
+
+
+
 

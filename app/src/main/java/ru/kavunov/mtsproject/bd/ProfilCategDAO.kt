@@ -20,7 +20,5 @@ interface ProfilCategDAO {
     @Query("SELECT * FROM ProfilCategTable")
     fun get(): List<ProfilCategTable>
 
-//    @Query("SELECT ProfilModel.name, CategoryModel.category FROM ProfilModel, CategoryModel " +
-//                "WHERE films.id == actors.film_id")
-//    fun getFilmsWithActors(): List<FilmAndActor>
+
 }

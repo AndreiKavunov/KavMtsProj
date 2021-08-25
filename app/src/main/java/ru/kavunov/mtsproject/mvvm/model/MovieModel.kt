@@ -18,10 +18,12 @@ class MovieModel {
             return AppDatabase.getDataseClient(context)
         }
 
-        suspend fun insertData(context: Context, id: Long, title: String, description: String, rateScore: Int,
-                       ageRestriction: String,  imageUrl: String,)= withContext(Dispatchers.IO) {
+
+        suspend fun insertData(context: Context, id: Long, title: String, description: String, rateScore: Float,
+                       ageRestriction: String,  imageUrl: String)= withContext(Dispatchers.IO) {
             db = initializeDB(context)
             val loginDetails = MovieTable(id, title, description, rateScore, ageRestriction, imageUrl)
+
             db?.movieDAO()?.insert(loginDetails)
 
         }
@@ -33,7 +35,7 @@ class MovieModel {
         }
 
         suspend fun getAll(context: Context) : List<MovieTable>? = withContext(Dispatchers.IO) {
-            Thread.sleep(2000)
+
             db = initializeDB(context)
             movieTableAll = db?.movieDAO()?.get()
             return@withContext movieTableAll
