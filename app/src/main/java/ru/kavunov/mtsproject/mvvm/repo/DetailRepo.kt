@@ -1,5 +1,6 @@
 package ru.kavunov.mtsproject.mvvm
 
+import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +23,7 @@ import ru.kavunov.mtsproject.recponse.*
 
 class DetailRepo(position: Long){
      val position = position
-    fun refreshDataDet(onCallbackMovD: OnCallbackMovD,
+    fun refreshDataDet(contetx: Context,  onCallbackMovD: OnCallbackMovD,
                        OnCallbacActT: OnCallbacActT){
         CoroutineScope(Dispatchers.Main).launch() {
 
