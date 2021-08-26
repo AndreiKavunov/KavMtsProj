@@ -17,61 +17,30 @@ import ru.kavunov.mtsproject.mvvm.model.MovieModel
 import ru.kavunov.mtsproject.recponse.*
 
 
-
-
-
-
 class DetailRepo(position: Long){
-     val position = position
-    fun refreshDataDet(contetx: Context,  onCallbackMovD: OnCallbackMovD,
+    val position = position
+    fun refreshDataDet(contetx: Context, onCallbackMovD: OnCallbackMovD,
                        OnCallbacActT: OnCallbacActT){
         CoroutineScope(Dispatchers.Main).launch() {
 
+            val movie: MovieTable? = MovieModel.getMovieID(contetx, position)
 
-        val movie: MovieTable? = MovieModel.getMovieID(contetx, position)
+            val listM: List<MovListWithAct>? = MovieModel.getActorList(contetx, position)
+            var listAct: ArrayList<ActorTable> = ArrayList()
+            listM?.getOrNull(0)?.listAct?.let { listAct.addAll(it) }
 
-        val listM: List<MovListWithAct>? = MovieModel.getActorList(contetx, position)
-       var listAct: ArrayList<ActorTable> = ArrayList()
-        listM?.getOrNull(0)?.listAct?.let { listAct.addAll(it) }
-
-        val movieDto =
-            movie?.title?.let {
-                MovieDto(id = movie.movId.toString() ,title = it, description = movie?.description, rateScore = movie.rateScore,
-                    ageRestriction = movie?.ageRestriction, imageUrl= movie.imageUrl, releaseDate= movie.releaseDate, genre = movie.genre)
-
-            }
-            if (listMov != null) {
-                for(i in listMov) {
-                    if( i.id == position.toString()) {
-                        movie = i
-                    }
+            val movieDto =
+                movie?.title?.let {
+                    MovieDto(id = movie.movId.toString() ,title = it, description = movie?.description, rateScore = movie.rateScore,
+                        ageRestriction = movie?.ageRestriction, imageUrl= movie.imageUrl, releaseDate= movie.releaseDate, genre = movie.genre)
                 }
-            }
-       val listM: List<ActorResp>? = getAllActors(position.toString())
-       var listAct: ArrayList<ActorTable> = ArrayList()
-            if (listM != null) {
-                for(i in listM){
-                    if(i.profilePath!=null) {
-                        listAct.add(
-                            ActorTable(
-                                actId = i.id.toLong(),
-                                imgAct = IMG_HEADER + i.profilePath,
-                                nameAct = i.name
-                            )
-                        )
-                    }
-                }
-            }
 
-
-
-            if (movie != null) {
-                onCallbackMovD.onDataMovD(movie)
+            if (movieDto != null) {
+                onCallbackMovD.onDataMovD(movieDto)
             }
-        OnCallbacActT.onDataActT(listAct)
-    }}
+            OnCallbacActT.onDataActT(listAct)
+        }}
 }
-
 interface OnCallbackMovD {
     fun onDataMovD(data: MovieDto)
 }
