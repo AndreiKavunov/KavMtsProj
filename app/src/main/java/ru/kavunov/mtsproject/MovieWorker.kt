@@ -35,5 +35,7 @@ fun runWorker(context: Context){
         .build()
 
     WorkManager.getInstance(context)
-        .enqueue(workRequest)
+        .enqueueUniquePeriodicWork(workRequest.toString(), ExistingPeriodicWorkPolicy.KEEP, workRequest)
 }
+
+

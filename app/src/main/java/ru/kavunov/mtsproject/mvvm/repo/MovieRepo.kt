@@ -100,23 +100,23 @@ suspend fun startBd(context: Context)= withContext(Dispatchers.IO){
             }
             val listMov = getAllMov()
             if (listMov != null) {
-                var idF = 0L
-                var idA = 0L
-                for(i in listMov){
-                    idF = i.id.toLong()
-                    var age = getAllA(i.id.toString())
-                    var genre = CategModel.getIdGence(context, i.genreIds[0].toLong())!!.category
-                    val listActor = getAllActors(i.id.toString())
-                    MovieModel.insertData(context= context, id= i.id.toLong(), title = i.title, description= i.overview,
-                        imageUrl = IMG_HEADER + i.posterPath, ageRestriction = age, rateScore = i.voteAverage/2,
-                        releaseDate= i.releaseDate, genre = genre)
+                var idMovie: Long = 0
+                var idActor: Long = 0
+                for(movie in listMov){
+                    idMovie = movie.id.toLong()
+                    var age = getAllA(movie.id.toString())
+                    var genre = CategModel.getIdGence(context, movie.genreIds[0].toLong())!!.category
+                    val listActor = getAllActors(movie.id.toString())
+                    MovieModel.insertData(context= context, id= movie.id.toLong(), title = movie.title, description= movie.overview,
+                        imageUrl = IMG_HEADER + movie.posterPath, ageRestriction = age, rateScore = movie.voteAverage/2,
+                        releaseDate= movie.releaseDate, genre = genre)
 
                     if (listActor != null) {
                         for (actor in listActor.take(5)){
-                            idA = actor.id.toLong()
+                            idActor = actor.id.toLong()
                             ActorModel.insertData(context = context, id = actor.id.toLong(),
                                 imgAct = IMG_HEADER + actor.profilePath, nameAct = actor.name)
-                            MovieActModel.insertData(context, idF, idA)
+                            MovieActModel.insertData(context, idMovie, idActor)
 
                         }
 
