@@ -63,6 +63,7 @@ const val BASE_URL = "https://api.themoviedb.org/3/"
 const val APPLICATION_JSON_TYPE = "application/json"
 const val AUTH_HEADER = "b62341778732f78e2661370039f79b84"
 const val IMG_HEADER = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/"
+const val WORKREQUEST = "workRequest"
 
 const val LANGUAGE = "RU"
 
