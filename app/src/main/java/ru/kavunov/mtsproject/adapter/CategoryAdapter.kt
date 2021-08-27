@@ -34,8 +34,8 @@ class CategoryAdapter():RecyclerView.Adapter<CategoryHolder>() {
         if (categ!=null){
             categtList.clear()
             categtList.addAll(categ)
-            notifyDataSetChanged()
-            Log.d("initDataBlock", "size  = $itemCount")
+            notifyItemInserted(categ.size)
+
         }
     }
 

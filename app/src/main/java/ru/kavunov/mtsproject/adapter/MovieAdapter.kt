@@ -39,7 +39,8 @@ class MovieAdapter(): RecyclerView.Adapter<MovieHolder>() {
         if (movie!=null){
             movietList.clear()
             movietList.addAll(movie)
-            notifyDataSetChanged()
+//            notifyDataSetChanged()
+            notifyItemInserted(movie.size)
 
         }
 
