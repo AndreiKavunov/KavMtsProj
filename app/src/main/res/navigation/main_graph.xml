@@ -7,26 +7,23 @@
     <fragment
         android:id="@+id/listFilmFragment"
         android:name="ru.kavunov.mtsproject.ListFilmFragment"
-        android:label="ListFilmFragment" >
+        android:label="ListFilmFragment"
+        >
         <action
             android:id="@+id/action_listFilmFragment_to_detailkFragment"
             app:destination="@id/detailkFragment"
-            app:enterAnim="@anim/in_test"
-            app:exitAnim="@anim/out" />
+          />
         <action
             android:id="@+id/action_listFilmFragment_to_profilFragment3"
             app:destination="@id/profilFragment"
-            app:enterAnim="@anim/in"
-            app:exitAnim="@anim/out" />
+           />
     </fragment>
     <fragment
         android:id="@+id/detailkFragment"
         android:name="ru.kavunov.mtsproject.DetailkFragment"
         android:label="DetailkFragment" >
         <argument android:name="MyArg" />
-        <action
-            android:id="@+id/action_detailkFragment_to_listFilmFragment"
-            app:destination="@id/listFilmFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/profilFragment"

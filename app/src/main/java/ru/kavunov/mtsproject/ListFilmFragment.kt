@@ -16,6 +16,7 @@ import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
 
 import androidx.lifecycle.ViewModelProviders
+import androidx.transition.TransitionInflater
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
 import jp.wasabeef.recyclerview.animators.FlipInLeftYAnimator
 import jp.wasabeef.recyclerview.animators.LandingAnimator
