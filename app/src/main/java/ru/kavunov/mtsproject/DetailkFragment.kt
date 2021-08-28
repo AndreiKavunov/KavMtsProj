@@ -1,6 +1,7 @@
 package ru.kavunov.mtsproject
 
 import android.os.Bundle
+import android.transition.ChangeBounds
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,14 @@ import ru.kavunov.mtsproject.mvvm.viewModel.DetailViewModel
 class DetailkFragment : Fragment() {
     private val detailViewModel: DetailViewModel by viewModels()
     var adapterActors= ActorsAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        sharedElementEnterTransition = ChangeBounds().apply {
+            duration = 2000
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
