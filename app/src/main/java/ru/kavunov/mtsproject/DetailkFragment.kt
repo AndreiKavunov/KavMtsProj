@@ -38,7 +38,7 @@ class DetailkFragment : Fragment() {
         val position = arguments?.getString("MyArg")
         val view =  inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
-
+        view.findViewById<TextView>(R.id.titleId)?.transitionName = position
         if(position!=null)detailViewModel.loadDetail(position.toLong())
         detailViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
         detailViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
@@ -50,6 +50,7 @@ class DetailkFragment : Fragment() {
 
     fun viewMovie(movieDto: MovieDto){
         view?.findViewById<TextView>(R.id.titleId)?.text = movieDto.title
+
         view?.findViewById<TextView>(R.id.textgenre)?.text = movieDto.genre
         view?.findViewById<TextView>(R.id.textData)?.text = movieDto.releaseDate
         view?.findViewById<TextView>(R.id.descripId)?.text = movieDto.description

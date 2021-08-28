@@ -39,8 +39,9 @@ class MovieAdapter(): RecyclerView.Adapter<MovieHolder>() {
         if (movie!=null){
             movietList.clear()
             movietList.addAll(movie)
-//            notifyDataSetChanged()
             notifyItemInserted(movie.size)
+            notifyDataSetChanged()
+
 
         }
 
@@ -53,11 +54,12 @@ class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
     fun bind(movie: MovieTable){building.apply {
         filmImg.load(movie.imageUrl)
         filmName.text = movie.title
+        filmName.transitionName = movie.movId.toString()
         filmContent.text = movie.description
         filmOgr.text = movie.ageRestriction
         filmRating.rating = movie.rateScore
         itemView.setOnClickListener { view ->
-            (itemView.context as MovieClickListener)?.clickDetail(movie.movId)}
+            (itemView.context as MovieClickListener)?.clickDetail(movie.movId, movie, filmName)}
 
     }
 

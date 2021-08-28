@@ -3,11 +3,14 @@ package ru.kavunov.mtsproject
 
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 
 
@@ -35,10 +38,24 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
     }
 
-    override fun clickDetail(position: Long) {
+//    override fun clickDetail(position: Long) {
+//        bundle.putString("MyArg", position.toString())
+//        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle)
+//          }
+
+    override fun clickDetail(position: Long, movieTable: MovieTable, textView: TextView) {
+
+        val extrasConst = FragmentNavigatorExtras(
+            textView to position.toString()
+        )
         bundle.putString("MyArg", position.toString())
-        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle)
-          }
+        Navigation
+            .findNavController(this, R.id.nav_host_fragment)
+            .navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle, null,  extrasConst)
+
+
+
+    }
 
 
 }
