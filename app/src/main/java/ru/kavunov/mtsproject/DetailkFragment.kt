@@ -71,4 +71,15 @@ class DetailkFragment : Fragment() {
         view?.findViewById<ImageView>(R.id.imageDetId)?.load(movieDto.imageUrl)
 
     }
+    companion object {
+        const val ARG_PARAM1 = "param1"
+        @JvmStatic
+        fun newInstance(param1: Int) =
+            DetailkFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_PARAM1, param1)
+
+                }
+            }
+    }
 }

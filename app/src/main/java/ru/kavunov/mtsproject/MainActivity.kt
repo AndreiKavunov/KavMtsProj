@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         supportFragmentManager
             .beginTransaction()
             .addSharedElement(image, "image"+position.toString())
-            .replace(R.id.mainFrag, DetailkFragment.newInstance(position))
+            .replace(R.id.mainFrag, DetailkFragment.newInstance(position.toInt()))
             .addToBackStack(null)
             .commit()
 
