@@ -30,10 +30,10 @@ class DetailkFragment : Fragment() {
 
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
-                duration = 2000
+                duration = 1000
             }
 
-        enterTransition = Fade()
+//        enterTransition = Fade()
     }
 
     override fun onCreateView(
