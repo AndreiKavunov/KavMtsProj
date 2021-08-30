@@ -56,10 +56,10 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 //            .navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle, null,  extrasConst)
 
 
-        activity.supportFragmentManager
+        supportFragmentManager
             .beginTransaction()
             .addSharedElement(image, "image"+position.toString())
-            .replace(R.id.container, fragment)
+            .replace(R.id.mainFrag, DetailkFragment.newInstance(position))
             .addToBackStack(null)
             .commit()
 
