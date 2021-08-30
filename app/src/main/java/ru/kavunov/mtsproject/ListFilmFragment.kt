@@ -16,6 +16,7 @@ import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
 
 import androidx.lifecycle.ViewModelProviders
+import androidx.transition.Fade
 import androidx.transition.TransitionInflater
 import jp.wasabeef.recyclerview.animators.FadeInAnimator
 import jp.wasabeef.recyclerview.animators.FlipInLeftYAnimator
@@ -34,19 +35,6 @@ class ListFilmFragment : Fragment() {
     private val progressDialog by lazy { ProgressDialog.show(requireActivity(), "", getString(R.string.please_wait)) }
     private var adapterMovie= MovieAdapter()
     lateinit var swipeToRefreshCentreal : SwipeRefreshLayout
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//        sharedElementEnterTransition =
-//            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
-//                duration = 1000
-//            }
-//        sharedElementReturnTransition =
-//            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
-//                duration = 1000
-//            }
-////        enterTransition = Fade()
-//    }
 
     override fun onCreateView(
 
@@ -70,18 +58,14 @@ class ListFilmFragment : Fragment() {
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
         rcMovie.adapter = adapterMovie
         rcCateg.itemAnimator = FlipInLeftYAnimator(OvershootInterpolator(1f))
-//        rcCateg.itemAnimator = FadeInAnimator(OvershootInterpolator(1f))
         rcCateg.itemAnimator?.apply {
             addDuration = 1000
-//            removeDuration = 5000
-//            moveDuration = 5000
-//            changeDuration = 5000
+
         }
 
         val indent_h = convertDpToPixels(requireActivity(), 150f)
         val dividerItemDecoration = CharacterItemDecoration(indent_h.toInt())
         rcMovie.addItemDecoration(dividerItemDecoration)
-//        rcMovie.itemAnimator = SlideInUpAnimator(OvershootInterpolator(1f))
         rcMovie.itemAnimator = FadeInAnimator(OvershootInterpolator(1f))
         rcMovie.itemAnimator?.apply {
             addDuration = 1000

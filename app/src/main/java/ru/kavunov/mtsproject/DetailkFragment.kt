@@ -1,8 +1,6 @@
 package ru.kavunov.mtsproject
 
 import android.os.Bundle
-import android.transition.ChangeBounds
-import androidx.transition.Fade
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,32 +25,23 @@ class DetailkFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = TransitionInflater.from(this.context).inflateTransition(R.transition.transition).apply {
+            duration = 1500
+        }
 
-        sharedElementEnterTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
-                duration = 3000
-            }
-//        sharedElementReturnTransition =
-//            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
-//                duration = 1000
-//            }
-//        enterTransition = Fade()
+        sharedElementReturnTransition = TransitionInflater.from(this.context).inflateTransition(R.transition.transition).apply {
+            duration = 1500
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val position = arguments?.getString("MyArg")
-//        val position = arguments?.getInt(ARG_PARAM1).toString()
         val view = inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
-        view.findViewById<View>(R.id.titleId)?.transitionName = position.toString()
         view.findViewById<View>(R.id.imageDetId)?.transitionName = "image" + position
-        view.findViewById<View>(R.id.descripId)?.transitionName = "content" + position
-        view.findViewById<View>(R.id.filmRatingDet)?.transitionName = "rating" + position
-        view.findViewById<View>(R.id.ageRestrictionId)?.transitionName = "age" + position
         if (position != null) detailViewModel.loadDetail(position.toLong())
         detailViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
         detailViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
@@ -76,15 +65,7 @@ class DetailkFragment : Fragment() {
         view?.findViewById<ImageView>(R.id.imageDetId)?.load(movieDto.imageUrl)
 
     }
-    companion object {
-        const val ARG_PARAM1 = "param1"
-        @JvmStatic
-        fun newInstance(param1: Int) =
-            DetailkFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_PARAM1, param1)
 
-                }
-            }
-    }
 }
+
+

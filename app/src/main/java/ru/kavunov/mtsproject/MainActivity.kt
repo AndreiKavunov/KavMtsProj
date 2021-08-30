@@ -40,35 +40,18 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
     }
 
-//    override fun clickDetail(position: Long) {
-//        bundle.putString("MyArg", position.toString())
-//        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle)
-//          }
-
-    override fun clickDetail(position: Long, movieTable: MovieTable, titleView: TextView, image:ImageView,
-                             contentView: TextView, rating: RatingBar, age: TextView) {
+    override fun clickDetail(position: Long,image:ImageView) {
 
         val extrasConst = FragmentNavigatorExtras(
-            titleView to position.toString(),
+
             image to "image"+position.toString(),
-            contentView to "content"+position.toString(),
-            rating to "rating"+position.toString(),
-            age to "age"+position.toString()
+
         )
         bundle.putString("MyArg", position.toString())
         Navigation
             .findNavController(this, R.id.nav_host_fragment)
             .navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle, null,  extrasConst)
 
-//
-//        supportFragmentManager
-//            .beginTransaction()
-////            .addSharedElement(image, "image"+position.toString())
-//            .setCustomAnimations(R.anim.fade_in,
-//                R.anim.fade_out)
-//            .replace(R.id.mainFrag, DetailkFragment.newInstance(position.toInt()))
-//            .addToBackStack(null)
-//            .commit()
 
     }
 
