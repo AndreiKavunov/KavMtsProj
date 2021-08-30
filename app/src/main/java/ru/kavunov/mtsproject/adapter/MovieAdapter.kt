@@ -53,6 +53,9 @@ class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
     val building = ItemMovieBinding.bind(item)
     fun bind(movie: MovieTable){building.apply {
         filmImg.transitionName = "image${movie.movId}"
+        filmContent.transitionName = "content${movie.movId}"
+        filmRating.transitionName = "rating${movie.movId}"
+        filmOgr.transitionName = "age${movie.movId}"
 
         filmImg.load(movie.imageUrl)
         filmName.text = movie.title
@@ -61,7 +64,7 @@ class MovieHolder(item:View):RecyclerView.ViewHolder(item) {
         filmOgr.text = movie.ageRestriction
         filmRating.rating = movie.rateScore
         itemView.setOnClickListener { view ->
-            (itemView.context as MovieClickListener)?.clickDetail(movie.movId, movie, filmName,filmImg)}
+            (itemView.context as MovieClickListener)?.clickDetail(movie.movId, movie, filmName,filmImg, filmContent, filmRating, filmOgr)}
 
     }
 

@@ -12,7 +12,8 @@
         <action
             android:id="@+id/action_listFilmFragment_to_detailkFragment"
             app:destination="@id/detailkFragment"
-          />
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_listFilmFragment_to_profilFragment3"
             app:destination="@id/profilFragment"

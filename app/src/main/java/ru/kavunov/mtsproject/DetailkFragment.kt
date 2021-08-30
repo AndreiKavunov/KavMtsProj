@@ -30,12 +30,12 @@ class DetailkFragment : Fragment() {
 
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
-                duration = 1000
+                duration = 3000
             }
-        sharedElementReturnTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
-                duration = 1000
-            }
+//        sharedElementReturnTransition =
+//            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
+//                duration = 1000
+//            }
 //        enterTransition = Fade()
     }
 
@@ -43,11 +43,16 @@ class DetailkFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val position = arguments?.getString("MyArg")
+//        val position = arguments?.getInt(ARG_PARAM1).toString()
         val view = inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
-        view.findViewById<View>(R.id.titleId)?.transitionName = position
+        view.findViewById<View>(R.id.titleId)?.transitionName = position.toString()
         view.findViewById<View>(R.id.imageDetId)?.transitionName = "image" + position
+        view.findViewById<View>(R.id.descripId)?.transitionName = "content" + position
+        view.findViewById<View>(R.id.filmRatingDet)?.transitionName = "rating" + position
+        view.findViewById<View>(R.id.ageRestrictionId)?.transitionName = "age" + position
         if (position != null) detailViewModel.loadDetail(position.toLong())
         detailViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
         detailViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
