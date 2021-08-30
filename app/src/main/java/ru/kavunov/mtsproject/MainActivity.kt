@@ -45,17 +45,23 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 //          }
 
     override fun clickDetail(position: Long, movieTable: MovieTable, textView: TextView, image:ImageView) {
+//
+//        val extrasConst = FragmentNavigatorExtras(
+//            textView to position.toString(),
+//            image to "image"+position.toString()
+//        )
+//        bundle.putString("MyArg", position.toString())
+//        Navigation
+//            .findNavController(this, R.id.nav_host_fragment)
+//            .navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle, null,  extrasConst)
 
-        val extrasConst = FragmentNavigatorExtras(
-            textView to position.toString(),
-            image to "image"+position.toString()
-        )
-        bundle.putString("MyArg", position.toString())
-        Navigation
-            .findNavController(this, R.id.nav_host_fragment)
-            .navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle, null,  extrasConst)
 
-
+        activity.supportFragmentManager
+            .beginTransaction()
+            .addSharedElement(image, "image"+position.toString())
+            .replace(R.id.container, fragment)
+            .addToBackStack(null)
+            .commit()
 
     }
 

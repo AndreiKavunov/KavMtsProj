@@ -34,6 +34,19 @@ class ListFilmFragment : Fragment() {
     private val progressDialog by lazy { ProgressDialog.show(requireActivity(), "", getString(R.string.please_wait)) }
     private var adapterMovie= MovieAdapter()
     lateinit var swipeToRefreshCentreal : SwipeRefreshLayout
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
+                duration = 1000
+            }
+        sharedElementReturnTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
+                duration = 1000
+            }
+//        enterTransition = Fade()
+    }
 
     override fun onCreateView(
 

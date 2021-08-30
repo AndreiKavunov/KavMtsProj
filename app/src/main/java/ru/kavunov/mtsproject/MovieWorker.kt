@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.mvvm.changeBd
+import ru.kavunov.mtsproject.recponse.WORKREQUEST
 import java.util.concurrent.TimeUnit
 
 class MovieWorker(context: Context, workerParams: WorkerParameters) :
@@ -35,5 +36,5 @@ fun runWorker(context: Context){
         .build()
 
     WorkManager.getInstance(context)
-        .enqueue(workRequest)
+        .enqueueUniquePeriodicWork(WORKREQUEST, ExistingPeriodicWorkPolicy.KEEP, workRequest)
 }

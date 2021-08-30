@@ -32,7 +32,10 @@ class DetailkFragment : Fragment() {
             TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
                 duration = 1000
             }
-
+        sharedElementReturnTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move).apply {
+                duration = 1000
+            }
 //        enterTransition = Fade()
     }
 
