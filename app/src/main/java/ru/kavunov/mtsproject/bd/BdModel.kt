@@ -16,7 +16,7 @@ data class ProfilTable(
 
 @Entity(tableName = "CategoryModel")
 data class CategoryTable(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     @ColumnInfo(name = "categId")
     val categId: Long,
     val category: String,
@@ -30,22 +30,25 @@ data class ProfilCategTable(
 
 @Entity(tableName = "MovieModel")
 data class MovieTable(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     @ColumnInfo(name = "movId")
     val movId: Long,
     val title: String,
     val description: String,
 
+    val releaseDate: String,
     val rateScore: Float,
     val ageRestriction: String,
     val imageUrl: String,
+    val genre: String,
+
 
 
     )
 
 @Entity(tableName = "ActorModel")
 data class ActorTable(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     @ColumnInfo(name = "actId")
     val actId: Long,
     val imgAct: String,

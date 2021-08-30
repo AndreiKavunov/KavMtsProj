@@ -1,48 +1,44 @@
 package ru.kavunov.mtsproject.mvvm
 
 import android.content.Context
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import ru.kavunov.mtsproject.DTC.MovieResponse
+
+import ru.kavunov.mtsproject.bd.CategoryTable
 import ru.kavunov.mtsproject.bd.MovieTable
-import ru.kavunov.mtsproject.mvvm.model.CategModel
-import ru.kavunov.mtsproject.mvvm.model.ProfilCatModel
-import ru.kavunov.mtsproject.mvvm.model.ProfilModel
+import ru.kavunov.mtsproject.mvvm.model.*
 import ru.kavunov.mtsproject.recponse.AgeResp
 import ru.kavunov.mtsproject.recponse.App
+import ru.kavunov.mtsproject.recponse.CategResp
 import ru.kavunov.mtsproject.recponse.IMG_HEADER
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
 
 
 class MovieRepo(){
-    fun refreshData(contetx: Context, onDataReadyCallback: OnDataReadyCallback){
-        CoroutineScope(Dispatchers.Main).launch() {
-            startBd(contetx)
-            var list: ArrayList<MovieTable>? = ArrayList()
-            val listRep = getAllMov()
+    fun refreshData(contetx: Context, callbackMovie: CallbackMovie, callbackCateg: CallbackCateg){
+    CoroutineScope(Dispatchers.Main).launch() {
+        startBd(contetx)
+        val contextA = contetx
+        val list: List<MovieTable>? = MovieModel.getAll(contextA)
 
+        if (list!=null)callbackMovie.onDataReadyM(list)
 
-            if(listRep != null){
-                for(i in listRep) {
+        val listC: List<CategoryTable>? = CategModel.getAll(contetx)
+        if (listC!=null)callbackCateg.onDataReadyC(listC)
+    }}
 
-                    var age = getAllA(i.id.toString())
-                    list?.add(MovieTable(movId= i.id.toLong(), title= i.title, description= i.overview,
-                        rateScore= i.voteAverage/2, ageRestriction= age, imageUrl = IMG_HEADER + i.posterPath,
-                    ))
-
-
-                }
-            }
-
-
-
-            if (list!=null)onDataReadyCallback.onDataReady(list)
-        }}
 }
-interface OnDataReadyCallback {
-    fun onDataReady(data: List<MovieTable>)
+
+
+interface CallbackCateg {
+    fun onDataReadyC(data: List<CategoryTable>)
+
+}
+interface CallbackMovie {
+    fun onDataReadyM(data: List<MovieTable>)
 
 }
 
@@ -55,6 +51,7 @@ suspend fun getAllMov() : List<MovieResponse>? = withContext(Dispatchers.IO){
     } catch (e: Exception) {
         movies = ArrayList()
     }
+
     return@withContext movies
 }
 
@@ -78,12 +75,12 @@ suspend fun getAllA(idF:String) : String = withContext(Dispatchers.IO){
     return@withContext certification
 }
 
-suspend fun startBd(context: Context){
-    CoroutineScope(Dispatchers.IO).launch() {
-        if(ProfilModel.getAll(context)?.size == 0){
-            ProfilCatModel.insertData(context, 1, 2)
-            ProfilCatModel.insertData(context, 1, 4)
-            ProfilCatModel.insertData(context, 1, 5)
+
+suspend fun startBd(context: Context)= withContext(Dispatchers.IO){
+        if(MovieModel.getAll(context)?.size == 0){
+            ProfilCatModel.insertData(context, 1, 28)
+            ProfilCatModel.insertData(context, 1, 12)
+            ProfilCatModel.insertData(context, 1, 16)
             ProfilModel.insertData(
                 context,
                 id = 1,
@@ -91,11 +88,88 @@ suspend fun startBd(context: Context){
                 email = "Ivan@mail.ru",
                 phone = "8-909-000-9999",
                 foto = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oTB9vGIBacH5aQNS0pUM74QSWuf.jpg",
-            )}
-        for (x in CategoryDataSourceImpl().getMovies()) CategModel.insertData(
-            context,
-            0,
-            x.category
-        )
+            )
 
-    }}
+            val listCateg = getAllCat()
+            Log.d("tag11", "555" +listCateg.toString())
+            if (listCateg != null) {
+                for(i in listCateg) {
+                    CategModel.insertData(context, i.id.toLong(), i.name)
+                }
+
+            }
+            val listMov = getAllMov()
+            if (listMov != null) {
+                var idMovie: Long = 0
+                var idActor: Long = 0
+                for(movie in listMov){
+                    idMovie = movie.id.toLong()
+                    var age = getAllA(movie.id.toString())
+                    var genre = CategModel.getIdGence(context, movie.genreIds[0].toLong())!!.category
+                    val listActor = getAllActors(movie.id.toString())
+                    MovieModel.insertData(context= context, id= movie.id.toLong(), title = movie.title, description= movie.overview,
+                        imageUrl = IMG_HEADER + movie.posterPath, ageRestriction = age, rateScore = movie.voteAverage/2,
+                        releaseDate= movie.releaseDate, genre = genre)
+
+                    if (listActor != null) {
+                        for (actor in listActor.take(5)){
+                            idActor = actor.id.toLong()
+                            ActorModel.insertData(context = context, id = actor.id.toLong(),
+                                imgAct = IMG_HEADER + actor.profilePath, nameAct = actor.name)
+                            MovieActModel.insertData(context, idMovie, idActor)
+
+                        }
+
+
+                    }
+                }}
+
+        }
+
+}
+
+suspend fun changeBd(context: Context)= withContext(Dispatchers.IO){
+        MovieModel.deleteAll(context)
+        ActorModel.deleteAll(context)
+        MovieActModel.deleteAll(context)
+        val listMov = getAllMov()
+        if (listMov != null) {
+            var idF = 0L
+            var idA = 0L
+            for(i in listMov){
+                idF = i.id.toLong()
+                var age = getAllA(i.id.toString())
+                var genre = CategModel.getIdGence(context, i.genreIds[0].toLong())!!.category
+                val listActor = getAllActors(i.id.toString())
+                MovieModel.insertData(context= context, id= i.id.toLong(), title = i.title, description= i.overview,
+                    imageUrl = IMG_HEADER + i.posterPath, ageRestriction = age, rateScore = i.voteAverage/2,
+                    releaseDate= i.releaseDate, genre = genre)
+
+                if (listActor != null) {
+                    for (actor in listActor.take(5)){
+                        idA = actor.id.toLong()
+                        ActorModel.insertData(context = context, id = actor.id.toLong(),
+                            imgAct = IMG_HEADER + actor.profilePath, nameAct = actor.name)
+                        MovieActModel.insertData(context, idF, idA)
+
+                    }
+
+
+                }
+            }}
+
+
+
+}
+suspend fun getAllCat() : List<CategResp>? = withContext(Dispatchers.IO){
+    var categs: List<CategResp>
+    try {
+        categs = withContext(Dispatchers.IO) {
+            App.instance.apiService.getCateg().genres
+        }
+    } catch (e: Exception) {
+        categs = ArrayList()
+    }
+    return@withContext categs
+}
+

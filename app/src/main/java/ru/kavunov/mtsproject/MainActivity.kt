@@ -1,6 +1,7 @@
 package ru.kavunov.mtsproject
 
 
+
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
@@ -8,6 +9,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
+
+
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
@@ -27,6 +30,9 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         findViewById<BottomNavigationView>(R.id.BoNav)
             .setupWithNavController(navController)
 
+        runWorker(this)
+
+
     }
 
     override fun clickDetail(position: Long) {
@@ -41,6 +47,10 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 
 object Orient {var orInt = 1}
+
+
+
+
 
 
 

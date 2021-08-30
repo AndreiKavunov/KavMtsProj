@@ -12,8 +12,8 @@ interface ActorDAO {
     @Update
     fun update(actorTable: ActorTable)
 
-    @Delete
-    fun delete(actorTable: ActorTable)
+    @Query("DELETE FROM ActorModel")
+    fun delete()
 
     @Query("SELECT * FROM ActorModel WHERE actId == :id")
     fun getByName(id: Long): ActorTable

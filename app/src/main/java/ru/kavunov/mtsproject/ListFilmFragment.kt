@@ -7,14 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
-import ru.kavunov.mtsproject.mvvm.viewModel.CategViewModel
+
 import androidx.lifecycle.ViewModelProviders
 import ru.kavunov.mtsproject.mvvm.viewModel.MovieViewModel
 
@@ -23,7 +22,7 @@ class ListFilmFragment : Fragment() {
 
 
     private val MovieViewModel by lazy {ViewModelProviders.of(requireActivity()).get(MovieViewModel::class.java)}
-    private val CategViewModel: CategViewModel by viewModels()
+
     private var movieClickListener: MovieClickListener? = null
     private var adapterCateg= CategoryAdapter()
     private val progressDialog by lazy { ProgressDialog.show(requireActivity(), "", getString(R.string.please_wait)) }
@@ -42,8 +41,9 @@ class ListFilmFragment : Fragment() {
 
         progressDialog.show()
         MovieViewModel.loadMovie().observe(requireActivity(), Observer(adapterMovie::changeList))
-        CategViewModel.loadCateg()
-        CategViewModel.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
+
+        MovieViewModel.listcateg.observe(requireActivity(), Observer(adapterCateg::initData))
+
         MovieViewModel.viewState.observe(requireActivity(), Observer(::render))
 
         rcCateg.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)

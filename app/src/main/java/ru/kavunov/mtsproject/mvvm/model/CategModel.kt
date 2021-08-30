@@ -27,7 +27,7 @@ class CategModel {
 
         }
 
-        suspend fun getLoginDetails(context: Context, id: Long) : CategoryTable? = withContext(Dispatchers.IO) {
+        suspend fun getIdGence(context: Context, id: Long) : CategoryTable? = withContext(Dispatchers.IO) {
             db = initializeDB(context)
             categTable = db?.categDAO()?.getByName(id)
             return@withContext categTable

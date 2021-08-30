@@ -31,6 +31,12 @@ class ActorModel {
             return@withContext actorTable
         }
 
+        suspend fun deleteAll(context: Context)= withContext(Dispatchers.IO) {
+            MovieModel.db = MovieModel.initializeDB(context)
+            MovieModel.db?.actorDAO()?.delete()
+
+        }
+
         suspend fun getAll(context: Context) : List<ActorTable>? = withContext(Dispatchers.IO){
             db = initializeDB(context)
             actorTableAll = db?.actorDAO()?.get()

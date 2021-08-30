@@ -20,9 +20,11 @@ class MovieModel {
 
 
         suspend fun insertData(context: Context, id: Long, title: String, description: String, rateScore: Float,
-                       ageRestriction: String,  imageUrl: String)= withContext(Dispatchers.IO) {
+
+                       ageRestriction: String,  imageUrl: String, releaseDate: String, genre: String)= withContext(Dispatchers.IO) {
             db = initializeDB(context)
-            val loginDetails = MovieTable(id, title, description, rateScore, ageRestriction, imageUrl)
+            val loginDetails = MovieTable(id, title, description, releaseDate, rateScore, ageRestriction, imageUrl, genre)
+
 
             db?.movieDAO()?.insert(loginDetails)
 
@@ -40,7 +42,11 @@ class MovieModel {
             movieTableAll = db?.movieDAO()?.get()
             return@withContext movieTableAll
         }
+        suspend fun deleteAll(context: Context)= withContext(Dispatchers.IO) {
+            db = initializeDB(context)
+            db?.movieDAO()?.delete()
 
+        }
 
         suspend fun getActorList(context: Context, id: Long) : List<MovListWithAct>?= withContext(Dispatchers.IO) {
                 db = ProfilModel.initializeDB(context)

@@ -14,8 +14,13 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import ru.kavunov.mtsproject.DTC.Profil
 import ru.kavunov.mtsproject.adapter.CategoryAdapterNEW
+
+import ru.kavunov.mtsproject.mvvm.changeBd
 import ru.kavunov.mtsproject.mvvm.viewModel.ProfilViewModel
 
 class ProfilFragment : Fragment() {
