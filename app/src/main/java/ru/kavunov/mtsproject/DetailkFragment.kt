@@ -26,11 +26,11 @@ class DetailkFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition = TransitionInflater.from(this.context).inflateTransition(R.transition.transition).apply {
-            duration = 1500
+            duration = 500
         }
 
         sharedElementReturnTransition = TransitionInflater.from(this.context).inflateTransition(R.transition.transition).apply {
-            duration = 1500
+            duration = 500
         }
     }
 
