@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.OvershootInterpolator
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,12 @@ import ru.kavunov.mtsproject.adapter.CategoryAdapter
 import ru.kavunov.mtsproject.adapter.MovieAdapter
 
 import androidx.lifecycle.ViewModelProviders
+import androidx.transition.Fade
+import androidx.transition.TransitionInflater
+import jp.wasabeef.recyclerview.animators.FadeInAnimator
+import jp.wasabeef.recyclerview.animators.FlipInLeftYAnimator
+import jp.wasabeef.recyclerview.animators.LandingAnimator
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import ru.kavunov.mtsproject.mvvm.viewModel.MovieViewModel
 
 
@@ -50,10 +57,20 @@ class ListFilmFragment : Fragment() {
         rcCateg.adapter = adapterCateg
         rcMovie.layoutManager = GridLayoutManager(getActivity(), 2)
         rcMovie.adapter = adapterMovie
+        rcCateg.itemAnimator = FlipInLeftYAnimator(OvershootInterpolator(1f))
+        rcCateg.itemAnimator?.apply {
+            addDuration = 1000
+
+        }
 
         val indent_h = convertDpToPixels(requireActivity(), 150f)
         val dividerItemDecoration = CharacterItemDecoration(indent_h.toInt())
         rcMovie.addItemDecoration(dividerItemDecoration)
+        rcMovie.itemAnimator = FadeInAnimator(OvershootInterpolator(1f))
+        rcMovie.itemAnimator?.apply {
+            addDuration = 1000
+
+        }
 
         swipeToRefreshCentreal = view.findViewById(R.id.swip)
         swipeToRefreshCentreal.setOnRefreshListener {

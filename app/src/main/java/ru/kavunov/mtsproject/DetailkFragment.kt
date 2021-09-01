@@ -14,39 +14,58 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import ru.kavunov.mtsproject.adapter.ActorsAdapter
 import androidx.lifecycle.Observer
+import androidx.transition.TransitionInflater
 import ru.kavunov.mtsproject.DTC.MovieDto
 import ru.kavunov.mtsproject.mvvm.viewModel.DetailViewModel
 
 
 class DetailkFragment : Fragment() {
     private val detailViewModel: DetailViewModel by viewModels()
-    var adapterActors= ActorsAdapter()
+    var adapterActors = ActorsAdapter()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = TransitionInflater.from(this.context).inflateTransition(R.transition.transition).apply {
+            duration = 500
+        }
+
+        sharedElementReturnTransition = TransitionInflater.from(this.context).inflateTransition(R.transition.transition).apply {
+            duration = 500
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val position = arguments?.getString("MyArg")
-        val view =  inflater.inflate(R.layout.fragment_detailk, container, false)
+        val view = inflater.inflate(R.layout.fragment_detailk, container, false)
         val rcActors = view.findViewById<RecyclerView>(R.id.RcActor)
-
-        if(position!=null)detailViewModel.loadDetail(position.toLong())
+        view.findViewById<View>(R.id.imageDetId)?.transitionName = "image" + position
+        if (position != null) detailViewModel.loadDetail(position.toLong())
         detailViewModel.listDetail.observe(requireActivity(), Observer(::viewMovie))
         detailViewModel.listActors.observe(requireActivity(), Observer(adapterActors::initData))
-        rcActors.layoutManager = LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
+        rcActors.layoutManager =
+            LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false)
         rcActors.adapter = adapterActors
 
         return view
     }
 
-    fun viewMovie(movieDto: MovieDto){
+    fun viewMovie(movieDto: MovieDto) {
         view?.findViewById<TextView>(R.id.titleId)?.text = movieDto.title
+
         view?.findViewById<TextView>(R.id.textgenre)?.text = movieDto.genre
         view?.findViewById<TextView>(R.id.textData)?.text = movieDto.releaseDate
         view?.findViewById<TextView>(R.id.descripId)?.text = movieDto.description
-        view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating = (movieDto.rateScore?.toFloat() ?: 0.0) as Float
-        view?.findViewById<TextView>(R.id.ageRestrictionId)?.text = movieDto.ageRestriction.toString()
+        view?.findViewById<RatingBar>(R.id.filmRatingDet)?.rating =
+            (movieDto.rateScore?.toFloat() ?: 0.0) as Float
+        view?.findViewById<TextView>(R.id.ageRestrictionId)?.text =
+            movieDto.ageRestriction.toString()
         view?.findViewById<ImageView>(R.id.imageDetId)?.load(movieDto.imageUrl)
 
     }
+
 }
+
+
