@@ -2,14 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
 
+
         android:id="@+id/listFilmFragment"
+
 
         android:title="1"
         android:icon="@drawable/znac1"
         android:orderInCategory="1"/>
     <item
 
+
         android:id="@+id/profilFragment"
+
 
         android:title="2"
         android:icon="@drawable/znac2"

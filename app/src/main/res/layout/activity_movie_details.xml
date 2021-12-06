@@ -34,10 +34,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/BoNav"
         android:layout_width="0dp"
+
         android:layout_height="@dimen/bottonNavH"
+
         android:background="@color/white"
         app:itemBackground="@drawable/button_selector2"
         app:itemIconTint="@drawable/button_selector"
@@ -47,4 +50,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/button_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

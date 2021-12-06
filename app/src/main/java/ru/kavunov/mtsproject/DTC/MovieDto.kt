@@ -1,5 +1,6 @@
 package ru.kavunov.mtsproject.DTC
 
+
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,3 +15,4 @@ data class MovieDto(
     val ageRestriction: String,
     val imageUrl: String,
     )
+

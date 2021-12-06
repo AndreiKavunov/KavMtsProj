@@ -26,7 +26,9 @@ android {
         targetSdkVersion 30
         versionCode 1
 
+
         versionName "1.0.0.3"
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -50,6 +52,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+
     kotlinOptions {
         freeCompilerArgs += [
                 '-Xopt-in=kotlinx.serialization.ExperimentalSerializationApi',
@@ -64,6 +67,7 @@ android {
     }
 
 
+
 }
 
 dependencies {
@@ -74,6 +78,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation "io.coil-kt:coil-base:$coil_version"
     implementation "io.coil-kt:coil:$coil_version"
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
