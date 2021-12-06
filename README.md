@@ -10,4 +10,4 @@
 * Coroutines
 * WorkManager
 
-![Фото1](test.jpg)
+![Фото1](Screen1.jpg)[Фото2](Screen2.jpg)
