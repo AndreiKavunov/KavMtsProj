@@ -2,6 +2,7 @@ package ru.kavunov.mtsproject
 
 
 
+
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -17,15 +18,18 @@ import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 
 
 
+
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
     val bundle = Bundle()
+
     lateinit var binding: ActivityMovieDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         Orient.orInt = getResources().getConfiguration().orientation
 
 

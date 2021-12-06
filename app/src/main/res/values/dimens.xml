@@ -2,6 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="design_bottom_navigation_item_max_width" tools:override="true">600dp</dimen>
     <dimen name="design_bottom_navigation_active_item_max_width" tools:override="true">600dp</dimen>
+
     <dimen name="bottonNavH">48dp</dimen>
     <dimen name="categH">18dp</dimen>
     <dimen name="categW">82dp</dimen>
@@ -29,4 +30,6 @@
     <dimen name="textProfilMain">16sp</dimen>
     <dimen name="textProfil">14sp</dimen>
 
+
 </resources>
+

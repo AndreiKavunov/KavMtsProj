@@ -1,12 +1,14 @@
 package ru.kavunov.mtsproject.adapter
 
 
+
 import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+
 import ru.kavunov.mtsproject.R
 import ru.kavunov.mtsproject.bd.CategoryTable
 import ru.kavunov.mtsproject.databinding.CategoryItemBinding
@@ -30,6 +32,7 @@ class CategoryAdapter():RecyclerView.Adapter<CategoryHolder>() {
         return categtList.size
     }
 
+
     fun initData(categ: List<CategoryTable>?) {
         if (categ!=null){
             categtList.clear()
@@ -47,4 +50,4 @@ class CategoryHolder(item: View):RecyclerView.ViewHolder(item) {
             building.idCateg.text = categoryTable.category
         }
 
-    }
+
