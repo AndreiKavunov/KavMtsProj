@@ -1,33 +1,28 @@
 package ru.kavunov.mtsproject
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+
+
+
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import ru.kavunov.mtsproject.DTC.Categorie
-import ru.kavunov.mtsproject.DTC.MovieDto
-import ru.kavunov.mtsproject.adapter.CategoryAdapter
-import ru.kavunov.mtsproject.adapter.MovieAdapter
+import android.widget.ImageView
+import android.widget.RatingBar
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import ru.kavunov.mtsproject.bd.MovieTable
 import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
-import ru.mts.teta.summer.android.homework.list.data.features.movies.CategoryDataSourceImpl
-import ru.mts.teta.summer.android.homework.list.data.features.movies.MoviesDataSourceImpl
+
+
 
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
-    var listMov= ArrayList<MovieDto>()
-    val listCateg : List<Categorie> = CategoryDataSourceImpl().getMovies()
 
-    private val adapterCateg = CategoryAdapter(listCateg)
-
-    lateinit var adapterMovie: MovieAdapter
-
-
+    val bundle = Bundle()
 
     lateinit var binding: ActivityMovieDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,48 +30,50 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        listMov.addAll(MoviesDataSourceImpl().getMovies())
-        init()
+
+        Orient.orInt = getResources().getConfiguration().orientation
+
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        findViewById<BottomNavigationView>(R.id.BoNav)
+            .setupWithNavController(navController)
+
+        runWorker(this)
 
 
     }
 
-    fun init(){
+    override fun clickDetail(position: Long,image:ImageView) {
 
-        adapterMovie = MovieAdapter(listMov)
-        binding.RcCateg.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        binding.RcCateg.adapter = adapterCateg
-        binding.RcMovie.layoutManager = GridLayoutManager(this, 2)
-        binding.RcMovie.adapter = adapterMovie
-        val indent_h = convertDpToPixels(this, 150f)
-        val dividerItemDecoration = CharacterItemDecoration(indent_h.toInt())
-        binding.RcMovie.addItemDecoration(dividerItemDecoration)
+        val extrasConst = FragmentNavigatorExtras(
 
+            image to "image"+position.toString(),
 
-
-        }
-
-
-
-    override fun clickToach(a: MovieDto) {
-        Toast.makeText(this, a.title, Toast.LENGTH_SHORT).show()
+        )
+        bundle.putString("MyArg", position.toString())
+        Navigation
+            .findNavController(this, R.id.nav_host_fragment)
+            .navigate(R.id.action_listFilmFragment_to_detailkFragment, bundle, null,  extrasConst)
 
 
     }
-    fun convertDpToPixels(context: Context, dp: Float) =
-        dp * context.resources.displayMetrics.density
-//    fun updateList(){
-//        while (listMov.size < 6){
-//            var film = MoviesDataSourceImpl().getMovies().random()
-//            if(film !in listMov)
-//            listMov.add(film)
-//        }
-//    }
-//    fun onClickkk(view: View){
-//        listMov.clear()
-//        updateList()
-//        adapterMovie.changeList(listMov)
-//        Log.d("tag", "www")
-//    }
+
 
 }
+
+
+
+
+object Orient {var orInt = 1}
+
+
+
+
+
+
+
+
+
+

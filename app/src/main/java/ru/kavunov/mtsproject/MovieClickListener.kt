@@ -1,7 +1,15 @@
 package ru.kavunov.mtsproject
 
-import ru.kavunov.mtsproject.DTC.MovieDto
+
+import android.content.Context
+import android.widget.ImageView
+import android.widget.RatingBar
+import android.widget.TextView
+import ru.kavunov.mtsproject.bd.MovieTable
 
 interface MovieClickListener {
-    fun clickToach(a: MovieDto)
+    fun clickDetail(position: Long, image: ImageView)
+
+
+
 }

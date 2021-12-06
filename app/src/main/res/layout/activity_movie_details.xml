@@ -7,62 +7,40 @@
 
     android:background="@color/scroll2">
 
-    <TextView
-        android:id="@+id/magnifier"
-        android:layout_width="@dimen/magnifier"
-        android:layout_height="@dimen/magnifier"
-        android:layout_marginTop="@dimen/magnifierTop"
-        android:layout_marginEnd="@dimen/marginStart"
-        android:background="@drawable/search"
-        android:backgroundTint="@color/black"
-        android:onClick="onClickfilm"
-        android:textColor="@color/black"
-        android:textColorLink="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/popularToday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/marginStart"
-        android:layout_marginTop="@dimen/popularTop"
-        android:text="@string/popular"
-        android:textColor="@color/black"
-        android:textSize="@dimen/mainText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RcCateg"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/RcCarH"
-        android:layout_marginStart="@dimen/RcCarStart"
-        android:layout_marginTop="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RcMovie"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainFrag"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/marginStart"
-        android:layout_marginTop="@dimen/RcMovTop"
-        android:layout_marginEnd="@dimen/marginStart"
-        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toTopOf="@+id/BoNav"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RcCateg"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/main_graph" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/BoNav"
         android:layout_width="0dp"
-        android:layout_height="@dimen/BottonH"
+
+        android:layout_height="@dimen/bottonNavH"
+
         android:background="@color/white"
         app:itemBackground="@drawable/button_selector2"
         app:itemIconTint="@drawable/button_selector"

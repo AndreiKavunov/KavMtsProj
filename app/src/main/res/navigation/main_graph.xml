@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/listFilmFragment">
+    <fragment
+        android:id="@+id/listFilmFragment"
+        android:name="ru.kavunov.mtsproject.ListFilmFragment"
+        android:label="ListFilmFragment"
+        >
+        <action
+            android:id="@+id/action_listFilmFragment_to_detailkFragment"
+            app:destination="@id/detailkFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_listFilmFragment_to_profilFragment3"
+            app:destination="@id/profilFragment"
+           />
+    </fragment>
+    <fragment
+        android:id="@+id/detailkFragment"
+        android:name="ru.kavunov.mtsproject.DetailkFragment"
+        android:label="DetailkFragment" >
+        <argument android:name="MyArg" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/profilFragment"
+        android:name="ru.kavunov.mtsproject.ProfilFragment"
+        android:label="ProfilFragment" >
+        <action
+            android:id="@+id/action_profilFragment_to_listFilmFragment"
+            app:destination="@id/listFilmFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_listFilmFragment"
+        app:destination="@id/listFilmFragment"
+        app:launchSingleTop="false" />
+</navigation>

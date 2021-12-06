@@ -12,5 +12,29 @@
 
     <string name="popular">Популярное сейчас</string>
 
+    <string name="user_name">Константин</string>
+    <string name="user_data">Личные данные</string>
+    <string name="user_email">konst.89@mail.com</string>
+    <string name="user_interest">Интересы</string>
+    <string name="name">Имя</string>
+    <string name="telephone">Телефон</string>
+    <string name="settings">Настройки</string>
+    <string name="yv_sound">Уведомления и звуки</string>
+    <string name="konf">Конфедициальность</string>
+    <string name="tema">Тема</string>
+    <string name="lang">Язык</string>
+    <string name="pril">Приложение</string>
+    <string name="que">Задать вопрос</string>
+    <string name="data_and">Данные и память</string>
+    <string name="probl">Сообщить о проблеме</string>
+    <string name="exit">Выйти</string>
+    <string name="passw">**********</string>
+
+    <string name="please_wait">Пожалуйста подождите...</string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 
 </resources>
