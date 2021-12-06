@@ -1,9 +1,10 @@
-
-# Проект для школы мобильной разработки МТС.
-https://www.themoviedb.org/
-архитектура MVVM
-ROOM
-Navigation component
-Retrofit + Okhttp
-Coroutines
-WorkManager
+## Проект для школы мобильной разработки МТС.
+Приложение показывает список популярных фильмов полученный с сайта https://www.themoviedb.org/, отображается афиша, описание, возрастные ограничения и рейтинг, в деталях фильма добавляется список актеров. Данные обновляются раз в сутки в фоновом режиме.
+---
+#### Используется:
+* архитектура MVVM
+* ROOM
+* Navigation component
+* Retrofit + Okhttp
+* Coroutines
+* WorkManager
