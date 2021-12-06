@@ -19,7 +19,6 @@ class CategoryAdapter():RecyclerView.Adapter<CategoryHolder>() {
     var categtList: MutableList<CategoryTable> = ArrayList()
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
         return CategoryHolder(view)
@@ -51,5 +50,4 @@ class CategoryHolder(item: View):RecyclerView.ViewHolder(item) {
             building.idCateg.text = categoryTable.category
         }
 
-    }
 

@@ -21,7 +21,6 @@ import ru.kavunov.mtsproject.databinding.ActivityMovieDetailsBinding
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
 
-
     val bundle = Bundle()
 
     lateinit var binding: ActivityMovieDetailsBinding
@@ -67,7 +66,6 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
 
 
 object Orient {var orInt = 1}
-
 
 
 

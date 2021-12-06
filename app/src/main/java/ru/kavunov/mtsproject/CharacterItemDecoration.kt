@@ -11,11 +11,13 @@ import android.view.View
 
 import androidx.recyclerview.widget.RecyclerView
 
+
 import com.google.android.material.internal.ContextUtils.getActivity
 
 
 class CharacterItemDecoration(private val fotoW: Int) :
     RecyclerView.ItemDecoration() {
+
 
 
     override fun getItemOffsets(
